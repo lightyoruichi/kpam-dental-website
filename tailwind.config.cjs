@@ -8,11 +8,11 @@ module.exports = {
         'body': ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        'warm-gold': '#D4AF37',
-        'deep-red': '#8B0000',
-        'cream': '#F5F5DC',
-        'charcoal': '#36454F',
-        'sage': '#9CAF88',
+        'medical-blue': '#2563EB',
+        'dental-teal': '#0D9488',
+        'clean-white': '#FFFFFF',
+        'professional-gray': '#6B7280',
+        'health-green': '#10B981',
       }
     },
   },
@@ -20,40 +20,40 @@ module.exports = {
 	daisyui: {
 		themes: [
 			{
-				restaurant: {
-					// Primary: Warm Gold - stimulates appetite, luxury, warmth
-					primary: '#D4AF37', // Rich Gold
-					'primary-focus': '#B8860B', // Darker Gold
+				dental: {
+					// Primary: Medical Blue - trust, professionalism, medical care
+					primary: '#2563EB', // Medical Blue
+					'primary-focus': '#1D4ED8', // Darker Blue
 					'primary-content': '#FFFFFF',
 					
-					// Secondary: Deep Burgundy - sophistication, appetite stimulation
-					secondary: '#722F37', // Deep Burgundy
-					'secondary-focus': '#8B0000', // Darker Burgundy
+					// Secondary: Dental Teal - health, cleanliness, tranquility
+					secondary: '#0D9488', // Dental Teal
+					'secondary-focus': '#0F766E', // Darker Teal
 					'secondary-content': '#FFFFFF',
 					
-					// Accent: Warm Cream - comfort, cleanliness, appetite
-					accent: '#F5E6D3', // Warm Cream
-					'accent-focus': '#E6D3B7', // Slightly darker cream
-					'accent-content': '#2C1810', // Dark brown for contrast
+					// Accent: Health Green - growth, healing, vitality
+					accent: '#10B981', // Health Green
+					'accent-focus': '#059669', // Darker Green
+					'accent-content': '#FFFFFF',
 					
-					// Neutral: Rich Brown - earthiness, reliability, warmth
-					neutral: '#3C2415', // Rich Brown
-					'neutral-focus': '#2C1810', // Darker Brown
-					'neutral-content': '#F5E6D3', // Light cream
+					// Neutral: Professional Gray - reliability, professionalism, balance
+					neutral: '#6B7280', // Professional Gray
+					'neutral-focus': '#4B5563', // Darker Gray
+					'neutral-content': '#FFFFFF',
 					
-					// Base: Warm whites and creams - appetite stimulation, cleanliness
-					'base-100': '#FEFCF8', // Warm white
-					'base-200': '#F8F4E6', // Light cream
-					'base-300': '#F0E6D3', // Medium cream
-					'base-content': '#2C1810', // Dark brown for readability
+					// Base: Clean whites and light grays - cleanliness, sterility, medical safety
+					'base-100': '#FFFFFF', // Pure white
+					'base-200': '#F9FAFB', // Light gray
+					'base-300': '#F3F4F6', // Medium light gray
+					'base-content': '#111827', // Dark gray for readability
 					
-					// Status colors with food-friendly tones
-					info: '#4A90E2', // Soft blue
-					success: '#7CB342', // Fresh green (like herbs)
-					warning: '#FF8F00', // Warm orange (like citrus)
-					error: '#D32F2F', // Rich red (like tomatoes)
+					// Status colors with medical-friendly tones
+					info: '#3B82F6', // Medical blue
+					success: '#10B981', // Health green
+					warning: '#F59E0B', // Caution amber
+					error: '#EF4444', // Medical red
 					
-					// Additional food psychology colors
+					// Additional medical psychology colors
 					'success-content': '#FFFFFF',
 					'warning-content': '#FFFFFF',
 					'error-content': '#FFFFFF',

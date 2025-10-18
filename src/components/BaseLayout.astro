@@ -13,7 +13,7 @@ export interface Props {
 const { 
   title, 
   description, 
-  image = "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop",
+  image = "https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop",
   currentPage,
   showTally = false
 } = Astro.props;
@@ -22,7 +22,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="restaurant">
+<html lang="en" data-theme="dental">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -34,8 +34,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="fine dining, restaurant, contemporary cuisine, locally sourced, award winning, reservations, multiple locations, innovative cuisine, exceptional service" />
-    <meta name="author" content="Restaurant Name" />
+    <meta name="keywords" content="dental clinic, dentist, dental care, teeth cleaning, dental treatment, Shah Alam, Selangor, Malaysia, dental services, oral health, dental checkup, teeth whitening, dental implants, root canal" />
+    <meta name="author" content="Klinik Pergigian Alam Megah" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="en-US" />
     <meta name="revisit-after" content="7 days" />
@@ -48,7 +48,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:image" content={image} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="Restaurant Name" />
+    <meta property="og:site_name" content="Klinik Pergigian Alam Megah" />
     <meta property="og:locale" content="en_US" />
     
     <!-- Twitter -->
@@ -57,8 +57,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={image} />
-    <meta property="twitter:site" content="@yourrestaurant" />
-    <meta property="twitter:creator" content="@yourrestaurant" />
+    <meta property="twitter:site" content="@klinikpergigian_alammegah" />
+    <meta property="twitter:creator" content="@klinikpergigian_alammegah" />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -108,8 +108,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           "latitude": "40.7128",
           "longitude": "-74.0060"
         },
-        "servesCuisine": ["Fine Dining", "Contemporary", "American", "Mediterranean"],
-        "priceRange": "$$$",
+        "medicalSpecialty": "Dentistry",
+        "priceRange": "$$",
         "openingHours": "Mo-Su 17:00-22:00",
         "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
         "currenciesAccepted": "USD",
@@ -156,21 +156,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Restaurant Name",
-        "description": "Fine dining restaurant with multiple locations offering exceptional cuisine and service",
-        "url": "https://yourrestaurant.com",
-        "telephone": "+1-555-123-4567",
+        "@type": "MedicalBusiness",
+        "name": "Klinik Pergigian Alam Megah",
+        "description": "Professional dental clinic providing comprehensive dental care services in Shah Alam",
+        "url": "https://kpam.my",
+        "telephone": "+6-011-3711-8155",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "123 Main Street",
-          "addressLocality": "Your City",
-          "addressRegion": "Your State",
-          "postalCode": "12345",
-          "addressCountry": "US"
+          "streetAddress": "123, Jalan Alam Megah 1/1, Taman Alam Megah",
+          "addressLocality": "Shah Alam",
+          "addressRegion": "Selangor",
+          "postalCode": "40000",
+          "addressCountry": "MY"
         },
-        "openingHours": "Mo-Su 17:00-22:00",
-        "priceRange": "$$$"
+        "openingHours": "Mo-Fr 09:00-18:00, Sa 09:00-16:00",
+        "priceRange": "$$"
       }
     </script>
   </head>
