@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import { shortLinks } from '../../config/analytics.ts';
+
+// This would typically be protected by authentication in production
+---
+
+<BaseLayout 
+  title="Short Links Management - KPAM Dental"
+  description="Manage short URLs and redirects for KPAM dental clinic"
+  currentPage="admin"
+>
+  <div class="min-h-screen bg-base-200 py-12">
+    <div class="container-custom">
+      <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8">
+          <h1 class="text-4xl font-bold text-base-content mb-4">Short Links Management</h1>
+          <p class="text-lg text-base-content/70">
+            Manage short URLs, redirects, and track analytics for KPAM dental clinic marketing campaigns.
+          </p>
+        </div>
+
+        <!-- Add New Link Form -->
+        <div class="bg-base-100 rounded-2xl p-6 mb-8 shadow-lg">
+          <h2 class="text-2xl font-semibold text-base-content mb-4">Add New Short Link</h2>
+          <form id="add-link-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="label">
+                <span class="label-text">Short URL</span>
+              </label>
+              <input 
+                type="text" 
+                name="short" 
+                placeholder="e.g., 'promo'" 
+                class="input input-bordered w-full"
+                required
+              />
+            </div>
+            <div>
+              <label class="label">
+                <span class="label-text">Destination URL</span>
+              </label>
+              <input 
+                type="url" 
+                name="destination" 
+                placeholder="https://example.com" 
+                class="input input-bordered w-full"
+                required
+              />
+            </div>
+            <div>
+              <label class="label">
+                <span class="label-text">Category</span>
+              </label>
+              <select name="category" class="select select-bordered w-full" required>
+                <option value="whatsapp">WhatsApp</option>
+                <option value="phone">Phone</option>
+                <option value="maps">Maps</option>
+                <option value="social">Social Media</option>
+                <option value="service">Service</option>
+                <option value="emergency">Emergency</option>
+              </select>
+            </div>
+            <div>
+              <label class="label">
+                <span class="label-text">Label</span>
+              </label>
+              <input 
+                type="text" 
+                name="label" 
+                placeholder="e.g., 'WhatsApp Booking'" 
+                class="input input-bordered w-full"
+                required
+              />
+            </div>
+            <div class="md:col-span-2">
+              <label class="label">
+                <span class="label-text">Description</span>
+              </label>
+              <textarea 
+                name="description" 
+                placeholder="Brief description of this link's purpose" 
+                class="textarea textarea-bordered w-full"
+                rows="2"
+              ></textarea>
+            </div>
+            <div class="md:col-span-2">
+              <button type="submit" class="btn btn-primary">
+                Add Short Link
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Existing Links Table -->
+        <div class="bg-base-100 rounded-2xl p-6 shadow-lg">
+          <h2 class="text-2xl font-semibold text-base-content mb-6">Existing Short Links</h2>
+          
+          <div class="overflow-x-auto">
+            <table class="table table-zebra w-full">
+              <thead>
+                <tr>
+                  <th>Short URL</th>
+                  <th>Destination</th>
+                  <th>Category</th>
+                  <th>Label</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {shortLinks.map((link) => (
+                  <tr>
+                    <td>
+                      <div class="flex items-center space-x-2">
+                        <code class="bg-base-200 px-2 py-1 rounded text-sm">
+                          kpam.my/{link.short}
+                        </code>
+                        <button 
+                          class="btn btn-ghost btn-xs"
+                          onclick={`navigator.clipboard.writeText('https://kpam.my/${link.short}')`}
+                        >
+                          Copy
+                        </button>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="max-w-xs truncate" title={link.destination}>
+                        {link.destination}
+                      </div>
+                    </td>
+                    <td>
+                      <span class={`badge badge-outline ${
+                        link.category === 'whatsapp' ? 'badge-success' :
+                        link.category === 'phone' ? 'badge-info' :
+                        link.category === 'maps' ? 'badge-warning' :
+                        link.category === 'social' ? 'badge-secondary' :
+                        link.category === 'emergency' ? 'badge-error' :
+                        'badge-neutral'
+                      }`}>
+                        {link.category}
+                      </span>
+                    </td>
+                    <td>{link.label}</td>
+                    <td>
+                      <span class={`badge ${link.isActive ? 'badge-success' : 'badge-error'}`}>
+                        {link.isActive ? 'Active' : 'Inactive'}
+                      </span>
+                    </td>
+                    <td>
+                      <div class="flex space-x-2">
+                        <button class="btn btn-ghost btn-xs">Edit</button>
+                        <button class="btn btn-ghost btn-xs">
+                          {link.isActive ? 'Disable' : 'Enable'}
+                        </button>
+                        <button class="btn btn-ghost btn-xs text-error">Delete</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Analytics Summary -->
+        <div class="bg-base-100 rounded-2xl p-6 mt-8 shadow-lg">
+          <h2 class="text-2xl font-semibold text-base-content mb-4">Analytics Summary</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="stat">
+              <div class="stat-title">Total Clicks</div>
+              <div class="stat-value text-primary">1,247</div>
+              <div class="stat-desc">Last 30 days</div>
+            </div>
+            <div class="stat">
+              <div class="stat-title">Most Popular</div>
+              <div class="stat-value text-secondary">WhatsApp</div>
+              <div class="stat-desc">wa - 456 clicks</div>
+            </div>
+            <div class="stat">
+              <div class="stat-title">Conversion Rate</div>
+              <div class="stat-value text-accent">23.4%</div>
+              <div class="stat-desc">Clicks to appointments</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for form handling -->
+  <script>
+    document.getElementById('add-link-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const newLink = {
+        short: formData.get('short'),
+        destination: formData.get('destination'),
+        category: formData.get('category'),
+        label: formData.get('label'),
+        description: formData.get('description')
+      };
+      
+      // Here you would typically send this to your backend API
+      console.log('New link to add:', newLink);
+      alert('Short link would be added: kpam.my/' + newLink.short);
+      
+      // Reset form
+      e.target.reset();
+    });
+
+    // Copy to clipboard functionality
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+      });
+    }
+  </script>
+</BaseLayout>

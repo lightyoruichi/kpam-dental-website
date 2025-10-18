@@ -93,8 +93,8 @@ x
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd restaurant-template
+   git clone https://github.com/lightyoruichi/kpam-dental-website.git
+   cd kpam-dental-website
    ```
 
 2. **Install dependencies**
@@ -111,6 +111,29 @@ x
    ```bash
    npm run build
    ```
+
+## 🌐 Live Deployment
+
+- **Production URL**: https://resto-nf6t9ticy-harinder-singhs-projects-e319dcc3.vercel.app
+- **GitHub Repository**: https://github.com/lightyoruichi/kpam-dental-website
+- **Vercel Project**: harinder-singhs-projects-e319dcc3/resto
+
+## 📊 Analytics & Tracking
+
+### Google Analytics 4 Setup
+1. Create GA4 property for KPAM.my
+2. Update `PUBLIC_GA_ID` in environment variables
+3. Configure conversion tracking for appointments
+
+### Short URL System
+- **Admin Panel**: `/admin/short-links` (password protected in production)
+- **Short URLs**: 
+  - `kpam.my/wa` → WhatsApp booking
+  - `kpam.my/call` → Phone call
+  - `kpam.my/map` → Google Maps location
+  - `kpam.my/ig` → Instagram
+  - `kpam.my/tiktok` → TikTok
+  - `kpam.my/emergency` → Emergency contact
 
 ## 🎯 Customization Guide
 
