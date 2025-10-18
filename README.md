@@ -114,9 +114,11 @@ x
 
 ## 🌐 Live Deployment
 
-- **Production URL**: https://resto-nf6t9ticy-harinder-singhs-projects-e319dcc3.vercel.app
+- **Production URL**: https://resto-gqrdxuc04-harinder-singhs-projects-e319dcc3.vercel.app
 - **GitHub Repository**: https://github.com/lightyoruichi/kpam-dental-website
 - **Vercel Project**: harinder-singhs-projects-e319dcc3/resto
+- **Short URLs**: All short URLs work with parameter forwarding
+- **Admin Panel**: `/admin/short-links` for link management
 
 ## 📊 Analytics & Tracking
 
@@ -134,6 +136,52 @@ x
   - `kpam.my/ig` → Instagram
   - `kpam.my/tiktok` → TikTok
   - `kpam.my/emergency` → Emergency contact
+  - `kpam.my/grab` → Grab transport booking
+  - `kpam.my/waze` → Waze navigation
+
+#### 📝 Short Link Management Guide
+
+**Adding New Short Links:**
+1. Open `src/config/analytics.ts`
+2. Add new link to `shortLinks` array:
+```typescript
+{
+  id: 'unique-id',
+  short: 'short-url',
+  destination: 'https://destination-url.com',
+  category: 'whatsapp' | 'phone' | 'maps' | 'social' | 'service' | 'emergency' | 'transport',
+  label: 'Display Name',
+  description: 'Description for admin panel',
+  isActive: true
+}
+```
+3. Add to static paths in `src/pages/[short].astro`:
+```typescript
+{ params: { short: 'new-short-url' } }
+```
+4. Deploy changes
+
+**Editing Existing Short Links:**
+1. Open `src/config/analytics.ts`
+2. Find the link by `id` or `short`
+3. Update `destination`, `label`, or `description`
+4. Deploy changes
+
+**Disabling Short Links:**
+1. Set `isActive: false` in `src/config/analytics.ts`
+2. Deploy changes
+
+**Parameter Forwarding:**
+- All short URLs automatically forward query parameters
+- Example: `kpam.my/wa?source=facebook&campaign=summer2024`
+- Parameters are appended to destination URL
+- Analytics tracking includes parameter data
+
+**Analytics Tracking:**
+- All short link clicks are tracked
+- Category-based event tracking
+- Parameter forwarding for campaign tracking
+- Admin panel shows click statistics
 
 ## 🎯 Customization Guide
 
@@ -158,6 +206,11 @@ x
 - Replace Pexels images with actual clinic photos
 - Optimize images for web (WebP format recommended)
 - Add alt text for accessibility
+- **Image Management**:
+  - Doctor photos: `/public/images/drnik.png`, `/public/images/nikunj.jpg`
+  - Clinic photos: `/public/images/pexels-*.jpg`
+  - Update image paths in `src/pages/index.astro`
+  - Maintain consistent aspect ratios for best display
 
 ## 📊 Performance Optimization
 
@@ -226,6 +279,49 @@ MIT License - Feel free to use this template for your restaurant website.
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 🔧 Troubleshooting
+
+### **Common Issues**
+
+**Short Links Not Working:**
+1. Check if link is added to `src/pages/[short].astro` static paths
+2. Verify `isActive: true` in `src/config/analytics.ts`
+3. Ensure proper deployment after changes
+
+**Images Not Loading:**
+1. Check image paths in `/public/images/`
+2. Verify file names match exactly
+3. Ensure images are optimized for web
+
+**Build Errors:**
+1. Run `npm run build` locally to test
+2. Check for TypeScript errors
+3. Verify all imports are correct
+
+### **Development Tips**
+
+**Local Development:**
+```bash
+npm run dev
+# Visit http://localhost:4321
+```
+
+**Testing Short Links:**
+```bash
+# Test locally
+curl http://localhost:4321/wa
+curl http://localhost:4321/wa?source=test
+
+# Test in production
+curl https://resto-gqrdxuc04-harinder-singhs-projects-e319dcc3.vercel.app/wa
+```
+
+**Image Optimization:**
+```bash
+# Optimize images before adding
+npx @squoosh/cli --webp public/images/*.jpg
+```
 
 ## 📞 Support
 
