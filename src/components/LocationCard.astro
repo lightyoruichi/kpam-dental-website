@@ -5,9 +5,10 @@ export interface Props {
   phone: string;
   hours: string;
   image?: string;
+  mapLink?: string;
 }
 
-const { name, address, phone, hours, image = "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400" } = Astro.props;
+const { name, address, phone, hours, image = "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400", mapLink } = Astro.props;
 ---
 
 <div class="location-card">
@@ -34,7 +35,12 @@ const { name, address, phone, hours, image = "https://images.pexels.com/photos/1
       <p>{hours}</p>
     </div>
   </div>
-  <div class="mt-4">
+  <div class="mt-4 space-y-2">
+    {mapLink && (
+      <a href={mapLink} class="btn-secondary w-full text-center" target="_blank">
+        View on Map
+      </a>
+    )}
     <a href={`tel:${phone}`} class="btn-primary w-full text-center">
       Call Now
     </a>
