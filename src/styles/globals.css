@@ -33,7 +33,7 @@
   }
   
   .container-custom {
-    @apply max-w-6xl mx-auto;
+    @apply w-[90%] mx-auto;
   }
   
   .text-gradient {
@@ -110,7 +110,7 @@
   }
   
   .container-custom {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply w-[90%] mx-auto px-4 sm:px-6 lg:px-8;
   }
   
   .section-padding {

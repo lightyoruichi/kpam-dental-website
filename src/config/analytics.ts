@@ -3,7 +3,7 @@ export interface ShortLink {
   id: string;
   short: string;
   destination: string;
-  category: 'whatsapp' | 'phone' | 'maps' | 'social' | 'service' | 'emergency';
+  category: 'whatsapp' | 'phone' | 'maps' | 'social' | 'service' | 'emergency' | 'transport';
   label: string;
   description: string;
   isActive: boolean;
@@ -62,6 +62,24 @@ export const shortLinks: ShortLink[] = [
     category: 'emergency',
     label: 'Emergency Contact',
     description: 'Emergency dental care contact',
+    isActive: true
+  },
+  {
+    id: 'grab-transport',
+    short: 'grab',
+    destination: 'https://grab.onelink.me/2695613898?af_dp=grab%3A%2F%2Fopen%3FdropOffAddress%3DNO.%2B6%2BJalan%2BLabu%2B28%252F23%2BTaman%2BAlam%2BMegah%2BShah%2BAlam%2BMalaysia%2B40400%26dropOffLatitude%3D3.0044673%26dropOffLongitude%3D101.561353%26pickUpAddress%3DCurrent%2BLocation%26pickUpLatitude%3D1.234567%26pickUpLongitude%3D3.456789%26screenType%3DBOOKING%26sourceID%3D%26taxiTypeId%3D227&c=&pid=',
+    category: 'transport',
+    label: 'Grab Transport',
+    description: 'Book Grab ride to clinic',
+    isActive: true
+  },
+  {
+    id: 'waze-navigation',
+    short: 'waze',
+    destination: 'https://waze.com/ul?q=NO.%206,%20Jalan%20Labu%2028/23,%20Taman%20Alam%20Megah,%20Shah%20Alam,%20Malaysia%2040400',
+    category: 'transport',
+    label: 'Waze Navigation',
+    description: 'Navigate to clinic with Waze',
     isActive: true
   }
 ];

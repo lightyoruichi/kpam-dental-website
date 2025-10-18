@@ -9,7 +9,9 @@ export async function getStaticPaths() {
     { params: { short: 'map' } },
     { params: { short: 'ig' } },
     { params: { short: 'tiktok' } },
-    { params: { short: 'emergency' } }
+    { params: { short: 'emergency' } },
+    { params: { short: 'grab' } },
+    { params: { short: 'waze' } }
   ];
   
   return shortLinks;
@@ -21,6 +23,18 @@ const link = getShortLink(short || '');
 if (!link) {
   return Astro.redirect('/404');
 }
+
+// Get query parameters from the current URL
+const url = new URL(Astro.request.url);
+const searchParams = url.searchParams;
+const queryString = searchParams.toString();
+
+// Build the final destination URL with parameters
+let finalDestination = link.destination;
+if (queryString) {
+  const separator = link.destination.includes('?') ? '&' : '?';
+  finalDestination = `${link.destination}${separator}${queryString}`;
+}
 ---
 
 <html>
@@ -28,7 +42,7 @@ if (!link) {
     <meta charset="utf-8">
     <title>Redirecting...</title>
     <meta name="robots" content="noindex, nofollow">
-    <meta http-equiv="refresh" content="0;url={link.destination}">
+    <meta http-equiv="refresh" content="0;url={finalDestination}">
     
     <!-- Google Analytics tracking -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -43,7 +57,7 @@ if (!link) {
         event_category: '{link.category}',
         event_label: '{link.label}',
         link_id: '{link.id}',
-        destination: '{link.destination}',
+        destination: '{finalDestination}',
         short_url: '{link.short}'
       });
     </script>
@@ -51,7 +65,7 @@ if (!link) {
     <!-- Fallback redirect for browsers that don't support meta refresh -->
     <script>
       setTimeout(() => {
-        window.location.href = '{link.destination}';
+        window.location.href = '{finalDestination}';
       }, 100);
     </script>
   </head>
@@ -70,7 +84,7 @@ if (!link) {
         <h1>Redirecting...</h1>
         <p>You are being redirected to {link.label}</p>
         <div style="margin-top: 20px;">
-          <a href={link.destination} style="color: white; text-decoration: underline;">
+          <a href={finalDestination} style="color: white; text-decoration: underline;">
             Click here if you are not redirected automatically
           </a>
         </div>
