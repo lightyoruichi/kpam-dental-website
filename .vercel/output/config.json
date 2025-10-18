@@ -27,7 +27,15 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^/admin/short-links$",
+			"dest": "_render"
+		},
+		{
 			"src": "^/sitemap\\.xml/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/([^/]+?)$",
 			"dest": "_render"
 		},
 		{
