@@ -7,9 +7,9 @@ const { currentPage } = Astro.props;
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Menu', href: '/#menu' },
-  { name: 'Locations', href: '/#locations' },
   { name: 'Services', href: '/#services' },
+  { name: 'Specialized Care', href: '/#specialized-services' },
+  { name: 'Location', href: '/#locations' },
   { name: 'About', href: '/#about' },
   { name: 'Contact', href: '/#contact' }
 ];
@@ -22,11 +22,11 @@ const navigation = [
       <div class="flex items-center">
         <a href="/" class="flex items-center space-x-3">
           <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-            <span class="text-primary-content font-bold text-xl">R</span>
+            <span class="text-primary-content font-bold text-xl">K</span>
           </div>
           <div>
-            <h1 class="text-2xl font-bold text-base-content">Restaurant Name</h1>
-            <p class="text-sm text-base-content/70">Fine Dining Experience</p>
+            <h1 class="text-2xl font-bold text-base-content">KPAM</h1>
+            <p class="text-sm text-base-content/70">Klinik Pergigian Alam Megah</p>
           </div>
         </a>
       </div>
@@ -46,8 +46,8 @@ const navigation = [
             {item.name}
           </a>
         ))}
-        <a href="/#reservations" class="btn-primary hidden sm:inline-flex">
-          Make Reservation
+        <a href="https://wa.me/601137118155" class="btn-primary hidden sm:inline-flex" target="_blank">
+          Book Appointment
         </a>
       </div>
 
@@ -81,8 +81,8 @@ const navigation = [
             {item.name}
           </a>
         ))}
-        <a href="/#reservations" class="block w-full text-center btn-primary mt-4">
-          Make Reservation
+        <a href="https://wa.me/601137118155" class="block w-full text-center btn-primary mt-4" target="_blank">
+          Book Appointment
         </a>
       </div>
     </div>

@@ -1,11 +1,11 @@
-# Restaurant Template - SEO & UX Optimized
+# Klinik Pergigian Alam Megah - Professional Dental Website
 
-A modern, responsive restaurant website template built with Astro, featuring comprehensive SEO optimization, food psychology-based design, and LLM discovery optimization.
+A modern, responsive dental clinic website built with Astro, featuring comprehensive SEO optimization, dental care-focused design, and patient-friendly user experience.
 
 ## 🚀 Features
 
 ### **SEO & Performance**
-- **Comprehensive Schema Markup**: Restaurant, LocalBusiness, Menu, and Review schemas
+- **Comprehensive Schema Markup**: MedicalBusiness, LocalBusiness, and Review schemas
 - **Meta Tags Optimization**: Enhanced Open Graph and Twitter cards
 - **Sitemap Generation**: Dynamic XML sitemap for search engines
 - **Robots.txt**: Proper crawling instructions
@@ -13,16 +13,16 @@ A modern, responsive restaurant website template built with Astro, featuring com
 - **Fast Loading**: Built with Astro for optimal Core Web Vitals
 
 ### **UX/UI Design**
-- **Food Psychology Colors**: Appetite-stimulating color palette
+- **Dental Care Colors**: Professional and trustworthy color palette
 - **Touch-Optimized**: 48px minimum touch targets for mobile
 - **Visual Hierarchy**: Clear content organization and typography
 - **Accessibility**: WCAG compliant design with proper contrast
 - **Modern Interactions**: Smooth animations and hover effects
 
 ### **Content & Copywriting**
-- **SEO-Rich Descriptions**: Keyword-optimized menu and content
+- **SEO-Rich Descriptions**: Keyword-optimized dental services and content
 - **Compelling CTAs**: Conversion-optimized call-to-action buttons
-- **Trust Signals**: Ratings, reviews, and social proof elements
+- **Trust Signals**: Patient testimonials, reviews, and social proof elements
 - **Local SEO**: Location-specific content and schema markup
 x
 ### **LLM Discovery Optimization**
@@ -34,10 +34,10 @@ x
 ## 🎨 Design Philosophy
 
 ### **Color Psychology**
-- **Primary Gold (#D4AF37)**: Stimulates appetite, luxury, warmth
-- **Secondary Burgundy (#722F37)**: Sophistication, appetite stimulation
-- **Accent Cream (#F5E6D3)**: Comfort, cleanliness, appetite
-- **Neutral Brown (#3C2415)**: Earthiness, reliability, warmth
+- **Primary Blue (#2563EB)**: Trust, professionalism, medical care
+- **Secondary Teal (#0D9488)**: Health, cleanliness, tranquility
+- **Accent White (#FFFFFF)**: Cleanliness, sterility, medical safety
+- **Neutral Gray (#6B7280)**: Reliability, professionalism, balance
 
 ### **Typography**
 - **Headers**: Playfair Display (elegant, sophisticated)
@@ -65,13 +65,13 @@ x
 ### **Schema Markup**
 ```json
 {
-  "@type": "Restaurant",
-  "name": "Restaurant Name",
-  "servesCuisine": ["Fine Dining", "Contemporary"],
-  "priceRange": "$$$",
+  "@type": "MedicalBusiness",
+  "name": "Klinik Pergigian Alam Megah",
+  "medicalSpecialty": "Dentistry",
+  "priceRange": "$$",
   "aggregateRating": {
-    "ratingValue": "4.9",
-    "reviewCount": "500"
+    "ratingValue": "4.8",
+    "reviewCount": "1000"
   }
 }
 ```
@@ -84,10 +84,10 @@ x
 - Language and locale tags
 
 ### **Content Optimization**
-- Keyword-rich menu descriptions
-- Local SEO optimization
+- Keyword-rich dental service descriptions
+- Local SEO optimization for Shah Alam
 - Fresh, engaging copy
-- Clear value propositions
+- Clear value propositions for dental care
 
 ## 🚀 Getting Started
 
@@ -115,15 +115,15 @@ x
 ## 🎯 Customization Guide
 
 ### **1. Brand Identity**
-- Update restaurant name in all files
+- Update clinic name in all files
 - Replace logo and favicon
 - Customize color scheme in `tailwind.config.cjs`
 
 ### **2. Content Updates**
-- **Menu Items**: Update in `src/pages/index.astro`
-- **Locations**: Modify location data and images
-- **Services**: Customize service offerings and pricing
-- **Testimonials**: Add real customer reviews
+- **Dental Services**: Update in `src/pages/index.astro`
+- **Locations**: Modify clinic location data and images
+- **Services**: Customize dental service offerings and pricing
+- **Testimonials**: Add real patient reviews
 
 ### **3. SEO Optimization**
 - Update schema markup with real business data
@@ -132,7 +132,7 @@ x
 - Update sitemap with actual URLs
 
 ### **4. Images**
-- Replace Pexels images with actual restaurant photos
+- Replace Pexels images with actual clinic photos
 - Optimize images for web (WebP format recommended)
 - Add alt text for accessibility
 
@@ -157,9 +157,9 @@ x
 - Google Tag Manager support
 - Conversion tracking setup
 
-### **Reservation System**
-- Form validation
-- Mobile-optimized inputs
+### **Appointment System**
+- WhatsApp integration
+- Mobile-optimized contact
 - Accessibility features
 - Conversion optimization
 
@@ -210,4 +210,4 @@ For support, please open an issue in the repository or contact the development t
 
 ---
 
-**Built with ❤️ for the restaurant industry**
+**Built with ❤️ for the dental healthcare industry**

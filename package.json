@@ -1,8 +1,8 @@
 {
-  "name": "restaurant-template",
+  "name": "kpam-dental-website",
   "type": "module",
   "version": "1.0.0",
-  "description": "Modern restaurant/service business landing page template",
+  "description": "Klinik Pergigian Alam Megah - Professional dental clinic website",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
