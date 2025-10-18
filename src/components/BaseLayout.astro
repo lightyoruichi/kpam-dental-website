@@ -1,0 +1,195 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  currentPage?: string;
+  showTally?: boolean;
+}
+
+const { 
+  title, 
+  description, 
+  image = "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop",
+  currentPage,
+  showTally = false
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="restaurant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="fine dining, restaurant, contemporary cuisine, locally sourced, award winning, reservations, multiple locations, innovative cuisine, exceptional service" />
+    <meta name="author" content="Restaurant Name" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="en-US" />
+    <meta name="revisit-after" content="7 days" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Restaurant Name" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+    <meta property="twitter:site" content="@yourrestaurant" />
+    <meta property="twitter:creator" content="@yourrestaurant" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Enhanced Structured Data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Restaurant Name",
+        "alternateName": "Fine Dining Restaurant",
+        "description": "Experience exceptional cuisine in an elegant atmosphere. Fine dining restaurant offering fresh, locally-sourced ingredients and impeccable service with multiple locations.",
+        "url": "https://yourrestaurant.com",
+        "logo": "https://yourrestaurant.com/logo.png",
+        "image": "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop",
+        "telephone": "+1-555-123-4567",
+        "email": "info@yourrestaurant.com",
+        "address": [
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Main Street",
+            "addressLocality": "Your City",
+            "addressRegion": "Your State",
+            "postalCode": "12345",
+            "addressCountry": "US"
+          },
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "456 Oak Avenue",
+            "addressLocality": "Your City",
+            "addressRegion": "Your State",
+            "postalCode": "12345",
+            "addressCountry": "US"
+          },
+          {
+            "@type": "PostalAddress",
+            "streetAddress": "789 Harbor View",
+            "addressLocality": "Your City",
+            "addressRegion": "Your State",
+            "postalCode": "12345",
+            "addressCountry": "US"
+          }
+        ],
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "40.7128",
+          "longitude": "-74.0060"
+        },
+        "servesCuisine": ["Fine Dining", "Contemporary", "American", "Mediterranean"],
+        "priceRange": "$$$",
+        "openingHours": "Mo-Su 17:00-22:00",
+        "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+        "currenciesAccepted": "USD",
+        "hasMenu": "https://yourrestaurant.com/menu",
+        "acceptsReservations": true,
+        "smokingAllowed": false,
+        "wheelchairAccessible": true,
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "500",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": "Sarah Johnson"
+            },
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": "5",
+              "bestRating": "5"
+            },
+            "reviewBody": "Exceptional dining experience with innovative cuisine and impeccable service. The wagyu tenderloin was absolutely divine."
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/yourrestaurant",
+          "https://www.instagram.com/yourrestaurant",
+          "https://www.twitter.com/yourrestaurant"
+        ],
+        "foundingDate": "2010",
+        "founder": {
+          "@type": "Person",
+          "name": "Chef Name"
+        }
+      }
+    </script>
+    
+    <!-- Additional Schema for Local Business -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Restaurant Name",
+        "description": "Fine dining restaurant with multiple locations offering exceptional cuisine and service",
+        "url": "https://yourrestaurant.com",
+        "telephone": "+1-555-123-4567",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Main Street",
+          "addressLocality": "Your City",
+          "addressRegion": "Your State",
+          "postalCode": "12345",
+          "addressCountry": "US"
+        },
+        "openingHours": "Mo-Su 17:00-22:00",
+        "priceRange": "$$$"
+      }
+    </script>
+  </head>
+  <body class="bg-base-100 text-base-content">
+    <Header currentPage={currentPage} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    
+    <!-- Tally.so Script -->
+    {showTally && (
+      <script src="https://tally.so/widgets/embed.js"></script>
+    )}
+  </body>
+</html>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

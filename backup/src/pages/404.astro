@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+
+// Structured data for 404 page
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "404 - Page Not Found | MIMR Growth Lab",
+    "url": "https://mimrgrowthlab.com/404",
+    "description": "Page not found. Return to MIMR Growth Lab tools and services.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "url": "https://mimrgrowthlab.com",
+      "name": "MIMR Growth Lab",
+      "publisher": {
+        "@type": "Organization",
+        "name": "MIMR Growth Lab",
+        "industry": "Marketing Services"
+      }
+    }
+  }
+];
+---
+
+<BaseLayout
+	title="404 - Page Not Found | MIMR Growth Lab"
+	description="Page not found. Return to MIMR Growth Lab tools and services."
+	canonical="https://mimrgrowthlab.com/404"
+	keywords="404, page not found, MIMR Growth Lab, revenue operations"
+	structuredData={structuredData}
+	noIndex={true}
+	tallyScript={false}
+>
+
+			<main class="text-center space-y-8">
+				<section>
+					<h1 class="text-xl md:text-2xl mb-4 text-red-500">[ MISSION ABORTED ]</h1>
+					<h2 class="text-3xl md:text-4xl mb-4">404 - Target Not Found</h2>
+					<p class="text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-8">
+						The page you're looking for doesn't exist. Either the target has been moved, 
+						or you've entered the wrong coordinates.
+					</p>
+					
+					<div class="flex flex-col sm:flex-row gap-4 justify-center">
+						<a 
+							href="/tools" 
+							class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+						>
+							View All Tools
+						</a>
+						<a 
+							href="/" 
+							class="bg-zinc-700 hover:bg-zinc-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+						>
+							Return to Base
+						</a>
+					</div>
+				</section>
+
+				<section class="max-w-4xl mx-auto">
+					<div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6">
+						<h3 class="text-lg font-semibold text-white mb-4">Available Operations:</h3>
+						<ul class="text-left space-y-3">
+							<li class="flex items-center gap-2">
+								<span class="text-red-400">•</span>
+								<a href="/" class="text-red-400 hover:text-red-300 transition-colors">Home Base</a>
+								<span class="text-zinc-500">- Main operations</span>
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="text-red-400">•</span>
+								<a href="/tools" class="text-red-400 hover:text-red-300 transition-colors">Tools Arsenal</a>
+								<span class="text-zinc-500">- AI marketing tools</span>
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="text-red-400">•</span>
+								<a href="/tools/business-model-validator" class="text-red-400 hover:text-red-300 transition-colors">Business Model Validator</a>
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="text-red-400">•</span>
+								<a href="/tools/competitive-intelligence-analyzer" class="text-red-400 hover:text-red-300 transition-colors">Competitive Intelligence</a>
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="text-red-400">•</span>
+								<a href="/tools/growth-experiments" class="text-red-400 hover:text-red-300 transition-colors">Growth Experiments</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</main>
+
+			<footer class="border-t-2 border-white pt-4 mt-8 text-center text-sm text-gray-500">
+				<p>
+					<a href="https://www.linkedin.com/in/lightyoruichi/" target="_blank" rel="noopener noreferrer" class="hover:text-white"
+						>LinkedIn Profile</a
+					>
+				</p>
+				<p>
+					<a href="/privacy" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a> • 
+					© {new Date().getFullYear()} MIMR Growth Lab. All rights reserved.
+				</p>
+			</footer>
+		</div>
+	</body>
+</html> 

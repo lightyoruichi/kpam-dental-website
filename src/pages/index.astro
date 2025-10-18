@@ -1,0 +1,536 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import MenuSection from '../components/MenuSection.astro';
+import LocationCard from '../components/LocationCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+
+// Sample data - replace with your actual data
+const appetizers = [
+  {
+    name: "Truffle Arancini",
+    description: "Crispy risotto balls with black truffle oil and parmesan cheese, served with house-made marinara sauce",
+    price: "$18",
+    category: "Signature"
+  },
+  {
+    name: "Burrata Caprese",
+    description: "Fresh burrata cheese with heirloom tomatoes, basil oil, and aged balsamic reduction",
+    price: "$20",
+    category: "Vegetarian"
+  },
+  {
+    name: "Seared Scallops",
+    description: "Pan-seared Atlantic scallops with cauliflower puree, microgreens, and lemon butter sauce",
+    price: "$24",
+    category: "Gluten Free"
+  }
+];
+
+const mains = [
+  {
+    name: "Wagyu Beef Tenderloin",
+    description: "8oz premium wagyu beef tenderloin with roasted seasonal vegetables and red wine reduction",
+    price: "$68",
+    category: "Signature"
+  },
+  {
+    name: "Pan-Seared Atlantic Salmon",
+    description: "Fresh Atlantic salmon with quinoa pilaf, lemon butter sauce, and seasonal accompaniments",
+    price: "$35",
+    category: "Healthy"
+  },
+  {
+    name: "Lobster Risotto",
+    description: "Creamy arborio rice risotto with fresh Maine lobster, asparagus, and black truffle oil",
+    price: "$48",
+    category: "Seafood"
+  }
+];
+
+const locations = [
+  {
+    name: "Downtown Location",
+    address: "123 Main Street, Downtown, City 12345",
+    phone: "+1 (555) 123-4567",
+    hours: "Mon-Sun: 5:00 PM - 10:00 PM",
+    image: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400"
+  },
+  {
+    name: "Uptown Location",
+    address: "456 Oak Avenue, Uptown, City 12345",
+    phone: "+1 (555) 987-6543",
+    hours: "Mon-Sun: 5:00 PM - 10:00 PM",
+    image: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400"
+  },
+  {
+    name: "Waterfront Location",
+    address: "789 Harbor View, Waterfront, City 12345",
+    phone: "+1 (555) 456-7890",
+    hours: "Mon-Sun: 5:00 PM - 10:00 PM",
+    image: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400"
+  }
+];
+
+const services = [
+  {
+    title: "Private Dining",
+    description: "Exclusive private dining rooms for intimate gatherings and special occasions.",
+    icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
+    features: [
+      "Private dining rooms",
+      "Custom menu options",
+      "Dedicated service staff",
+      "Audio/visual equipment"
+    ],
+    price: "From $150/person"
+  },
+  {
+    title: "Catering Services",
+    description: "Full-service catering for events, corporate functions, and special celebrations.",
+    icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+    features: [
+      "Full-service catering",
+      "Custom menu design",
+      "Professional staff",
+      "Equipment rental"
+    ],
+    price: "From $75/person"
+  },
+  {
+    title: "Wine Tasting",
+    description: "Curated wine tastings with expert sommeliers and food pairings.",
+    icon: "M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4",
+    features: [
+      "Expert sommelier",
+      "Food pairings",
+      "Educational experience",
+      "Take-home notes"
+    ],
+    price: "$85/person"
+  }
+];
+
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "Food Critic",
+    content: "Exceptional dining experience with innovative cuisine and impeccable service. The wagyu tenderloin was absolutely divine.",
+    rating: 5,
+    image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+  },
+  {
+    name: "Michael Chen",
+    role: "Regular Customer",
+    content: "Been coming here for years. The consistency in quality and the warm atmosphere keeps us coming back.",
+    rating: 5,
+    image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Event Planner",
+    content: "Perfect venue for our corporate events. The private dining service exceeded all expectations.",
+    rating: 5,
+    image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
+  }
+];
+---
+
+<BaseLayout 
+  title="Restaurant Name - Award-Winning Fine Dining Restaurant | Contemporary Cuisine"
+  description="Experience exceptional fine dining at our award-winning restaurant. Contemporary cuisine with fresh, locally-sourced ingredients, innovative culinary techniques, and impeccable service. Multiple locations available."
+  currentPage="home"
+>
+  <!-- Hero Section -->
+  <section class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+    <!-- Background overlay for better text readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-base-100/90 to-transparent z-10"></div>
+    
+    <div class="container-custom relative z-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+          <!-- Trust indicators -->
+          <div class="flex items-center space-x-6 text-sm text-base-content/70">
+            <div class="flex items-center space-x-2">
+              <div class="flex text-warning">
+                ★★★★★
+              </div>
+              <span>4.9/5 Rating</span>
+            </div>
+            <div class="w-px h-4 bg-base-content/30"></div>
+            <span>500+ Reviews</span>
+            <div class="w-px h-4 bg-base-content/30"></div>
+            <span>Since 2010</span>
+          </div>
+          
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-base-content leading-tight">
+            Exceptional
+            <span class="text-gradient block">Fine Dining</span>
+            Experience
+          </h1>
+          
+          <p class="text-lg sm:text-xl text-base-content/80 leading-relaxed max-w-lg">
+            Discover the perfect blend of innovative contemporary cuisine, elegant atmosphere, and impeccable service. 
+            Our award-winning restaurant is committed to creating memorable dining experiences with fresh, locally-sourced ingredients 
+            and world-class culinary expertise.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#reservations" class="btn-primary text-center group">
+              <span class="flex items-center justify-center space-x-2">
+                <span>Make Reservation</span>
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </span>
+            </a>
+            <a href="#menu" class="btn-secondary text-center">
+              View Menu
+            </a>
+          </div>
+          
+          <!-- Quick stats -->
+          <div class="grid grid-cols-3 gap-6 pt-8 border-t border-base-content/20">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-primary">3</div>
+              <div class="text-sm text-base-content/70">Locations</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-primary">50K+</div>
+              <div class="text-sm text-base-content/70">Happy Guests</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-primary">13+</div>
+              <div class="text-sm text-base-content/70">Years</div>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="w-full h-96 bg-base-300 rounded-2xl bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800')"></div>
+          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary rounded-full flex items-center justify-center">
+            <span class="text-primary-content font-bold text-2xl">4.9★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="section-padding">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-base-content mb-4">Our Menu</h2>
+        <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+          Carefully crafted dishes using the finest ingredients, prepared with passion and creativity.
+        </p>
+      </div>
+      
+      <MenuSection title="Appetizers" items={appetizers} />
+      <MenuSection title="Main Courses" items={mains} />
+      
+      <div class="text-center mt-12">
+        <a href="/full-menu" class="btn-primary">
+          View Full Menu
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations Section -->
+  <section id="locations" class="section-padding bg-base-200">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-base-content mb-4">Our Locations</h2>
+        <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+          Visit us at any of our three beautiful locations, each offering a unique dining experience.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {locations.map((location) => (
+          <LocationCard {...location} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="section-padding">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-base-content mb-4">Our Services</h2>
+        <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+          Beyond exceptional dining, we offer a range of services to make your experience truly special.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {services.map((service) => (
+          <ServiceCard {...service} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section-padding bg-base-200">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-bold text-base-content mb-6">About Our Award-Winning Restaurant</h2>
+          <p class="text-lg text-base-content/80 mb-6">
+            Founded in 2010, our fine dining restaurant has been serving exceptional contemporary cuisine in an elegant atmosphere. 
+            We believe in the power of fresh, locally-sourced ingredients, innovative culinary techniques, and the art of exceptional fine dining experiences.
+          </p>
+          <p class="text-lg text-base-content/80 mb-8">
+            Our team of award-winning chefs and dedicated hospitality professionals work together to create memorable dining experiences 
+            for every guest who walks through our doors, combining traditional techniques with modern innovation.
+          </p>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold text-primary mb-2">13+</div>
+              <div class="text-base-content/70">Years of Excellence</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-bold text-primary mb-2">50K+</div>
+              <div class="text-base-content/70">Happy Customers</div>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="w-full h-96 bg-base-300 rounded-2xl bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800')"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-base-content mb-4">What Our Guests Say</h2>
+        <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+          Don't just take our word for it. Here's what our valued guests have to say about their experience.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {testimonials.map((testimonial) => (
+          <TestimonialCard {...testimonial} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reservations Section -->
+  <section id="reservations" class="section-padding bg-primary text-primary-content relative overflow-hidden">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"></div>
+    </div>
+    
+    <div class="container-custom relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="mb-8">
+          <h2 class="text-4xl font-bold mb-4">Make a Reservation</h2>
+          <p class="text-xl mb-6 opacity-90">
+            Book your table today and experience exceptional dining at its finest.
+          </p>
+          <div class="flex items-center justify-center space-x-6 text-sm opacity-80">
+            <div class="flex items-center space-x-2">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Instant Confirmation</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Free Cancellation</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Best Price Guarantee</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-base-100 rounded-2xl p-8 text-base-content shadow-2xl">
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-medium mb-2">Full Name *</label>
+                <input type="text" class="form-input" placeholder="Your full name" required />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Phone Number *</label>
+                <input type="tel" class="form-input" placeholder="Your phone number" required />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Email Address</label>
+                <input type="email" class="form-input" placeholder="your@email.com" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Preferred Date *</label>
+                <input type="date" class="form-input" required />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Preferred Time *</label>
+                <select class="form-input" required>
+                  <option value="">Select time</option>
+                  <option>6:00 PM</option>
+                  <option>6:30 PM</option>
+                  <option>7:00 PM</option>
+                  <option>7:30 PM</option>
+                  <option>8:00 PM</option>
+                  <option>8:30 PM</option>
+                  <option>9:00 PM</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-2">Party Size *</label>
+                <select class="form-input" required>
+                  <option value="">Select party size</option>
+                  <option>2 people</option>
+                  <option>3 people</option>
+                  <option>4 people</option>
+                  <option>5 people</option>
+                  <option>6 people</option>
+                  <option>7+ people</option>
+                </select>
+              </div>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium mb-2">Preferred Location *</label>
+              <select class="form-input" required>
+                <option value="">Select location</option>
+                <option>Downtown Location</option>
+                <option>Uptown Location</option>
+                <option>Waterfront Location</option>
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium mb-2">Special Requests</label>
+              <textarea class="form-textarea" rows="3" placeholder="Any special dietary requirements, allergies, or requests..."></textarea>
+            </div>
+            
+            <div class="flex items-start space-x-3">
+              <input type="checkbox" id="terms" class="mt-1" required />
+              <label for="terms" class="text-sm text-base-content/70">
+                I agree to the <a href="/terms" class="text-primary hover:underline">Terms of Service</a> and 
+                <a href="/privacy" class="text-primary hover:underline">Privacy Policy</a>
+              </label>
+            </div>
+            
+            <button type="submit" class="btn-primary w-full group">
+              <span class="flex items-center justify-center space-x-2">
+                <span>Make Reservation</span>
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-padding bg-base-200">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-base-content mb-4">Get in Touch</h2>
+        <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
+          Have questions or want to learn more? We'd love to hear from you.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-2xl font-semibold text-base-content mb-6">Contact Information</h3>
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-base-content">Address</h4>
+                <p class="text-base-content/70">123 Main Street, Downtown<br>Your City, State 12345</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-base-content">Phone</h4>
+                <p class="text-base-content/70">+1 (555) 123-4567</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-base-content">Email</h4>
+                <p class="text-base-content/70">info@yourrestaurant.com</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="font-semibold text-base-content">Hours</h4>
+                <p class="text-base-content/70">Monday - Sunday<br>5:00 PM - 10:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="text-2xl font-semibold text-base-content mb-6">Send us a Message</h3>
+          <form class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium mb-2">Name</label>
+              <input type="text" class="form-input" placeholder="Your name" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Email</label>
+              <input type="email" class="form-input" placeholder="your@email.com" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Subject</label>
+              <input type="text" class="form-input" placeholder="Subject" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Message</label>
+              <textarea class="form-textarea" rows="5" placeholder="Your message..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

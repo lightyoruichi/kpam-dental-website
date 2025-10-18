@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-focus text-primary-content font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 touch-manipulation;
+    min-height: 48px; /* Better touch target */
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary hover:bg-secondary-focus text-secondary-content font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 touch-manipulation;
+    min-height: 48px; /* Better touch target */
+  }
+  
+  .card {
+    @apply bg-base-100 border border-base-300 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+  
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+  
+  .hero-bg {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(139, 0, 0, 0.1) 100%);
+  }
+  
+  .menu-item {
+    @apply border-b border-base-300 pb-4 mb-4 last:border-b-0 last:pb-0 last:mb-0;
+  }
+  
+  .price-tag {
+    @apply text-primary font-bold text-lg;
+  }
+  
+  .location-card {
+    @apply card p-6 text-center hover:transform hover:scale-105 transition-all duration-300;
+  }
+  
+  .service-card {
+    @apply card p-8 text-center hover:transform hover:scale-105 transition-all duration-300;
+  }
+  
+  .testimonial-card {
+    @apply card p-6 bg-base-200;
+  }
+  
+  .form-input {
+    @apply w-full px-4 py-4 border border-base-300 rounded-xl focus:border-primary focus:outline-none bg-base-100 text-base-content transition-all duration-200;
+    min-height: 48px; /* Better touch target */
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .form-textarea {
+    @apply w-full px-4 py-4 border border-base-300 rounded-xl focus:border-primary focus:outline-none bg-base-100 text-base-content resize-none transition-all duration-200;
+    min-height: 120px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #D4AF37, #B8860B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hero-bg {
+    background: linear-gradient(135deg, #FEFCF8 0%, #F8F4E6 50%, #F0E6D3 100%);
+    position: relative;
+  }
+  
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23D4AF37" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E') repeat;
+    pointer-events: none;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+  
+  /* Enhanced visual hierarchy */
+  .heading-primary {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight;
+  }
+  
+  .heading-secondary {
+    @apply text-3xl sm:text-4xl font-bold leading-tight;
+  }
+  
+  .heading-tertiary {
+    @apply text-2xl sm:text-3xl font-semibold leading-tight;
+  }
+  
+  /* Food psychology colors */
+  .appetite-stimulating {
+    background: linear-gradient(135deg, #D4AF37, #FF8F00);
+  }
+  
+  .luxury-accent {
+    background: linear-gradient(135deg, #722F37, #8B0000);
+  }
+  
+  .fresh-herb {
+    color: #7CB342;
+  }
+  
+  .warm-citrus {
+    color: #FF8F00;
+  }
+  
+  /* Enhanced animations */
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .scale-on-hover {
+    transition: transform 0.3s ease;
+  }
+  
+  .scale-on-hover:hover {
+    transform: scale(1.02);
+  }
+}

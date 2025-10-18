@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+
+export const prerender = true;
+
+// Structured data for privacy page
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"name": "Privacy Policy | MIMR Growth Lab",
+	"url": "https://mimrgrowthlab.com/privacy",
+	"description": "Privacy Policy for MIMR Growth Lab tools and services. Learn how we handle your data when using our revenue operations tools.",
+	"inLanguage": "en",
+	"isPartOf": {
+		"@type": "WebSite",
+		"url": "https://mimrgrowthlab.com",
+		"name": "MIMR Growth Lab",
+		"publisher": {
+			"@type": "Organization",
+			"name": "MIMR Growth Lab",
+			"industry": "Revenue Operations Consulting"
+		}
+	}
+};
+
+const breadcrumbItems = [
+	{ name: "Home", url: "/" },
+	{ name: "Privacy Policy", url: "/privacy" }
+];
+---
+
+<BaseLayout
+	title="Privacy Policy | MIMR Growth Lab"
+	description="Privacy Policy for MIMR Growth Lab tools and services. Learn how we handle your data when using our revenue operations tools."
+	canonical="https://mimrgrowthlab.com/privacy"
+	keywords="privacy policy, data protection, revenue operations tools privacy, MIMR Growth Lab"
+	structuredData={structuredData}
+	breadcrumbItems={breadcrumbItems}
+	currentPage="privacy"
+	tallyScript={false}
+>
+				<!-- Header -->
+				<section class="text-center">
+					<h1 class="text-3xl md:text-4xl mb-4">Privacy Policy</h1>
+					<h2 class="text-xl md:text-2xl mb-6 text-red-500">Data protection and privacy practices</h2>
+					<p class="text-base md:text-lg text-gray-300 mb-6">
+						Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+					</p>
+					<p class="text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
+						This Privacy Policy explains how we handle data when you use the tools available at 
+						<a href="https://mimrgrowthlab.com/tools" class="text-red-500 hover:underline">https://mimrgrowthlab.com/tools</a>, 
+						including when accessed through our AI assistant or custom GPT integrations.
+					</p>
+				</section>
+
+				<!-- Privacy Policy Content -->
+				<section class="space-y-8">
+					<!-- 1. No Account, No Tracking -->
+					<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+						<h3 class="text-xl font-bold mb-4 text-red-400">1. No Account, No Tracking</h3>
+						<p class="text-gray-300 mb-4">
+							We do not collect personal information by default.
+						</p>
+						<p class="text-gray-300">
+							There are no logins, no user profiles, and no tracking cookies set by us.
+						</p>
+					</div>
+
+					<!-- 2. Tool Usage is Stateless -->
+					<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+						<h3 class="text-xl font-bold mb-4 text-red-400">2. Tool Usage is Stateless</h3>
+						<p class="text-gray-300 mb-4">
+							When you use a tool on the website:
+						</p>
+						<ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
+							<li>Your inputs are processed locally in your browser.</li>
+							<li>We do not store or transmit input data to any backend service.</li>
+						</ul>
+					</div>
+
+					<!-- 3. GPT Integrations -->
+					<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+						<h3 class="text-xl font-bold mb-4 text-red-400">3. GPT Integrations</h3>
+						<p class="text-gray-300 mb-4">
+							If you use our Custom GPT via ChatGPT:
+						</p>
+						<ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
+							<li>Your input may be processed by OpenAI systems.</li>
+							<li>We do not control or store that data ourselves.</li>
+							<li>Any prompts, responses, or API calls follow OpenAI's 
+								<a href="https://openai.com/policies/privacy-policy" class="text-red-500 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy</a>.
+							</li>
+						</ul>
+					</div>
+
+					<!-- 4. API and Markdown Access -->
+					<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+						<h3 class="text-xl font-bold mb-4 text-red-400">4. API and Markdown Access</h3>
+						<p class="text-gray-300 mb-4">
+							When you fetch tools via our public API:
+						</p>
+						<ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
+							<li>We log standard server access data (IP, timestamp, slug) for abuse prevention.</li>
+							<li>This data is not tied to identities or used for profiling.</li>
+						</ul>
+					</div>
+
+					<!-- 5. Third-Party Services -->
+					<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+						<h3 class="text-xl font-bold mb-4 text-red-400">5. Third-Party Services</h3>
+						<p class="text-gray-300 mb-4">
+							We use:
+						</p>
+						<ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
+							<li><strong>Cloudflare</strong> for CDN and DDoS protection</li>
+							<li><strong>Vercel/Astro/Netlify</strong> (depending on host) for static delivery</li>
+						</ul>
+						<p class="text-gray-300 mt-4">
+							These providers may log basic request info for performance and security.
+						</p>
+					</div>
+
+					<!-- 6. Data Deletion -->
+					<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+						<h3 class="text-xl font-bold mb-4 text-red-400">6. Data Deletion</h3>
+						<p class="text-gray-300 mb-4">
+							We don't store user data—so there's nothing to delete.
+						</p>
+						<p class="text-gray-300">
+							If you've submitted feedback or contacted us, email 
+					<a href="mailto:hari@mimrgrowthlab.com" class="text-red-500 hover:underline">hari@mimrgrowthlab.com</a>
+							to remove any correspondence.
+						</p>
+					</div>
+
+					<!-- 7. Updates -->
+					<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+						<h3 class="text-xl font-bold mb-4 text-red-400">7. Updates</h3>
+						<p class="text-gray-300 mb-4">
+							This policy may change as we add new features.
+						</p>
+						<p class="text-gray-300">
+							We'll post changes here and update the "Last updated" date.
+						</p>
+					</div>
+
+					<!-- Contact -->
+					<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+						<h3 class="text-xl font-bold mb-4 text-red-400">Contact</h3>
+						<p class="text-gray-300 mb-4">
+							For privacy questions or removal requests, contact:
+						</p>
+						<p class="text-gray-300">
+							📧 <a href="mailto:hari@mimrgrowthlab.com" class="text-red-500 hover:underline">hari@mimrgrowthlab.com</a>
+						</p>
+					</div>
+				</section>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+// Redirect to ChatGPT custom GPT
+export const prerender = true;
+
+// Track redirect event before redirecting
+if (typeof window !== 'undefined' && window.posthog) {
+  window.posthog.capture('redirect_triggered', {
+    from_page: 'gpt',
+    to_url: 'https://chat.openai.com/g/g-688d0d2733948191bc9f2f79cfc0aba2',
+    redirect_type: 'chatgpt_custom_gpt'
+  });
+}
+
+// Perform server-side redirect
+return Astro.redirect('https://chat.openai.com/g/g-688d0d2733948191bc9f2f79cfc0aba2', 301);
+---

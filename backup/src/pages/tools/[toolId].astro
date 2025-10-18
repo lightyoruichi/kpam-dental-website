@@ -1,0 +1,942 @@
+---
+import BaseLayout from '../../components/BaseLayout.astro';
+import StructuredData from '../../components/StructuredData.astro';
+import FloatingTOC from '../../components/FloatingTOC.astro';
+import MarkdownRenderer from '../../components/MarkdownRenderer.astro';
+import Icon from '../../components/Icon.svelte';
+
+// Get the tool ID from the URL
+const { toolId } = Astro.params;
+
+// Fetch tools data from API
+let tools = [];
+let tool = null;
+
+try {
+  const response = await fetch(`${Astro.url.origin}/api/tools.json`);
+  if (response.ok) {
+    tools = await response.json();
+    // Find the specific tool
+    tool = tools.find((t: any) => t.id === toolId);
+  } else {
+    console.error('Failed to fetch tools from API');
+  }
+} catch (error) {
+  console.error('Error fetching tools:', error);
+}
+
+// If tool doesn't exist, return 404
+if (!tool) {
+  return Astro.redirect('/404');
+}
+
+// Get related tools
+const relatedTools = tools.filter((t: any) => 
+  tool.related_tools && tool.related_tools.includes(t.id)
+);
+
+// For display purposes, extract prompt content from tool.content
+let promptContent = tool.content;
+
+// Try to extract the prompt content starting from "Step 1" if available
+const step1Index = promptContent.indexOf('### Step 1:');
+if (step1Index !== -1) {
+  // Get content from Step 1 onwards, but stop before "## Example" or "## Implementation"
+  const exampleIndex = promptContent.indexOf('## Example');
+  const implementationIndex = promptContent.indexOf('## Implementation');
+  
+  let endIndex = promptContent.length;
+  if (exampleIndex !== -1 && exampleIndex > step1Index) {
+    endIndex = exampleIndex;
+  }
+  if (implementationIndex !== -1 && implementationIndex > step1Index && implementationIndex < endIndex) {
+    endIndex = implementationIndex;
+  }
+  
+  promptContent = promptContent.substring(step1Index, endIndex).trim();
+}
+
+// Breadcrumb items for BaseLayout
+const breadcrumbItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Tools', href: '/tools' },
+  { label: tool.title }
+];
+
+// Breadcrumb data for StructuredData component
+const breadcrumbData = [
+  { name: 'Home', url: 'https://mimrgrowthlab.com' },
+  { name: 'Tools', url: 'https://mimrgrowthlab.com/tools' },
+  { name: tool.title, url: `https://mimrgrowthlab.com/tools/${tool.id}` }
+];
+
+// FAQ data for StructuredData component
+const faqData = [
+  {
+    question: "How do I use this AI marketing tool?",
+    answer: "Click 'Run in ChatGPT (MIMR Tools GPT)' to open our custom AI assistant. Then type the command shown on the page to execute this specific tool with guided step-by-step instructions."
+  },
+  {
+    question: "Is this tool really free?",
+    answer: "Yes, all our AI marketing tools are completely free to use. No sign-up required, no hidden costs."
+  },
+  {
+    question: "What makes this tool different?",
+    answer: `This ${tool.title} tool is designed specifically for ${tool.category.toLowerCase()} with proven frameworks and step-by-step guidance. Our custom GPT will ask you the right questions and walk you through the process.`
+  },
+  {
+    question: "Can I copy the framework content?",
+    answer: "Yes! Click 'Copy Framework' to copy the entire tool content to your clipboard. You can then paste it into any AI platform or share it with your team."
+  }
+];
+
+// Consolidated structured data for the tool page
+const toolPageData = {
+  title: `${tool.title} - Free AI Marketing Tool | MIMR Growth Lab`,
+  url: `https://mimrgrowthlab.com/tools/${tool.id}`,
+  description: tool.description,
+  tool: tool,
+  breadcrumbs: breadcrumbData,
+  faqData: faqData
+};
+---
+
+<BaseLayout
+  title={`${tool.title} - Free AI Marketing Tool | MIMR Growth Lab`}
+  description={tool.description}
+  keywords={`${tool.tags.join(', ')}, AI marketing tools, free tools, ${tool.category.toLowerCase()}, growth strategy, marketing automation`}
+  canonical={`https://mimrgrowthlab.com/tools/${tool.id}`}
+  ogTitle={`${tool.title} - Free AI Marketing Tool`}
+  ogDescription={tool.description}
+  ogImage="https://mimrgrowthlab.com/og.png"
+  ogType="article"
+  ogUrl={`https://mimrgrowthlab.com/tools/${tool.id}`}
+  breadcrumbItems={breadcrumbItems}
+>
+  <!-- Consolidated Structured Data -->
+  <StructuredData type="organization" />
+  <StructuredData type="website" />
+  <StructuredData type="webpage" data={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": `${tool.title} - Free AI Marketing Tool | MIMR Growth Lab`,
+    "url": `https://mimrgrowthlab.com/tools/${tool.id}`,
+    "description": tool.description,
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "url": "https://mimrgrowthlab.com",
+      "name": "MIMR Growth Lab"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbData.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name,
+        "item": item.url
+      }))
+    },
+    "mainEntity": {
+      "@type": ["CreativeWork", "SoftwareApplication"],
+      "name": tool.title,
+      "description": tool.description,
+      "applicationCategory": tool.category,
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "url": `https://mimrgrowthlab.com/tools/${tool.id}`,
+      "provider": {
+        "@type": "Organization",
+        "name": "MIMR Growth Lab",
+        "url": "https://mimrgrowthlab.com"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Harinder Singh",
+        "url": "https://www.linkedin.com/in/lightyoruichi/"
+      },
+      "keywords": tool.tags?.join(', ') || '',
+      "datePublished": "2024-01-01",
+      "dateModified": new Date().toISOString().split('T')[0],
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "usageInfo": "Free AI marketing tool for immediate use with any AI platform"
+    }
+  }} />
+  <StructuredData type="faq" data={{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqData.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  }} />
+	<!-- Content starts here -->
+
+			<main class="space-y-8" role="main" aria-labelledby="main-heading">
+				<!-- Tool Header -->
+				<section class="text-center" aria-labelledby="tool-header">
+					<h1 id="main-heading" class="text-3xl md:text-4xl mb-4">{tool.title}</h1>
+					<h2 class="text-xl md:text-2xl mb-6 text-red-500">{tool.category} Tool</h2>
+					<p class="text-base md:text-lg leading-relaxed max-w-4xl mx-auto mb-6">
+						{tool.description}
+					</p>
+					
+					<!-- Tool Metadata -->
+					<div class="flex flex-wrap justify-center gap-4 mb-6">
+						<span class="bg-gray-700 text-sm px-3 py-1 rounded">{tool.category}</span>
+						<span class="bg-gray-700 text-sm px-3 py-1 rounded">{tool.difficulty}</span>
+						<span class="bg-gray-700 text-sm px-3 py-1 rounded">{tool.estimatedTime}</span>
+					</div>
+					
+					<!-- Tags -->
+					<div class="flex flex-wrap justify-center gap-2 mb-8">
+						{tool.tags.map((tag: string) => (
+							<span class="bg-red-500 text-xs px-2 py-1 rounded">{tag}</span>
+						))}
+					</div>
+					
+					<!-- Multi-Platform CTAs -->
+					<div class="text-center mb-8" role="region" aria-labelledby="platform-selection">
+						<h3 id="platform-selection" class="text-sm text-gray-300 mb-4">
+							Choose your AI platform:
+						</h3>
+						
+						<!-- Compact Icon Buttons -->
+						<div class="flex items-center justify-center gap-3 mb-4">
+							<!-- ChatGPT (Custom GPT) -->
+							<button 
+								class="ai-platform-btn group relative bg-gray-800 hover:bg-green-600 border border-gray-600 hover:border-green-500 text-white p-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+								data-platform="chatgpt"
+								data-tool-id={tool.id}
+								data-tool-title={tool.title}
+								data-url="https://chat.openai.com/g/g-688d0d2733948191bc9f2f79cfc0aba2"
+								data-command={`Run tool: ${tool.id}`}
+								title="ChatGPT (Recommended)"
+								onclick={`if(window.posthog){window.posthog.capture('ai_platform_launch', {platform: 'chatgpt', tool_id: '${tool.id}', tool_title: '${tool.title}', page: 'tool_detail'});}`}
+							>
+								<Icon icon="simple-icons:openai" class="w-8 h-8" />
+								<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">ChatGPT</span>
+							</button>
+							
+							<!-- Claude -->
+							<button 
+								class="ai-platform-btn group relative bg-gray-800 hover:bg-orange-600 border border-gray-600 hover:border-orange-500 text-white p-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+								data-platform="claude"
+								data-tool-id={tool.id}
+								data-tool-title={tool.title}
+								data-url="https://claude.ai"
+								data-command={`Load and execute this business framework: https://mimrgrowthlab.com/tools/${tool.id}
+
+My Business Context:
+- Business Name: [YOUR_BUSINESS]
+- Stage: [MVP/PMF/Scaling]
+- Industry: [YOUR_INDUSTRY]
+- Current Challenge: [SPECIFIC_CHALLENGE]
+
+Please guide me through each section systematically and provide strategic insights.`}
+								title="Claude (Strategic Analysis)"
+							>
+								<Icon icon="simple-icons:anthropic" class="w-8 h-8" />
+								<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Claude</span>
+							</button>
+							
+							<!-- Gemini -->
+							<button 
+								class="ai-platform-btn group relative bg-gray-800 hover:bg-blue-500 border border-gray-600 hover:border-blue-400 text-white p-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+								data-platform="gemini"
+								data-tool-id={tool.id}
+								data-tool-title={tool.title}
+								data-url="https://gemini.google.com"
+								data-command={`Analyze this business tool and guide me through it: https://mimrgrowthlab.com/tools/${tool.id}
+
+My Business Context:
+- Business Name: [YOUR_BUSINESS]
+- Stage: [MVP/PMF/Scaling]
+- Industry: [YOUR_INDUSTRY]
+- Current Challenge: [SPECIFIC_CHALLENGE]
+
+Please execute each step, provide research insights, and analyze competitive implications.`}
+								title="Gemini (Research & Analysis)"
+							>
+								<Icon icon="simple-icons:googlegemini" class="w-8 h-8" />
+								<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Gemini</span>
+							</button>
+							
+							<!-- Perplexity -->
+							<button 
+								class="ai-platform-btn group relative bg-gray-800 hover:bg-purple-600 border border-gray-600 hover:border-purple-500 text-white p-3 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+								data-platform="perplexity"
+								data-tool-id={tool.id}
+								data-tool-title={tool.title}
+								data-url="https://perplexity.ai"
+								data-command={`Research and execute this business framework: https://mimrgrowthlab.com/tools/${tool.id}
+
+My Business Context:
+- Business Name: [YOUR_BUSINESS]
+- Stage: [MVP/PMF/Scaling]
+- Industry: [YOUR_INDUSTRY]
+- Current Challenge: [SPECIFIC_CHALLENGE]
+
+Please combine tool execution with real-time market research and trend analysis.`}
+								title="Perplexity (Real-time Research)"
+							>
+								<Icon icon="simple-icons:perplexity" class="w-8 h-8" />
+								<span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs text-gray-400 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Perplexity</span>
+							</button>
+						</div>
+						
+						<!-- Alternative: Quick Launch with Platform Selection -->
+						<div class="border-t border-gray-600 pt-4">
+							<div class="text-xs text-gray-400 mb-3">Quick Launch (any platform):</div>
+							<div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+								<select 
+									class="unified-platform-selector bg-gray-700 border border-gray-600 text-white px-3 py-2 rounded-lg text-sm flex-1 focus:border-red-500 focus:outline-none"
+								>
+									<option value="chatgpt">ChatGPT (Custom GPT)</option>
+									<option value="claude">Claude (Strategic)</option>
+									<option value="gemini">Gemini (Research)</option>
+									<option value="perplexity">Perplexity (Real-time)</option>
+									<option value="grok">Grok (Quick Insights)</option>
+								</select>
+								<button 
+									class="unified-launch-btn bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+									data-tool-id={tool.id}
+									data-tool-title={tool.title}
+								>
+									Copy & Launch
+								</button>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Tool Content - Front and Center -->
+				<section class="max-w-5xl mx-auto" role="region" aria-labelledby="tool-content-heading">
+					<div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6">
+						<div class="flex items-center justify-between mb-4 pb-4 border-b border-zinc-800">
+							<h3 id="tool-content-heading" class="text-lg font-semibold text-red-400">Framework & Instructions</h3>
+						<div class="flex items-center gap-2">
+							<button 
+								id="copyContent"
+									class="bg-zinc-700 hover:bg-zinc-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+								data-content={promptContent}
+							>
+								<Icon icon="mdi:content-copy" class="w-4 h-4" />
+								Copy Framework
+							</button>
+						</div>
+					</div>
+					
+					<div id="toolContent" class="prose prose-invert max-w-none">
+							<div class="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700/50">
+								<MarkdownRenderer content={promptContent} class="tool-markdown-content" />
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Related Tools Section -->
+				{relatedTools.length > 0 && (
+					<section class="mt-12" role="region" aria-labelledby="related-tools-heading">
+						<h2 id="related-tools-heading" class="text-2xl font-bold text-red-400 mb-6 text-center">Related Tools</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+							{relatedTools.map((relatedTool: any) => (
+								<article class="tool-card group bg-zinc-900/50 border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all duration-300 hover:bg-zinc-900/80 cursor-pointer" data-tool-id={relatedTool.id}>
+									<div class="p-6">
+										<div class="mb-4">
+											<div class="flex items-center gap-2 text-sm text-zinc-400 mb-3">
+												<span class="px-2 py-1 bg-zinc-800 rounded-md text-xs font-medium">{relatedTool.category}</span>
+												<span class="text-zinc-500">•</span>
+												<span>{relatedTool.estimatedTime}</span>
+												<span class="text-zinc-500">•</span>
+												<span class="capitalize">{relatedTool.difficulty}</span>
+											</div>
+											
+											<h3 class="text-lg font-semibold text-white mb-3 group-hover:text-red-400 transition-colors line-clamp-2">{relatedTool.title}</h3>
+											<p class="text-zinc-300 leading-relaxed mb-4 line-clamp-2">{relatedTool.description}</p>
+											
+											<!-- Tags - Minimal -->
+											{relatedTool.tags.length > 0 && (
+												<div class="flex flex-wrap gap-2 mb-4">
+													{relatedTool.tags.slice(0, 2).map((tag: string) => (
+														<span class="text-xs text-zinc-400 px-2 py-1 bg-zinc-800/50 rounded border border-zinc-700/50">
+															{tag}
+														</span>
+													))}
+													{relatedTool.tags.length > 2 && (
+														<span class="text-xs text-zinc-500">+{relatedTool.tags.length - 2} more</span>
+													)}
+												</div>
+											)}
+										</div>
+										
+										<!-- Action Section -->
+										<div class="pt-4 border-t border-zinc-800">
+											<a 
+												href={`/tools/${relatedTool.id}`}
+												class="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-red-400 transition-colors"
+											>
+										View Tool
+												<Icon icon="mdi:arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+											</a>
+										</div>
+									</div>
+								</article>
+							))}
+						</div>
+						
+						<div class="text-center mt-6">
+							<a href="/tools" class="text-red-400 hover:text-red-300 transition-colors text-sm">
+								Browse All Tools →
+							</a>
+						</div>
+					</section>
+				)}
+
+				<!-- Navigation -->
+				<section class="flex justify-between items-center pt-8 border-t border-gray-600">
+					<a href="/tools" class="text-red-500 hover:underline">
+						← Back to All Tools
+					</a>
+					<a href="/" class="text-red-500 hover:underline">
+						MIMR Operations →
+					</a>
+				</section>
+			</main>
+
+			<!-- Floating Table of Contents -->
+			<FloatingTOC content={promptContent} toolTitle={tool.title} />
+
+		<script>
+			// Track tool page view
+			if (window.posthog) {
+				window.posthog.capture('tool_page_viewed', {
+					tool_id: '{tool.id}',
+					tool_title: '{tool.title}',
+					tool_category: '{tool.category}',
+					page: 'tool_detail'
+				});
+			}
+
+			// Enhanced AI platform button functionality
+			const copyContentBtn = document.getElementById('copyContent') as HTMLButtonElement;
+			const copyPromptBtn = document.getElementById('copyPromptBtn') as HTMLButtonElement;
+			const copyCommandBtn = document.getElementById('copyCommandBtn') as HTMLButtonElement;
+			const toggleContentBtn = document.getElementById('toggleContent');
+			const toolContent = document.getElementById('toolContent');
+			
+			// Related tool card click functionality
+			document.querySelectorAll('.tool-card').forEach(function(card) {
+				var toolId = card.getAttribute('data-tool-id');
+				if (toolId) {
+					card.addEventListener('click', function(e) {
+						// Don't navigate if clicking on a link or button
+						if (!(e.target as HTMLElement).closest('a') && !(e.target as HTMLElement).closest('button')) {
+							window.location.href = '/tools/' + toolId;
+						}
+					});
+					
+					// Add cursor pointer style
+					(card as HTMLElement).style.cursor = 'pointer';
+				}
+			});
+			
+			// AI Platform Button Functionality (Individual Buttons)
+			document.querySelectorAll('.ai-platform-btn').forEach(function(btn) {
+				let step = 1; // Track which step we're on
+				
+				btn.addEventListener('click', async function(this: HTMLElement) {
+					const platform = this.getAttribute('data-platform');
+					const toolId = this.getAttribute('data-tool-id');
+					const toolTitle = this.getAttribute('data-tool-title');
+					const url = this.getAttribute('data-url');
+					const command = this.getAttribute('data-command');
+					const originalText = this.innerHTML;
+					const originalTitle = this.getAttribute('title');
+					
+					if (!platform || !command || !url) return;
+					
+					if (step === 1) {
+						// Step 1: Copy command
+						this.innerHTML = `
+							<svg class="w-8 h-8 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+							</svg>
+						`;
+						this.title = 'Copying...';
+						(this as HTMLButtonElement).disabled = true;
+						
+						try {
+							await navigator.clipboard.writeText(command);
+							
+							// Change to step 2 state
+							this.innerHTML = `
+								<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+								</svg>
+							`;
+							this.title = `Click to open ${platform.charAt(0).toUpperCase() + platform.slice(1)}`;
+							this.classList.remove('bg-gray-800', 'hover:bg-' + getButtonColorDetail(platform) + '-600');
+							this.classList.add('bg-green-600', 'hover:bg-green-700', 'animate-pulse');
+							(this as HTMLButtonElement).disabled = false;
+							step = 2;
+							
+							showToast(`Command copied! Now click to open ${platform.charAt(0).toUpperCase() + platform.slice(1)}`, 'success');
+							
+						} catch (err) {
+							this.innerHTML = originalText;
+							this.title = originalTitle || '';
+							(this as HTMLButtonElement).disabled = false;
+							showToast('Failed to copy command.', 'error');
+						}
+						
+					} else if (step === 2) {
+						// Step 2: Open platform
+						this.innerHTML = `
+							<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+							</svg>
+						`;
+						this.title = 'Opening...';
+						
+						// Open the platform
+						window.open(url, '_blank', 'noopener,noreferrer');
+						
+						// Track the event
+						if ((window as any).dataLayer) {
+							(window as any).dataLayer.push({
+								'event': 'ai_platform_launch_detail',
+								'platform': platform,
+								'tool_id': toolId,
+								'tool_title': toolTitle,
+								'page_type': 'detail'
+							});
+						}
+						
+						showToast(`Opened ${platform.charAt(0).toUpperCase() + platform.slice(1)}! Paste the command there.`, 'info');
+						
+						// Reset after 4 seconds (longer on detail page)
+						setTimeout(() => {
+							this.innerHTML = originalText;
+							this.title = originalTitle || '';
+							this.classList.remove('bg-green-600', 'hover:bg-green-700', 'animate-pulse');
+							this.classList.add('bg-gray-800', 'hover:bg-' + getButtonColorDetail(platform) + '-600');
+							step = 1;
+						}, 4000);
+					}
+				});
+			});
+			
+			// Unified Platform Selector (Detail Page)
+			document.querySelectorAll('.unified-launch-btn').forEach(function(btn) {
+				btn.addEventListener('click', async function(this: HTMLElement) {
+					const toolId = this.getAttribute('data-tool-id');
+					const toolTitle = this.getAttribute('data-tool-title');
+					const selector = document.querySelector('.unified-platform-selector') as HTMLSelectElement;
+					
+					if (!selector || !toolId) return;
+					
+					const selectedPlatform = selector.value;
+					const originalText = this.innerHTML;
+					
+					// Platform URLs and commands (same as tools page)
+					const platformData = {
+						chatgpt: {
+							url: 'https://chat.openai.com/g/g-688d0d2733948191bc9f2f79cfc0aba2',
+							command: `Run tool: ${toolId}`
+						},
+						claude: {
+							url: 'https://claude.ai',
+							command: `Load and execute this business framework: https://mimrgrowthlab.com/tools/${toolId}
+
+My Business Context:
+- Business Name: [YOUR_BUSINESS]
+- Stage: [MVP/PMF/Scaling]
+- Industry: [YOUR_INDUSTRY]
+- Current Challenge: [SPECIFIC_CHALLENGE]
+
+Please guide me through each section systematically and provide strategic insights.`
+						},
+						gemini: {
+							url: 'https://gemini.google.com',
+							command: `Analyze this business tool and guide me through it: https://mimrgrowthlab.com/tools/${toolId}
+
+My Business Context:
+- Business Name: [YOUR_BUSINESS]
+- Stage: [MVP/PMF/Scaling]
+- Industry: [YOUR_INDUSTRY]
+- Current Challenge: [SPECIFIC_CHALLENGE]
+
+Please execute each step, provide research insights, and analyze competitive implications.`
+						},
+						perplexity: {
+							url: 'https://perplexity.ai',
+							command: `Research and execute this business framework: https://mimrgrowthlab.com/tools/${toolId}
+
+My Business Context:
+- Business Name: [YOUR_BUSINESS]
+- Stage: [MVP/PMF/Scaling]
+- Industry: [YOUR_INDUSTRY]
+- Current Challenge: [SPECIFIC_CHALLENGE]
+
+Please combine tool execution with real-time market research and trend analysis.`
+						},
+						grok: {
+							url: 'https://x.com/i/grok',
+							command: `Execute this growth tool step-by-step: https://mimrgrowthlab.com/tools/${toolId}
+
+My Business Context:
+- Business Name: [YOUR_BUSINESS]
+- Stage: [MVP/PMF/Scaling]
+- Industry: [YOUR_INDUSTRY]
+- Current Challenge: [SPECIFIC_CHALLENGE]
+
+Please provide quick insights and growth hacking suggestions.`
+						}
+					};
+					
+					const data = platformData[selectedPlatform as keyof typeof platformData];
+					if (!data) return;
+					
+					this.innerHTML = `
+						<svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+						</svg>
+						Copying...
+					`;
+					(this as HTMLButtonElement).disabled = true;
+					
+					try {
+						await navigator.clipboard.writeText(data.command);
+						
+						this.innerHTML = `
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+							</svg>
+							Opening...
+						`;
+						
+						// Open the platform
+						setTimeout(() => {
+							window.open(data.url, '_blank', 'noopener,noreferrer');
+						}, 500);
+						
+						showToast(`Command copied! Opening ${selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)}...`, 'success');
+						
+						// Track the event
+						if ((window as any).dataLayer) {
+							(window as any).dataLayer.push({
+								'event': 'unified_platform_launch_detail',
+								'platform': selectedPlatform,
+								'tool_id': toolId,
+								'tool_title': toolTitle,
+								'page_type': 'detail'
+							});
+						}
+						
+						// Reset after 3 seconds
+						setTimeout(() => {
+							this.innerHTML = originalText;
+							(this as HTMLButtonElement).disabled = false;
+						}, 3000);
+						
+					} catch (err) {
+						this.innerHTML = originalText;
+						(this as HTMLButtonElement).disabled = false;
+						showToast('Failed to copy command.', 'error');
+					}
+				});
+			});
+			
+			// Helper function for detail page button colors
+			function getButtonColorDetail(platform: string): string {
+				const colors = {
+					chatgpt: 'green',
+					claude: 'orange',
+					gemini: 'blue',
+					perplexity: 'purple',
+					grok: 'gray'
+				};
+				return colors[platform as keyof typeof colors] || 'gray';
+			}
+			
+			// Copyable command functionality
+			document.querySelectorAll('.copyable-command').forEach(function(cmd) {
+				cmd.addEventListener('click', async function(this: HTMLElement) {
+					const command = this.getAttribute('data-command');
+					if (!command) return;
+					
+					const originalText = this.innerHTML;
+					
+					try {
+						await navigator.clipboard.writeText(command);
+						
+						// Visual feedback
+						this.innerHTML = `
+							<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+							</svg>
+							Copied!
+						`;
+						this.classList.add('bg-green-600', 'text-white');
+						this.classList.remove('bg-gray-800', 'text-red-400');
+						
+						showToast('Command copied to clipboard!', 'success');
+						
+						// Reset after 2 seconds
+						setTimeout(() => {
+							this.innerHTML = originalText;
+							this.classList.remove('bg-green-600', 'text-white');
+							this.classList.add('bg-gray-800', 'text-red-400');
+						}, 2000);
+					} catch (err) {
+						showToast('Failed to copy command.', 'error');
+					}
+				});
+				
+				// Keyboard support
+				cmd.addEventListener('keydown', function(this: HTMLElement, e: Event) {
+					const keyEvent = e as KeyboardEvent;
+					if (keyEvent.key === 'Enter' || keyEvent.key === ' ') {
+						e.preventDefault();
+						this.click();
+					}
+				});
+			});
+			
+			// Copy command button (new)
+			if (copyCommandBtn) {
+				copyCommandBtn.addEventListener('click', async () => {
+					const toolSlug = copyCommandBtn.dataset.toolSlug || '';
+					const command = `Run tool: ${toolSlug}`;
+					const originalText = copyCommandBtn.innerHTML;
+					
+					copyCommandBtn.innerHTML = `
+						<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+						</svg>
+						Copying...
+					`;
+					copyCommandBtn.disabled = true;
+					
+					try {
+						await navigator.clipboard.writeText(command);
+						copyCommandBtn.innerHTML = `
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+							</svg>
+							Copied!
+						`;
+						showToast('GPT command copied! Paste it in the AI Assistant.', 'success');
+						
+						setTimeout(() => {
+							copyCommandBtn.innerHTML = originalText;
+							copyCommandBtn.disabled = false;
+						}, 2000);
+					} catch (err) {
+						copyCommandBtn.innerHTML = `
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+							</svg>
+							Failed
+						`;
+						showToast('Failed to copy command.', 'error');
+						
+						setTimeout(() => {
+							copyCommandBtn.innerHTML = originalText;
+							copyCommandBtn.disabled = false;
+						}, 2000);
+					}
+				});
+			}
+			
+			// Copy prompt button (new)
+			if (copyPromptBtn) {
+				copyPromptBtn.addEventListener('click', async () => {
+					const promptContent = copyPromptBtn.dataset.promptContent || '';
+					const originalText = copyPromptBtn.innerHTML;
+					
+					copyPromptBtn.innerHTML = `
+						<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+						</svg>
+						Copying...
+					`;
+					copyPromptBtn.disabled = true;
+					
+					try {
+						await navigator.clipboard.writeText(promptContent);
+						copyPromptBtn.innerHTML = `
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+							</svg>
+							Copied!
+						`;
+						showToast('Prompt copied to clipboard!', 'success');
+						
+						setTimeout(() => {
+							copyPromptBtn.innerHTML = originalText;
+							copyPromptBtn.disabled = false;
+						}, 2000);
+					} catch (err) {
+						copyPromptBtn.innerHTML = `
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+							</svg>
+							Failed
+						`;
+						showToast('Failed to copy prompt.', 'error');
+						
+						setTimeout(() => {
+							copyPromptBtn.innerHTML = originalText;
+							copyPromptBtn.disabled = false;
+						}, 2000);
+					}
+				});
+			}
+			
+			// Copy content button
+			if (copyContentBtn) {
+				copyContentBtn.addEventListener('click', async () => {
+					const content = copyContentBtn.dataset.content || '';
+					const originalText = copyContentBtn.innerHTML;
+					
+					copyContentBtn.innerHTML = `
+						<svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+						</svg>
+						Copying...
+					`;
+					copyContentBtn.disabled = true;
+					
+					try {
+						await navigator.clipboard.writeText(content);
+						copyContentBtn.innerHTML = `
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+							</svg>
+							Copied!
+						`;
+						showToast('Content copied to clipboard!', 'success');
+						
+						setTimeout(() => {
+							copyContentBtn.innerHTML = originalText;
+							copyContentBtn.disabled = false;
+						}, 2000);
+					} catch (err) {
+						copyContentBtn.innerHTML = `
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+							</svg>
+							Failed
+						`;
+						showToast('Failed to copy content.', 'error');
+						
+						setTimeout(() => {
+							copyContentBtn.innerHTML = originalText;
+							copyContentBtn.disabled = false;
+						}, 2000);
+					}
+				});
+			}
+			
+			// Toggle content visibility
+			if (toggleContentBtn && toolContent) {
+				toggleContentBtn.addEventListener('click', () => {
+					const isHidden = toolContent.classList.contains('hidden');
+					
+					if (isHidden) {
+						toolContent.classList.remove('hidden');
+						toggleContentBtn.innerHTML = `
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+							</svg>
+							Collapse
+						`;
+					} else {
+						toolContent.classList.add('hidden');
+						toggleContentBtn.innerHTML = `
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+							</svg>
+							Expand
+						`;
+					}
+				});
+			}
+			
+			// Track AI platform button clicks
+			document.querySelectorAll('.ai-platform-btn').forEach(link => {
+				link.addEventListener('click', () => {
+					try {
+						const toolName = (link as HTMLElement).dataset.toolName;
+						const aiPlatform = (link as HTMLElement).dataset.aiPlatform;
+						
+						if ((window as any).dataLayer) {
+							(window as any).dataLayer.push({
+								'event': 'ai_assistant_click',
+								'ai_platform': aiPlatform,
+								'tool_name': toolName,
+								'page_type': 'individual_tool'
+							});
+						}
+					} catch (error) {
+						console.warn('Failed to track AI platform click:', error);
+					}
+				});
+			});
+			
+			// Toast notification system
+			function showToast(message: string, type = 'info') {
+				const toast = document.createElement('div');
+				toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg transition-all duration-300 transform translate-x-full ${
+					type === 'success' ? 'bg-green-600 text-white' :
+					type === 'error' ? 'bg-red-600 text-white' :
+					'bg-gray-800 text-white'
+				}`;
+				toast.innerHTML = `
+					<div class="flex items-center gap-2">
+						${type === 'success' ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>' :
+						type === 'error' ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>' :
+						'<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>'}
+						<span>${message}</span>
+					</div>
+				`;
+				
+				document.body.appendChild(toast);
+				
+				// Animate in
+				setTimeout(() => {
+					toast.classList.remove('translate-x-full');
+				}, 100);
+				
+				// Auto remove after 4 seconds
+				setTimeout(() => {
+					toast.classList.add('translate-x-full');
+					setTimeout(() => {
+						document.body.removeChild(toast);
+					}, 300);
+				}, 4000);
+			}
+			
+			// Keyboard shortcuts
+			document.addEventListener('keydown', (e) => {
+				// Cmd/Ctrl + C to copy prompt (if copy prompt button exists)
+				if ((e.metaKey || e.ctrlKey) && e.key === 'c' && copyPromptBtn) {
+					e.preventDefault();
+					copyPromptBtn.click();
+				}
+			});
+		</script>
+	</body>
+</html> 

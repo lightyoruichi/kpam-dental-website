@@ -1,0 +1,122 @@
+---
+export interface Tool {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  difficulty: string;
+  estimatedTime: string;
+  tags: string[];
+  relatedTools?: string[];
+}
+
+export interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+---
+
+<article class="tool-card group bg-zinc-900/50 border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all duration-300 hover:bg-zinc-900/80 cursor-pointer" role="article" aria-labelledby={`tool-title-${tool.id}`} data-tool-id={tool.id}>
+  <div class="p-6">
+    <!-- Article Header -->
+    <div class="mb-4">
+      <div class="flex items-center gap-3 text-sm text-zinc-400 mb-3">
+        <span class="px-2 py-1 bg-zinc-800 rounded-md text-xs font-medium">{tool.category}</span>
+        <span class="text-zinc-500">•</span>
+        <span>{tool.estimatedTime}</span>
+        <span class="text-zinc-500">•</span>
+        <span class="capitalize">{tool.difficulty}</span>
+      </div>
+      
+      <h3 id={`tool-title-${tool.id}`} class="text-xl font-semibold text-white mb-3 group-hover:text-red-400 transition-colors">
+        {tool.title}
+      </h3>
+      
+      <p class="text-zinc-300 leading-relaxed mb-4">
+        {tool.description}
+      </p>
+      
+      <!-- Tags - Minimal -->
+      {tool.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          {tool.tags.slice(0, 3).map((tag) => (
+            <span class="text-xs text-zinc-400 px-2 py-1 bg-zinc-800/50 rounded border border-zinc-700/50">
+              {tag}
+            </span>
+          ))}
+          {tool.tags.length > 3 && (
+            <span class="text-xs text-zinc-500">+{tool.tags.length - 3} more</span>
+          )}
+        </div>
+      )}
+    </div>
+
+    <!-- Action Section -->
+    <div class="flex items-center justify-between pt-4 border-t border-zinc-800">
+      <a 
+        href={`/tools/${tool.id}`}
+        class="inline-flex items-center gap-2 text-sm font-medium text-white hover:text-red-400 transition-colors group/link"
+      >
+        Read tool
+        <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+      
+      <!-- Quick Launch Icons -->
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-zinc-500 mr-2">Quick launch:</span>
+        <button 
+          class="ai-platform-btn-minimal p-1.5 bg-zinc-800 hover:bg-green-600 border border-zinc-700 hover:border-green-500 rounded transition-all duration-200"
+          data-platform="chatgpt"
+          data-tool-id={tool.id}
+          data-tool-title={tool.title}
+          data-url="https://chat.openai.com/g/g-688d0d2733948191bc9f2f79cfc0aba2"
+          data-command={`Run tool: ${tool.id}`}
+          title="Launch in ChatGPT"
+        >
+          <img src="/assets/tools/openai.svg" alt="ChatGPT" class="w-4 h-4" />
+        </button>
+        <button 
+          class="ai-platform-btn-minimal p-1.5 bg-zinc-800 hover:bg-orange-600 border border-zinc-700 hover:border-orange-500 rounded transition-all duration-200"
+          data-platform="claude"
+          data-tool-id={tool.id}
+          data-tool-title={tool.title}
+          data-url="https://claude.ai"
+          data-command={`Load and execute this business framework: https://mimrgrowthlab.com/tools/${tool.id}
+
+My Business Context:
+- Business Name: [YOUR_BUSINESS]
+- Stage: [MVP/PMF/Scaling]
+- Industry: [YOUR_INDUSTRY]
+- Current Challenge: [SPECIFIC_CHALLENGE]
+
+Please guide me through each section systematically.`}
+          title="Launch in Claude"
+        >
+          <img src="/assets/tools/claude-ai-icon.svg" alt="Claude" class="w-4 h-4" />
+        </button>
+        <button 
+          class="ai-platform-btn-minimal p-1.5 bg-zinc-800 hover:bg-blue-500 border border-zinc-700 hover:border-blue-400 rounded transition-all duration-200"
+          data-platform="gemini"
+          data-tool-id={tool.id}
+          data-tool-title={tool.title}
+          data-url="https://gemini.google.com"
+          data-command={`Analyze this business tool and guide me through it: https://mimrgrowthlab.com/tools/${tool.id}
+
+My Business Context:
+- Business Name: [YOUR_BUSINESS]
+- Stage: [MVP/PMF/Scaling]
+- Industry: [YOUR_INDUSTRY]
+- Current Challenge: [SPECIFIC_CHALLENGE]
+
+Please execute each step and provide insights.`}
+          title="Launch in Gemini"
+        >
+          <img src="/assets/tools/gemini.svg" alt="Gemini" class="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  </div>
+</article>

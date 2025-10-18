@@ -1,0 +1,406 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import StructuredData from '../components/StructuredData.astro';
+
+export const prerender = true;
+
+---
+
+<BaseLayout 
+	title="Revenue Operations Services | 90-Day Growth Intensive | MIMR Growth Lab"
+	description="90-day revenue operations intensive. Fix broken funnels, optimize attribution, automate sales processes. $15K flat rate with performance guarantee for B2B startups."
+	canonical="https://mimrgrowthlab.com/services"
+	keywords="revenue operations, growth services, funnel optimization, sales automation, B2B growth consultant, revenue guarantee, GTM optimization"
+	currentPage="services"
+	tallyScript={true}
+>
+	<!-- Optimized Structured Data -->
+	<StructuredData 
+		type="services" 
+		pageData={{
+			title: "90-Day Revenue Operations Intensive",
+			description: "Complete revenue operations rebuild with performance guarantee. Fix broken funnels, optimize attribution, automate sales processes.",
+			url: "https://mimrgrowthlab.com/services",
+			price: "15000",
+			faqData: [
+				{
+					question: "What is included in the 90-day growth plan?",
+					answer: "Our plan includes a comprehensive audit, system rebuild, tailored solutions for funnel optimization, and team training to ensure long-term success."
+				},
+				{
+					question: "What challenges do you address specifically?",
+					answer: "We focus on optimizing revenue systems, improving conversion rates, automating processes, and establishing effective attribution tracking."
+				},
+				{
+					question: "How many clients do you manage concurrently?",
+					answer: "We work with a maximum of 3 clients per quarter to ensure dedicated focus and bespoke service tailored to each client's needs."
+				},
+				{
+					question: "How does the performance guarantee work?",
+					answer: "Our guarantee ensures that if projected outcomes aren't realized, you won't be charged. It's a testament to our commitment to results."
+				}
+			]
+		}}
+	/>
+
+				<!-- HERO SECTION -->
+				<section aria-labelledby="hero-heading" class="text-center">
+					<h2 id="hero-heading" class="text-3xl md:text-4xl mb-4">90-Day Revenue Operations Intensive</h2>
+					<h3 class="text-xl md:text-2xl mb-6 text-red-500">Complete revenue operations rebuild with performance guarantee</h3>
+					<p class="text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-8">
+						Fix broken funnels, optimize attribution, automate sales processes. Build scalable revenue systems 
+						that work without constant attention. One quarter. One focus. Guaranteed results.
+					</p>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+						<a
+							href="#cta"
+							class="inline-block bg-red-500 text-white font-bold py-3 px-6 border-2 border-red-500 hover:bg-transparent hover:text-red-500 transition-colors"
+							onclick="if(window.posthog){window.posthog.capture('consultation_cta_clicked', {page: 'services', cta_type: 'hero_book_consultation'});}"
+							>Book Consultation</a>
+						<p class="text-sm text-gray-400">$15K flat rate • 90-day timeline • Performance guarantee</p>
+					</div>
+				</section>
+
+				<!-- SERVICE OVERVIEW -->
+				<section aria-labelledby="process-heading" role="region">
+					<h2 id="process-heading" class="text-2xl md:text-3xl mb-4">The 90-Day Process</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Audit. Build. Deploy. Exit.</h3>
+					<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg text-center">
+							<div class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div>
+							<h4 class="text-lg font-bold text-red-400 mb-3">Week 1-2: Revenue Audit</h4>
+							<p class="text-gray-300">Complete teardown of your growth engine. I find where deals are dying and dollars are leaking.</p>
+						</div>
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg text-center">
+							<div class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div>
+							<h4 class="text-lg font-bold text-red-400 mb-3">Week 3-8: System Rebuild</h4>
+							<p class="text-gray-300">Fix what's broken. Build what's missing. Everything gets tested and optimized for conversion.</p>
+						</div>
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg text-center">
+							<div class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
+							<h4 class="text-lg font-bold text-red-400 mb-3">Week 9-12: Team Handoff</h4>
+							<p class="text-gray-300">Train your team. Document processes. Set up dashboards. Then I disappear.</p>
+						</div>
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg text-center">
+							<div class="bg-gray-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">✓</div>
+							<h4 class="text-lg font-bold text-red-400 mb-3">Week 13: Revenue Guarantee</h4>
+							<p class="text-gray-300">If we don't hit our agreed metrics, you don't pay. Simple.</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- EXPERIENCE TIMELINE -->
+				<section class="max-w-4xl mx-auto">
+					<h2 class="text-2xl md:text-3xl mb-4 text-center">Why Trust Me With Your Growth?</h2>
+					<h3 class="text-xl md:text-2xl mb-12 text-red-500 text-center">Track record building revenue engines</h3>
+					
+					<div class="space-y-8">
+						<!-- Timeline Item 1 -->
+						<div class="flex gap-6 group">
+							<div class="flex flex-col items-center">
+								<div class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold">
+									<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+										<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+									</svg>
+								</div>
+								<div class="w-px bg-zinc-700 h-20 mt-4"></div>
+							</div>
+							<div class="flex-1 pb-8">
+								<div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 group-hover:border-zinc-700 transition-colors">
+									<div class="flex items-center gap-3 mb-3">
+										<h4 class="text-lg font-semibold text-white">Revenue Operations Specialist</h4>
+										<span class="text-sm text-zinc-400">2019 — Present</span>
+									</div>
+									<p class="text-zinc-300 mb-4">Built revenue systems for 50+ B2B companies. Specialized in funnel optimization, attribution modeling, and sales automation.</p>
+									<div class="flex flex-wrap gap-2">
+										<span class="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded border border-red-500/30">$15M+ Revenue Generated</span>
+										<span class="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">50+ Companies</span>
+										<span class="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">B2B SaaS Focus</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Timeline Item 2 -->
+						<div class="flex gap-6 group">
+							<div class="flex flex-col items-center">
+								<div class="bg-zinc-700 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold">
+									<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+										<path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+									</svg>
+								</div>
+								<div class="w-px bg-zinc-700 h-20 mt-4"></div>
+							</div>
+							<div class="flex-1 pb-8">
+								<div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 group-hover:border-zinc-700 transition-colors">
+									<div class="flex items-center gap-3 mb-3">
+										<h4 class="text-lg font-semibold text-white">Senior Growth Engineer</h4>
+										<span class="text-sm text-zinc-400">2017 — 2019</span>
+									</div>
+									<p class="text-zinc-300 mb-4">Led growth teams at fast-scaling startups. Built experimentation frameworks and data infrastructure for companies raising Series A-C.</p>
+									<div class="flex flex-wrap gap-2">
+										<span class="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Experimentation</span>
+										<span class="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Data Infrastructure</span>
+										<span class="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Series A-C</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Timeline Item 3 -->
+						<div class="flex gap-6 group">
+							<div class="flex flex-col items-center">
+								<div class="bg-zinc-700 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold">
+									<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+										<path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+									</svg>
+								</div>
+							</div>
+							<div class="flex-1 pb-8">
+								<div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6 group-hover:border-zinc-700 transition-colors">
+									<div class="flex items-center gap-3 mb-3">
+										<h4 class="text-lg font-semibold text-white">Product Analytics Lead</h4>
+										<span class="text-sm text-zinc-400">2015 — 2017</span>
+									</div>
+									<p class="text-zinc-300 mb-4">Built analytics infrastructure and conversion optimization systems at early-stage companies. Focus on product-led growth strategies.</p>
+									<div class="flex flex-wrap gap-2">
+										<span class="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Analytics Infrastructure</span>
+										<span class="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Conversion Optimization</span>
+										<span class="text-xs bg-zinc-800 text-zinc-300 px-2 py-1 rounded">PLG</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- CORE SERVICES -->
+				<section>
+					<h2 class="text-2xl md:text-3xl mb-4">Core Revenue Operations Services</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Systematic solutions for common B2B revenue problems</h3>
+					<div class="space-y-6">
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">Funnel Optimization</h4>
+							<p class="text-gray-300 mb-3">Repair broken funnels bleeding cash. Identify and fix conversion bottlenecks, optimize user flows, and implement proper tracking.</p>
+							<ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+								<li>Conversion rate optimization</li>
+								<li>User journey mapping</li>
+								<li>A/B testing implementation</li>
+								<li>Funnel analytics setup</li>
+							</ul>
+						</div>
+						
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">Offer & Messaging</h4>
+							<p class="text-gray-300 mb-3">Rebuild your offer to actually convert. Craft compelling value propositions, optimize pricing, and create irresistible messaging.</p>
+							<ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+								<li>Value proposition development</li>
+								<li>Pricing strategy optimization</li>
+								<li>Messaging framework creation</li>
+								<li>Objection handling</li>
+							</ul>
+						</div>
+						
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">Attribution & Analytics</h4>
+							<p class="text-gray-300 mb-3">Clean up attribution, analytics, and tracking. Set up proper measurement systems so you know what's working and what's not.</p>
+							<ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+								<li>Attribution modeling</li>
+								<li>Analytics implementation</li>
+								<li>Conversion tracking setup</li>
+								<li>ROI measurement systems</li>
+							</ul>
+						</div>
+						
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">Automation Deployment</h4>
+							<p class="text-gray-300 mb-3">Deploy automations that save hours and dollars. Build systems that work without constant attention and scale with your business.</p>
+							<ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+								<li>Lead nurturing automation</li>
+								<li>Customer onboarding flows</li>
+								<li>Revenue optimization systems</li>
+								<li>Operational efficiency tools</li>
+							</ul>
+						</div>
+						
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">Cold & Paid Acquisition</h4>
+							<p class="text-gray-300 mb-3">Write high-converting cold/paid flows. Create scalable acquisition channels that bring in qualified leads consistently.</p>
+							<ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+								<li>Cold outreach sequences</li>
+								<li>Paid advertising optimization</li>
+								<li>Content marketing strategy</li>
+								<li>Channel diversification</li>
+							</ul>
+						</div>
+						
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">Team Training & Handoff</h4>
+							<p class="text-gray-300 mb-3">Build systems that survive without me. Train your team, document processes, and ensure sustainable growth after I'm gone.</p>
+							<ul class="list-disc list-inside text-sm text-gray-400 space-y-1">
+								<li>Process documentation</li>
+								<li>Team training programs</li>
+								<li>System maintenance guides</li>
+								<li>Performance monitoring</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- DELIVERABLES -->
+				<section>
+					<h2 class="text-2xl md:text-3xl mb-4">What You Receive</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Complete strategic assets and operational systems</h3>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">Strategic Assets</h4>
+							<ul class="list-disc list-inside text-gray-300 space-y-2">
+								<li>Comprehensive funnel audit report</li>
+								<li>Optimized conversion funnels</li>
+								<li>Refined value propositions</li>
+								<li>Pricing strategy recommendations</li>
+								<li>Attribution model documentation</li>
+								<li>Growth roadmap for next 6 months</li>
+							</ul>
+						</div>
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">Operational Systems</h4>
+							<ul class="list-disc list-inside text-gray-300 space-y-2">
+								<li>Automated lead nurturing sequences</li>
+								<li>Customer onboarding workflows</li>
+								<li>Revenue optimization systems</li>
+								<li>Performance tracking dashboards</li>
+								<li>Team training materials</li>
+								<li>Process documentation</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- INVESTMENT -->
+				<section>
+					<h2 class="text-2xl md:text-3xl mb-4">Investment & Timeline</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Fixed pricing with performance guarantee</h3>
+					<div class="border border-gray-600 p-8 bg-gray-900 rounded-lg text-center">
+						<div class="mb-6">
+							<h4 class="text-3xl font-bold text-red-400 mb-2">$15,000</h4>
+							<p class="text-gray-300">Flat rate. Performance guarantee. No ongoing fees.</p>
+						</div>
+						<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+							<div>
+								<h5 class="text-lg font-bold mb-2">Timeline</h5>
+								<p class="text-gray-300">90 days<br/>Intensive revenue rebuild</p>
+							</div>
+							<div>
+								<h5 class="text-lg font-bold mb-2">Capacity</h5>
+								<p class="text-gray-300">3 clients per quarter<br/>Full focus, no distractions</p>
+							</div>
+							<div>
+								<h5 class="text-lg font-bold mb-2">Guarantee</h5>
+								<p class="text-gray-300">Hit metrics or don't pay<br/>Results-driven pricing</p>
+							</div>
+						</div>
+						<div class="border-t border-gray-600 pt-6">
+							<p class="text-sm text-gray-400 mb-4">Payment: 50% upfront, 50% upon hitting agreed metrics</p>
+							<a
+								href="#cta"
+								class="inline-block bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+								onclick="if(window.posthog){window.posthog.capture('consultation_cta_clicked', {page: 'services', cta_type: 'pricing_book_consultation'});}"
+								>Book Consultation</a>
+						</div>
+					</div>
+				</section>
+
+				<!-- CASE STUDIES -->
+				<section>
+					<h2 class="text-2xl md:text-3xl mb-4">Case Studies</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Proven results from recent engagements</h3>
+					<div class="space-y-6">
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">Med-tech SaaS</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+								<div>
+									<p><strong>Situation:</strong> Product strong, pipeline weak, leads leaking post-demo</p>
+									<p><strong>Intervention:</strong> Rebuilt funnel logic, installed MQL qualifier, rewrote nurture + retargeting</p>
+								</div>
+								<div>
+									<p><strong>Result:</strong> <span class="redacted">5x MQL volume, 2.1x ROI in 45 days</span></p>
+									<p><strong>Status:</strong> Project completed. Team trained. Systems operational.</p>
+								</div>
+							</div>
+						</div>
+						
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold text-red-400 mb-3">B2B Service Company</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+								<div>
+									<p><strong>Situation:</strong> High CAC, low conversion, manual processes</p>
+									<p><strong>Intervention:</strong> Automated lead scoring, optimized cold outreach, deployed CRM workflows</p>
+								</div>
+								<div>
+									<p><strong>Result:</strong> <span class="redacted">40% CAC reduction, 3x conversion rate</span></p>
+									<p><strong>Status:</strong> Systems automated. Team scaled. Project completed.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p class="mt-6 text-lg leading-relaxed">
+						See more case studies at <a
+							href="http://trymimr.xyz/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-red-500 hover:underline"
+							onclick="if(window.posthog){window.posthog.capture('external_link_clicked', {page: 'services', link_type: 'case_studies', url: 'http://trymimr.xyz/'});}">http://trymimr.xyz/</a
+						>.
+					</p>
+				</section>
+
+				<!-- FAQ SECTION -->
+				<section>
+					<h2 class="text-2xl md:text-3xl mb-4">Frequently Asked Questions</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Common questions about the 90-day intensive</h3>
+					<div class="space-y-6">
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold mb-3">What is included in the 90-day growth plan?</h4>
+							<p class="text-gray-300">Our plan includes a comprehensive audit, system rebuild, tailored solutions for funnel optimization, and team training to ensure long-term success.</p>
+						</div>
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold mb-3">What challenges do you address specifically?</h4>
+							<p class="text-gray-300">We focus on optimizing revenue systems, improving conversion rates, automating processes, and establishing effective attribution tracking.</p>
+						</div>
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold mb-3">How many clients do you manage concurrently?</h4>
+							<p class="text-gray-300">We work with a maximum of 3 clients per quarter to ensure dedicated focus and bespoke service tailored to each client's needs.</p>
+						</div>
+						<div class="border border-gray-600 p-6 bg-gray-900 rounded-lg">
+							<h4 class="text-lg font-bold mb-3">How does the performance guarantee work?</h4>
+							<p class="text-gray-300">Our guarantee ensures that if projected outcomes aren't realized, you won't be charged. It's a testament to our commitment to results.</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- CTA FOOTER -->
+				<section id="cta" class="text-center">
+					<h2 class="text-2xl md:text-3xl mb-4">Ready to fix your revenue operations?</h2>
+					<h3 class="text-xl md:text-2xl mb-6 text-red-500">Book a diagnostic call. If it's not a fit, I'll tell you.</h3>
+					<p class="text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+						I take on 3 clients per quarter. If your revenue is stuck and you're done with consultants who talk instead of build, let's talk.
+					</p>
+					<div class="mb-8">
+						<p class="text-xl font-bold">$15K flat rate • 90-day timeline • Performance guarantee included</p>
+					</div>
+					<div class="mt-6 h-[500px]">
+							<iframe
+								src="https://tally.so/embed/mZggx5"
+								width="100%"
+								height="500"
+								frameborder="0"
+								marginheight="0"
+								marginwidth="0"
+								title="MIMR Growth Lab - Revenue Operations Consultation"
+								loading="lazy"
+								onload="if(window.posthog){window.posthog.capture('consultation_form_loaded', {page: 'services', form_type: 'consultation'});}">
+							</iframe>
+						</div>
+					</section>
+</BaseLayout>

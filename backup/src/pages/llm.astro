@@ -1,0 +1,16 @@
+---
+// Redirect to tools execute page
+export const prerender = true;
+
+// Track redirect event before redirecting
+if (typeof window !== 'undefined' && window.posthog) {
+  window.posthog.capture('redirect_triggered', {
+    from_page: 'llm',
+    to_url: '/tools/execute.md',
+    redirect_type: 'tools_execute'
+  });
+}
+
+// Perform server-side redirect
+return Astro.redirect('/tools/execute.md', 301);
+---

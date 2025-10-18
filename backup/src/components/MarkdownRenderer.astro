@@ -1,0 +1,133 @@
+---
+export interface Props {
+  content: string;
+  class?: string;
+}
+
+const { content, class: className = '' } = Astro.props;
+
+// Function to generate heading IDs that match FloatingTOC
+function generateHeadingId(text: string): string {
+  return text.toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '') // Remove special chars except spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+}
+
+// Enhanced markdown processing with heading IDs
+function processMarkdown(content: string): string {
+  return content
+    // Process headings with IDs
+    .replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, text) => {
+      const level = hashes.length;
+      const cleanText = text.trim().replace(/[*_`]/g, '');
+      const id = generateHeadingId(cleanText);
+      return `<h${level} id="${id}" class="heading-${level}">${cleanText}</h${level}>`;
+    })
+    // Process bold text
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/__(.+?)__/g, '<strong>$1</strong>')
+    // Process italic text
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/_([^_]+)_/g, '<em>$1</em>')
+    // Process inline code
+    .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
+    // Process links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="markdown-link" target="_blank" rel="noopener noreferrer">$1</a>')
+    // Process line breaks
+    .replace(/\n\n/g, '</p><p>')
+    // Process unordered lists
+    .replace(/^[-*+]\s+(.+)$/gm, '<li>$1</li>')
+    // Process ordered lists
+    .replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>')
+    // Wrap consecutive list items
+    .replace(/(<li>.*<\/li>)/gs, (match) => {
+      return `<ul class="markdown-list">${match}</ul>`;
+    })
+    // Process code blocks (basic)
+    .replace(/```([^`]*?)```/gs, '<pre class="code-block"><code>$1</code></pre>')
+    // Wrap in paragraphs
+    .replace(/^(?!<[h1-6]|<ul|<pre|<li)(.+)$/gm, '<p>$1</p>')
+    // Clean up empty paragraphs
+    .replace(/<p><\/p>/g, '')
+    // Clean up duplicate paragraph tags
+    .replace(/<\/p><p>/g, '</p>\n<p>');
+}
+
+const processedContent = processMarkdown(content);
+---
+
+<div class={`markdown-content ${className}`} set:html={processedContent} />
+
+<style>
+  .markdown-content {
+    @apply text-zinc-200 leading-relaxed;
+  }
+  
+  .markdown-content :global(.heading-1) {
+    @apply text-2xl md:text-3xl font-bold text-white mb-6 mt-8;
+  }
+  
+  .markdown-content :global(.heading-2) {
+    @apply text-xl md:text-2xl font-semibold text-red-400 mb-4 mt-6;
+  }
+  
+  .markdown-content :global(.heading-3) {
+    @apply text-lg md:text-xl font-medium text-zinc-100 mb-3 mt-5;
+  }
+  
+  .markdown-content :global(.heading-4) {
+    @apply text-base md:text-lg font-medium text-zinc-200 mb-2 mt-4;
+  }
+  
+  .markdown-content :global(.heading-5),
+  .markdown-content :global(.heading-6) {
+    @apply text-sm md:text-base font-medium text-zinc-300 mb-2 mt-3;
+  }
+  
+  .markdown-content :global(p) {
+    @apply mb-4;
+  }
+  
+  .markdown-content :global(strong) {
+    @apply font-semibold text-white;
+  }
+  
+  .markdown-content :global(em) {
+    @apply italic text-zinc-100;
+  }
+  
+  .markdown-content :global(.inline-code) {
+    @apply bg-zinc-800 text-red-400 px-2 py-1 rounded text-sm font-mono;
+  }
+  
+  .markdown-content :global(.code-block) {
+    @apply bg-zinc-800 p-4 rounded-lg mb-4 overflow-x-auto;
+  }
+  
+  .markdown-content :global(.code-block code) {
+    @apply text-zinc-200 font-mono text-sm;
+  }
+  
+  .markdown-content :global(.markdown-list) {
+    @apply mb-4 pl-6;
+  }
+  
+  .markdown-content :global(.markdown-list li) {
+    @apply mb-2 list-disc;
+  }
+  
+  .markdown-content :global(.markdown-link) {
+    @apply text-red-400 hover:text-red-300 underline transition-colors;
+  }
+  
+  /* Smooth scroll behavior for anchor links */
+  .markdown-content :global(h1[id]),
+  .markdown-content :global(h2[id]),
+  .markdown-content :global(h3[id]),
+  .markdown-content :global(h4[id]),
+  .markdown-content :global(h5[id]),
+  .markdown-content :global(h6[id]) {
+    scroll-margin-top: 2rem;
+  }
+</style>

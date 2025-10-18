@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import StructuredData from '../components/StructuredData.astro';
+
+export const prerender = true;
+---
+
+<BaseLayout
+	title="Growth Operations Consultant | 90-Day Revenue Optimization | Harinder Singh"
+	description="Fix your B2B growth engine in 90 days. Revenue operations consultant specializing in funnel optimization, attribution fixing, and sales automation. $15K flat rate, results guaranteed."
+	keywords="growth operations consultant, revenue optimization, funnel optimization, B2B growth consultant, sales automation, attribution tracking, GTM consultant, revenue guarantee"
+	canonical="https://mimrgrowthlab.com/"
+	currentPage="home"
+	tallyScript={true}
+>
+	<!-- Core Structured Data -->
+	<StructuredData type="organization" />
+	<StructuredData type="website" />
+	<StructuredData 
+		type="home" 
+		pageData={{
+			title: "Growth Operations Consultant | 90-Day Revenue Optimization",
+			description: "Fix your B2B growth engine in 90 days. Revenue operations consultant who builds working systems, not slide decks. $15K flat rate, results guaranteed.",
+			url: "https://mimrgrowthlab.com",
+			faqData: [
+				{
+					question: "What types of startups do you work with?",
+					answer: "I collaborate with B2B startups, particularly those looking to scale their revenue operations and improve funnel efficiency."
+				},
+				{
+					question: "Why choose a 90-day program?",
+					answer: "A focused 90-day timeline allows us to implement changes quickly and measure their effectiveness without long-term commitment."
+				},
+				{
+					question: "Can your strategies integrate with existing teams?",
+					answer: "Absolutely! My strategies are designed to complement and enhance your existing team's capabilities."
+				},
+				{
+					question: "What happens if revenue targets aren't met?",
+					answer: "We focus on result-oriented approaches; if targets aren't achieved, the engagement terms protect your interests."
+				}
+			]
+		}}
+	/>
+				<!-- HERO SECTION -->
+				<section aria-labelledby="hero-heading" class="text-center">
+					<h1 id="hero-heading" class="text-3xl md:text-5xl mb-6 leading-tight">Most growth consultants give you strategy decks.<br/>I give you working systems.</h1>
+					<h2 class="text-xl md:text-2xl mb-4 text-gray-300">90-day growth intensive. Results guaranteed or we keep working until you're satisfied.</h2>
+					<p class="text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-8">
+						I'm not an agency. I'm the consultant you hire when your growth engine is broken and you need it fixed fast. 
+						One founder. One focus. One quarter. Then you're self-sufficient.
+					</p>
+					<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+						<a
+							href="#cta"
+							class="btn-primary"
+							onclick="if(window.posthog){window.posthog.capture('hero_cta_clicked', {page: 'home', cta_type: 'book_diagnostic_call'});}"
+							>Book Diagnostic Call</a>
+						<p class="text-sm text-gray-400">$15K flat rate • Results guaranteed</p>
+					</div>
+				</section>
+
+				<!-- ABOUT SECTION -->
+				<section aria-labelledby="about-heading" role="region">
+					<h2 id="about-heading" class="text-2xl md:text-3xl mb-4">Why founders hire me when everything else fails</h2>
+					<h3 class="text-xl md:text-2xl mb-6 text-red-500">I fix growth engines, not slide decks</h3>
+					<p class="text-lg leading-relaxed mb-6">
+						10+ years building revenue systems for B2B startups. I've fixed funnels bleeding $50K/month, 
+						rebuilt attribution for companies losing 60% of their leads, and automated sales processes 
+						saving 40+ hours/week.
+					</p>		
+					<p class="text-lg leading-relaxed mb-6">
+						I don't do strategy sessions. I don't build roadmaps. I build working systems that generate 
+						revenue from day one.
+					</p>
+					<div class="border-t border-b border-gray-600 py-6">
+						<h4 class="text-lg font-bold mb-4">How I'm different:</h4>
+						<ul class="space-y-2 text-lg leading-relaxed">
+							<li>• Fixed pricing, not hourly billing</li>
+							<li>• Results guaranteed, not effort promises</li>
+							<li>• 90-day sprints, not 12-month retainers</li>
+							<li>• Working systems, not PowerPoint decks</li>
+						</ul>
+					</div>
+					<p class="text-lg leading-relaxed mt-6">
+						Need to test your growth strategy first? Check out our <a href="/tools" class="text-red-500 hover:underline" onclick="if(window.posthog){window.posthog.capture('tools_link_clicked', {page: 'home', link_type: 'text_link'});}">free revenue operations tools</a> for immediate results.
+					</p>
+					<a
+						href="https://www.linkedin.com/in/lightyoruichi/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="btn-secondary mt-6"
+						onclick="if(window.posthog){window.posthog.capture('linkedin_profile_clicked', {page: 'home', link_type: 'button'});}"
+						>View LinkedIn Profile</a>
+				</section>
+
+				<!-- SERVICES SECTION -->
+				<section aria-labelledby="services-heading" role="region">
+					<h2 id="services-heading" class="text-2xl md:text-3xl mb-4">What you get in 90 days</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Systems that work without you</h3>
+					
+					<div class="grid md:grid-cols-3 gap-8">
+						<div class="card-service">
+							<h4 class="text-xl font-bold mb-4 text-red-500">Revenue Operations Rebuild</h4>
+							<ul class="space-y-2 text-base">
+								<li>• Fix conversion leaks costing you deals</li>
+								<li>• Install proper attribution tracking</li>
+								<li>• Automate follow-up sequences</li>
+								<li>• Build scalable lead scoring</li>
+							</ul>
+						</div>
+						
+						<div class="card-service">
+							<h4 class="text-xl font-bold mb-4 text-red-500">Go-to-Market Optimization</h4>
+							<ul class="space-y-2 text-base">
+								<li>• Audit your entire funnel</li>
+								<li>• Rewrite offers that actually convert</li>
+								<li>• Deploy email/SMS automation</li>
+								<li>• Create repeatable sales processes</li>
+							</ul>
+						</div>
+						
+						<div class="card-service">
+							<h4 class="text-xl font-bold mb-4 text-red-500">Team Enablement</h4>
+							<ul class="space-y-2 text-base">
+								<li>• Train your team on new systems</li>
+								<li>• Document everything for handoff</li>
+								<li>• Set up monitoring dashboards</li>
+								<li>• Leave you self-sufficient</li>
+							</ul>
+						</div>
+					</div>
+					
+					<a
+						href="#cta"
+						class="btn-primary mt-8"
+						onclick="if(window.posthog){window.posthog.capture('services_cta_clicked', {page: 'home', cta_type: 'get_started'});}"
+						>Get Started</a>
+				</section>
+
+				<!-- METHODOLOGY SECTION -->
+				<section>
+					<h2 class="text-2xl md:text-3xl mb-4">The 90-day intensive process</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Audit. Build. Deploy. Exit.</h3>
+					
+					<div class="grid md:grid-cols-4 gap-8">
+						<div class="text-center">
+							<div class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">1</div>
+							<h4 class="text-lg font-bold mb-2">Week 1-2: Revenue Audit</h4>
+							<p class="text-sm text-gray-300">Complete teardown of your growth engine. I find where deals are dying and dollars are leaking.</p>
+						</div>
+						
+						<div class="text-center">
+							<div class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">2</div>
+							<h4 class="text-lg font-bold mb-2">Week 3-8: System Rebuild</h4>
+							<p class="text-sm text-gray-300">Fix what's broken. Build what's missing. Everything gets tested and optimized for conversion.</p>
+						</div>
+						
+						<div class="text-center">
+							<div class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">3</div>
+							<h4 class="text-lg font-bold mb-2">Week 9-12: Team Handoff</h4>
+							<p class="text-sm text-gray-300">Train your team. Document processes. Set up dashboards. Then I disappear.</p>
+						</div>
+						
+						<div class="text-center">
+							<div class="bg-gray-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">✓</div>
+							<h4 class="text-lg font-bold mb-2">Week 13: Results Guarantee</h4>
+							<p class="text-sm text-gray-300">If we don't hit our agreed metrics, we keep working until we do. No excuses.</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- CASE STUDIES -->
+				<section>
+					<h2 class="text-2xl md:text-3xl mb-4">Recent client results</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Revenue generated, costs saved, systems built</h3>
+					
+					<div class="space-y-8">
+						<div class="card-hover">
+							<h4 class="text-xl font-bold mb-2">Med-tech SaaS - $2.4M ARR</h4>
+							<p class="text-sm text-gray-300 mb-4">Fixed: 67% of leads dying post-demo</p>
+							<p class="text-sm text-gray-300 mb-4">Built: MQL scoring + nurture automation</p>
+							<p class="text-lg font-bold text-red-500">Result: $400K additional ARR in 90 days</p>
+						</div>
+						
+						<div class="card-hover">
+							<h4 class="text-xl font-bold mb-2">B2B Software - $8M ARR</h4>
+							<p class="text-sm text-gray-300 mb-4">Fixed: No attribution, burning $30K/month on bad ads</p>
+							<p class="text-sm text-gray-300 mb-4">Built: Multi-touch attribution + automated bid management</p>
+							<p class="text-lg font-bold text-red-500">Result: 40% reduction in CAC, 2.3x ROAS improvement</p>
+						</div>
+						
+						<div class="card-hover">
+							<h4 class="text-xl font-bold mb-2">Professional Services - $500K ARR</h4>
+							<p class="text-sm text-gray-300 mb-4">Fixed: Manual follow-up losing 45% of prospects</p>
+							<p class="text-sm text-gray-300 mb-4">Built: CRM automation + proposal generation</p>
+							<p class="text-lg font-bold text-red-500">Result: 60% faster close rates, saved 25 hours/week</p>
+						</div>
+					</div>
+				</section>
+
+
+
+				<!-- FAQ SECTION -->
+				<section>
+					<h2 class="text-2xl md:text-3xl mb-4">Before you book a call</h2>
+					<h3 class="text-xl md:text-2xl mb-8 text-red-500">Common questions answered</h3>
+					<div class="space-y-6">
+						<div class="card-base">
+							<p class="font-bold text-lg mb-3">What types of startups do you work with?</p>
+							<p class="text-gray-300">I collaborate with B2B startups, particularly those looking to scale their revenue operations and improve funnel efficiency.</p>
+						</div>
+						<div class="card-base">
+							<p class="font-bold text-lg mb-3">Why choose a 90-day program?</p>
+							<p class="text-gray-300">A focused 90-day timeline allows us to implement changes quickly and measure their effectiveness without long-term commitment.</p>
+						</div>
+						<div class="card-base">
+							<p class="font-bold text-lg mb-3">Can your strategies integrate with existing teams?</p>
+							<p class="text-gray-300">Absolutely! My strategies are designed to complement and enhance your existing team's capabilities.</p>
+						</div>
+						<div class="card-base">
+							<p class="font-bold text-lg mb-3">What happens if revenue targets aren't met?</p>
+							<p class="text-gray-300">We focus on result-oriented approaches; if targets aren't achieved, the engagement terms protect your interests.</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- CTA FOOTER -->
+				<section id="cta" class="text-center">
+					<h2 class="text-2xl md:text-3xl mb-4">Ready to fix your growth engine?</h2>
+					<h3 class="text-xl md:text-2xl mb-6 text-red-500">Book a diagnostic call. If it's not a fit, I'll tell you.</h3>
+					<p class="text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+						I take on 3 clients per quarter. If your revenue is stuck and you're done with consultants who talk instead of build, let's talk.
+					</p>
+					<div class="mb-8">
+						<p class="text-xl font-bold">$15K flat rate • 90-day timeline • Revenue guarantee included</p>
+					</div>
+					<div class="mt-6 h-[500px]">
+						<script async src="https://tally.so/widgets/embed.js"></script>
+						<iframe
+							src="https://tally.so/embed/mZggx5"
+							width="100%"
+							height="500"
+							frameborder="0"
+							marginheight="0"
+							marginwidth="0"
+							title="MIMR Growth Lab - Revenue Operations Diagnostic"
+							loading="lazy"
+							onload="if(window.posthog){window.posthog.capture('consultation_form_loaded', {page: 'home', form_type: 'diagnostic'});}">
+						</iframe>
+					</div>
+				</section>
+</BaseLayout>

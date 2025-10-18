@@ -1,0 +1,61 @@
+---
+export interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = '' } = Astro.props;
+
+const isHomePage = currentPage === 'home' || Astro.url.pathname === '/';
+const isToolsPage = currentPage === 'tools' || Astro.url.pathname.startsWith('/tools');
+const isServicesPage = currentPage === 'services' || Astro.url.pathname === '/services';
+---
+
+<header class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0 mb-12">
+  <!-- Brand Section -->
+  <div class="flex items-center space-x-3">
+    <img src="/assets/logo.svg" alt="MIMR Growth Lab Logo" class="h-10 w-10" />
+    <div>
+      <h1 class="text-xl md:text-2xl font-semibold">MIMR Growth Lab</h1>
+      <p class="text-sm text-zinc-400">Revenue Operations Consultant</p>
+    </div>
+  </div>
+
+  <!-- Standardized Navigation Menu -->
+  <nav class="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-full p-1.5 w-full max-w-sm mx-auto md:mx-0 md:w-auto" role="navigation" aria-label="Main navigation">
+    <div class="flex items-center justify-center md:justify-start space-x-0.5 md:space-x-1">
+      <a 
+        href="/" 
+        class={`px-3 md:px-4 py-2 text-xs md:text-sm font-medium rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black flex-1 md:flex-none text-center ${
+          isHomePage 
+            ? 'bg-zinc-800 text-white hover:bg-zinc-700' 
+            : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+        }`}
+        {isHomePage && { 'aria-current': 'page' }}
+      >
+        Home
+      </a>
+      <a 
+        href="/tools" 
+        class={`px-3 md:px-4 py-2 text-xs md:text-sm font-medium rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black flex-1 md:flex-none text-center ${
+          isToolsPage 
+            ? 'bg-zinc-800 text-white hover:bg-zinc-700' 
+            : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+        }`}
+        {isToolsPage && { 'aria-current': 'page' }}
+      >
+        Tools
+      </a>
+      <a 
+        href="/services" 
+        class={`px-3 md:px-4 py-2 text-xs md:text-sm font-medium rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-black flex-1 md:flex-none text-center ${
+          isServicesPage 
+            ? 'bg-zinc-800 text-white hover:bg-zinc-700' 
+            : 'text-zinc-400 hover:text-white hover:bg-zinc-800/50'
+        }`}
+        {isServicesPage && { 'aria-current': 'page' }}
+      >
+        Services
+      </a>
+    </div>
+  </nav>
+</header>

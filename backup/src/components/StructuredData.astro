@@ -1,0 +1,328 @@
+---
+// StructuredData.astro - Comprehensive structured data component for SEO
+export interface Props {
+  type?: 'organization' | 'website' | 'webpage' | 'breadcrumbs' | 'faq' | 'service' | 'tool' | 'toolsPage' | 'home';
+  data?: any;
+  breadcrumbs?: Array<{
+    name: string;
+    url: string;
+  }>;
+  tool?: any;
+  tools?: any[];
+  pageData?: any;
+}
+
+const { type, data, breadcrumbs = [], tool, tools = [], pageData } = Astro.props;
+
+// Base organization data
+const organizationData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MIMR Growth Lab",
+  "url": "https://mimrgrowthlab.com",
+  "logo": "https://mimrgrowthlab.com/logo.png",
+  "sameAs": ["https://www.linkedin.com/in/lightyoruichi/"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hari@mimrgrowthlab.com",
+    "contactType": "customer support"
+  },
+  "description": "90-day growth intensive for B2B startups. Fix broken funnels, optimize revenue operations, and build scalable growth systems with performance guarantee.",
+  "founder": {
+    "@type": "Person",
+    "name": "Harinder Singh",
+    "jobTitle": "Growth Operations Consultant",
+    "sameAs": ["https://www.linkedin.com/in/lightyoruichi/"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "Global"
+  },
+  "areaServed": "Global"
+};
+
+// Base website data
+const websiteData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "MIMR Growth Lab",
+  "url": "https://mimrgrowthlab.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://mimrgrowthlab.com/tools?search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MIMR Growth Lab",
+    "url": "https://mimrgrowthlab.com"
+  }
+};
+
+// Generate breadcrumb structured data
+function generateBreadcrumbs(breadcrumbs: Array<{ name: string; url: string }>) {
+  if (breadcrumbs.length === 0) return null;
+  
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  };
+}
+
+// Generate tool structured data
+function generateToolStructuredData(tool: any) {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["CreativeWork", "SoftwareApplication"],
+    "name": tool.title,
+    "description": tool.description,
+    "applicationCategory": tool.category,
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "url": `https://mimrgrowthlab.com/tools/${tool.id}`,
+    "provider": {
+      "@type": "Organization",
+      "name": "MIMR Growth Lab",
+      "url": "https://mimrgrowthlab.com",
+      "logo": "https://mimrgrowthlab.com/logo.png"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Harinder Singh",
+      "url": "https://www.linkedin.com/in/lightyoruichi/"
+    },
+    "keywords": tool.tags?.join(', ') || '',
+    "datePublished": "2024-01-01",
+    "dateModified": new Date().toISOString().split('T')[0],
+    "inLanguage": "en",
+    "isAccessibleForFree": true,
+    "usageInfo": "Free AI marketing tool for immediate use with any AI platform"
+  };
+}
+
+// Generate tools page structured data
+function generateToolsPageStructuredData(tools: any[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Free AI Marketing Tools | MIMR Growth Lab",
+    "url": "https://mimrgrowthlab.com/tools",
+    "description": "Free AI marketing tools to get amazing results today. From audience research to marketing copy. No sign-up required.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "url": "https://mimrgrowthlab.com",
+      "name": "MIMR Growth Lab"
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "AI Marketing Tools Collection",
+      "description": "Collection of free AI marketing tools for growth and optimization",
+      "numberOfItems": tools.length,
+      "itemListElement": tools.map((tool: any, index: number) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": ["CreativeWork", "SoftwareApplication"],
+          "name": tool.title,
+          "description": tool.description,
+          "applicationCategory": tool.category,
+          "operatingSystem": "Web Browser",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "url": `https://mimrgrowthlab.com/tools/${tool.id}`,
+          "isAccessibleForFree": true,
+          "usageInfo": "Free AI marketing tool for immediate use with any AI platform"
+        }
+      }))
+    }
+  };
+}
+
+// Generate homepage structured data
+function generateHomepageStructuredData(pageData: any) {
+  const schemas = [];
+  
+  // WebPage schema for homepage
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": pageData?.title || "MIMR Growth Lab - Revenue Operations Consulting",
+    "url": pageData?.url || "https://mimrgrowthlab.com",
+    "description": pageData?.description || "90-day growth intensive for B2B startups. Fix broken funnels, optimize revenue operations, and build scalable growth systems with performance guarantee.",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "WebSite",
+      "url": "https://mimrgrowthlab.com",
+      "name": "MIMR Growth Lab"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://mimrgrowthlab.com"
+        }
+      ]
+    },
+    "mainEntity": {
+      "@id": "#service"
+    }
+  };
+  
+  // Service schema for the main consulting offer
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "#service",
+    "name": "90-Day Revenue Operations Intensive",
+    "description": "Complete revenue operations overhaul for B2B startups. Fix broken funnels, install proper attribution, automate sales processes, and build scalable growth systems in 90 days.",
+    "provider": {
+      "@type": "Organization",
+      "name": "MIMR Growth Lab",
+      "url": "https://mimrgrowthlab.com"
+    },
+    "serviceType": "Revenue Operations Consulting",
+    "category": "Business Consulting",
+    "areaServed": "Global",
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": "https://mimrgrowthlab.com",
+      "availableLanguage": "English"
+    },
+    "offers": {
+      "@type": "Offer",
+      "name": "90-Day Growth Intensive",
+      "description": "Fixed-price revenue operations consulting with performance guarantee",
+      "price": "15000",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": "15000",
+        "priceCurrency": "USD",
+        "eligibleQuantity": {
+          "@type": "QuantitativeValue",
+          "value": "1",
+          "unitText": "project"
+        }
+      },
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2024-01-01",
+      "businessFunction": "https://schema.org/LeaseOut"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Revenue Operations Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Revenue Operations Rebuild",
+            "description": "Fix conversion leaks, install attribution tracking, automate follow-up sequences, build scalable lead scoring"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Go-to-Market Optimization",
+            "description": "Audit entire funnel, rewrite converting offers, deploy email/SMS automation, create repeatable sales processes"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Team Enablement",
+            "description": "Train team on new systems, document processes, set up monitoring dashboards, ensure self-sufficiency"
+          }
+        }
+      ]
+    },
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "B2B Startups",
+      "geographicArea": {
+        "@type": "Place",
+        "name": "Global"
+      }
+    }
+  };
+  
+  // FAQ schema if provided
+  if (pageData?.faqData && pageData.faqData.length > 0) {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": pageData.faqData.map((faq: any) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+    schemas.push(faqSchema);
+  }
+  
+  schemas.unshift(webPageSchema, serviceSchema);
+  return schemas;
+}
+
+// Determine what structured data to output
+let structuredDataOutput: any[] = [];
+
+switch (type) {
+  case 'organization':
+    structuredDataOutput = [organizationData];
+    break;
+  case 'website':
+    structuredDataOutput = [websiteData];
+    break;
+  case 'home':
+    structuredDataOutput = generateHomepageStructuredData(pageData);
+    break;
+  case 'breadcrumbs':
+    const breadcrumbData = generateBreadcrumbs(breadcrumbs);
+    if (breadcrumbData) structuredDataOutput = [breadcrumbData];
+    break;
+  case 'tool':
+    if (tool) structuredDataOutput = [generateToolStructuredData(tool)];
+    break;
+  case 'toolsPage':
+    structuredDataOutput = [generateToolsPageStructuredData(tools)];
+    break;
+  case 'webpage':
+  default:
+    if (data) structuredDataOutput = [data];
+    break;
+}
+
+// If custom data is provided, use it
+if (data && !type) {
+  structuredDataOutput = Array.isArray(data) ? data : [data];
+}
+---
+
+{structuredDataOutput.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
+))}

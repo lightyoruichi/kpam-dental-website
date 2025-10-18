@@ -1,0 +1,48 @@
+---
+export interface Props {
+  title: string;
+  items: Array<{
+    name: string;
+    description: string;
+    price: string;
+    category?: string;
+  }>;
+}
+
+const { title, items } = Astro.props;
+---
+
+<section class="py-16">
+  <div class="container-custom">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-base-content mb-4">{title}</h2>
+      <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+      <p class="text-lg text-base-content/70 max-w-2xl mx-auto">
+        Carefully crafted dishes using the finest ingredients, prepared with passion and creativity.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {items.map((item) => (
+        <div class="menu-item group hover:bg-base-200/50 p-4 rounded-xl transition-all duration-300">
+          <div class="flex justify-between items-start">
+            <div class="flex-1">
+              <div class="flex items-center space-x-3 mb-2">
+                <h3 class="text-xl font-semibold text-base-content group-hover:text-primary transition-colors">{item.name}</h3>
+                {item.category && (
+                  <span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded-full font-medium">
+                    {item.category}
+                  </span>
+                )}
+              </div>
+              <p class="text-base-content/70 mb-3 leading-relaxed">{item.description}</p>
+            </div>
+            <div class="price-tag ml-4 flex-shrink-0">
+              {item.price}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
