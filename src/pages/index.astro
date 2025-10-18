@@ -5,67 +5,92 @@ import LocationCard from '../components/LocationCard.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import TestimonialCard from '../components/TestimonialCard.astro';
 
-// Dental services data
+// Dental services data - SEO optimized with comprehensive treatments
 const generalServices = [
   {
-    name: "Dental Check-up & Cleaning",
-    description: "Comprehensive dental examination and professional teeth cleaning to maintain optimal oral health",
+    name: "Regular Checkups & Cleaning",
+    description: "Comprehensive dental examination and professional teeth cleaning to maintain optimal oral health and prevent dental problems",
     price: "RM 80-120",
-    category: "Preventive"
+    category: "Preventive Care"
   },
   {
     name: "Teeth Whitening",
-    description: "Professional teeth whitening treatment to brighten your smile and boost your confidence",
+    description: "Professional teeth whitening treatment to brighten and lighten your smile for enhanced confidence",
     price: "RM 300-500",
-    category: "Cosmetic"
+    category: "Cosmetic Care"
   },
   {
     name: "Dental Fillings",
     description: "High-quality tooth-colored fillings to restore teeth damaged by decay with natural-looking results",
     price: "RM 150-250",
-    category: "Restorative"
+    category: "Restorative Care"
+  },
+  {
+    name: "Emergency Dental Care",
+    description: "24/7 emergency dental services for urgent dental problems, pain relief, and trauma care",
+    price: "Emergency rates apply",
+    category: "Emergency Care"
   }
 ];
 
 const specializedServices = [
   {
+    name: "Braces",
+    description: "Orthodontic braces to straighten teeth discreetly and improve bite alignment for a perfect smile",
+    price: "RM 4000-8000",
+    category: "Cosmetic Care"
+  },
+  {
+    name: "Veneers",
+    description: "Dental veneers to improve the shape, size, and color of your teeth for a beautiful smile makeover",
+    price: "RM 800-1500",
+    category: "Cosmetic Care"
+  },
+  {
+    name: "Crowns",
+    description: "Dental crowns to protect and restore weakened or decayed teeth with natural-looking results",
+    price: "RM 500-1200",
+    category: "Restorative Care"
+  },
+  {
+    name: "Dentures",
+    description: "Full or partial dentures for tooth replacement offering natural look and comfortable fit",
+    price: "RM 800-2000",
+    category: "Restorative Care"
+  },
+  {
     name: "Root Canal Treatment",
-    description: "Advanced endodontic treatment to save infected or severely damaged teeth using modern techniques",
+    description: "Advanced endodontic treatment to save and restore damaged teeth, preventing tooth loss",
     price: "RM 400-800",
-    category: "Endodontic"
+    category: "Restorative Care"
   },
   {
     name: "Dental Implants",
-    description: "Permanent tooth replacement solution using titanium implants for natural-looking and functional results",
+    description: "Permanent tooth replacement solution using titanium implants for missing teeth with natural look and feel",
     price: "RM 3000-5000",
-    category: "Surgical"
-  },
-  {
-    name: "Orthodontic Treatment",
-    description: "Comprehensive braces and aligner treatments to straighten teeth and improve bite alignment",
-    price: "RM 4000-8000",
-    category: "Orthodontic"
+    category: "Restorative Care"
   }
 ];
 
 const locations = [
   {
-    name: "Main Clinic - Taman Alam Megah",
-    address: "No. 123, Jalan Alam Megah 2, Taman Alam Megah, 40470 Shah Alam, Selangor",
+    name: "Klinik Pergigian Alam Megah",
+    address: "NO. 6, Jalan Labu 28/23, Taman Alam Megah, Shah Alam, Malaysia 40400",
     phone: "+6 011-3711 8155",
     hours: "Mon-Fri: 9:00 AM - 6:00 PM, Sat: 9:00 AM - 4:00 PM",
-    image: "https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=400"
+    image: "https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=400",
+    mapLink: "https://g.co/kgs/4YfpEsw"
   },
   {
     name: "Emergency Services",
-    address: "Available 24/7 for dental emergencies",
+    address: "Available 24/7 for dental emergencies and urgent care",
     phone: "+6 011-3711 8155",
     hours: "24/7 Emergency Line",
     image: "https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg?auto=compress&cs=tinysrgb&w=400"
   },
   {
     name: "WhatsApp Consultation",
-    address: "Online consultation available",
+    address: "Online consultation and appointment booking",
     phone: "wa.me/601137118155",
     hours: "Mon-Sun: 8:00 AM - 10:00 PM",
     image: "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=400"
@@ -113,23 +138,23 @@ const services = [
 
 const testimonials = [
   {
-    name: "Ahmad Rahman",
-    role: "Long-time Patient",
-    content: "Excellent dental care at KPAM! Dr. is very professional and gentle. The clinic is clean and modern. Highly recommended!",
+    name: "Sharifah Hanani",
+    role: "Mother of 3",
+    content: "THE BEST WITH MY KIDS AND GREAT WITH MY DAUGHTER WHO IS AUTISTIC. Dr. Nik makes dental visits so comfortable for children. Highly recommended for families!",
     rating: 5,
     image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
   },
   {
-    name: "Siti Nurhaliza",
-    role: "Patient",
-    content: "The team at Klinik Pergigian Alam Megah made my dental treatment comfortable and pain-free. Great service and reasonable prices.",
+    name: "Jazlynn Hairenn",
+    role: "Long-time Patient",
+    content: "Dr. Nikunj Patel is amazing! His gentle approach and attention to detail made my braces treatment so comfortable. The clinic is modern and clean.",
     rating: 5,
     image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
   },
   {
-    name: "David Lim",
+    name: "Haziq Hasnan",
     role: "Emergency Patient",
-    content: "When I had a dental emergency on weekend, KPAM was there to help. Quick response and excellent care. Thank you!",
+    content: "When I had severe tooth pain on Sunday, KPAM was there to help immediately. Dr. Nik saved my tooth with root canal treatment. Excellent emergency care!",
     rating: 5,
     image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop"
   }
@@ -164,14 +189,13 @@ const testimonials = [
           </div>
           
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-base-content leading-tight">
-            Professional
-            <span class="text-gradient block">Dental Care</span>
-            in Shah Alam
+            You being happy, healthy, and
+            <span class="text-gradient block">flaunting your best smile</span>
           </h1>
           
           <p class="text-lg sm:text-xl text-base-content/80 leading-relaxed max-w-lg">
-            Experience comprehensive dental care at Klinik Pergigian Alam Megah. Our modern clinic offers 
-            preventive, cosmetic, and emergency dental services with a focus on patient comfort and advanced treatment options.
+            At our dental clinic, we only want to see one thing: You being happy, healthy, and flaunting your best smile. 
+            Experience comprehensive dental care at Klinik Pergigian Alam Megah with Dr. Nikunj Patel and our dedicated team.
           </p>
           
           <div class="flex flex-col sm:flex-row gap-4">
@@ -214,13 +238,55 @@ const testimonials = [
     </div>
   </section>
 
+  <!-- Meet the Founder Section -->
+  <section id="founder" class="section-padding bg-base-200">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-4xl font-bold text-base-content mb-6">Meet the Founder</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-2xl font-semibold text-primary mb-2">Dr. Nikunj Patel</h3>
+              <p class="text-lg font-medium text-base-content mb-4">Founder & Principal Dental Surgeon</p>
+              <p class="text-base-content/80">Klinik Pergigian Alam Megah</p>
+            </div>
+            
+            <p class="text-lg text-base-content/80 leading-relaxed">
+              Dr. Nikunj Patel is the founder and lead dental surgeon at Klinik Pergigian Alam Megah. 
+              With over 13 years of experience, he has a strong focus on patient care and is dedicated 
+              to providing high-quality dental treatments in a friendly and comfortable environment.
+            </p>
+            
+            <p class="text-lg text-base-content/80 leading-relaxed">
+              Dr. Nik specializes in a range of services, including general dentistry, cosmetic treatments 
+              (braces and veneers), and restorative procedures (implants). He is passionate about helping 
+              patients achieve healthy, confident smiles and is known for his gentle approach and attention to detail.
+            </p>
+            
+            <p class="text-lg text-base-content/80 leading-relaxed">
+              Under Dr. Nik's leadership, Klinik Pergigian Alam Megah has become a trusted clinic for families, 
+              offering personalized care for every patient. Visit today to experience exceptional dental care.
+            </p>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="w-full h-96 bg-base-300 rounded-2xl bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/4386464/pexels-photo-4386464.jpeg?auto=compress&cs=tinysrgb&w=800')"></div>
+          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-primary rounded-full flex items-center justify-center">
+            <span class="text-primary-content font-bold text-xl">Dr. Nik</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Services Section -->
   <section id="services" class="section-padding">
     <div class="container-custom">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-base-content mb-4">Our Services</h2>
+        <h2 class="text-4xl font-bold text-base-content mb-4">Who We Are and What We Do</h2>
         <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
-          Comprehensive dental care services using advanced technology and modern treatment methods.
+          At KPAM, we are a dedicated team of dental professionals committed to providing excellent care 
+          in a friendly & comfortable environment. We offer a wide range of dental services.
         </p>
       </div>
       
@@ -253,13 +319,68 @@ const testimonials = [
     </div>
   </section>
 
+  <!-- Value Proposition Section -->
+  <section id="value-proposition" class="section-padding bg-primary text-primary-content">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">What Value We Can Give You</h2>
+        <p class="text-xl opacity-90 max-w-2xl mx-auto">
+          We want to give you the best care you actually need with personalized treatments and exceptional service.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-content/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary-content" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Healthy Smiles</h3>
+          <p class="opacity-90">Personalized treatments to keep your teeth and gums in top shape</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-content/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary-content" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Comfortable Visits</h3>
+          <p class="opacity-90">A relaxing environment to make every visit stress-free</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-content/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary-content" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Affordable Options</h3>
+          <p class="opacity-90">Transparent pricing and flexible payment plans</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-content/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary-content" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Lifelong Care</h3>
+          <p class="opacity-90">From kids to adults, we are here for every stage of your dental journey</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Specialized Services Section -->
   <section id="specialized-services" class="section-padding">
     <div class="container-custom">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-base-content mb-4">Specialized Care</h2>
+        <h2 class="text-4xl font-bold text-base-content mb-4">We Want to Give You the Best Care You Actually Need</h2>
         <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
-          Advanced dental treatments and specialized care services for comprehensive oral health.
+          Comprehensive dental treatments categorized into Preventive Care, Cosmetic Care, and Restorative Care 
+          to address all your dental health needs.
         </p>
       </div>
       
@@ -309,9 +430,9 @@ const testimonials = [
   <section class="section-padding">
     <div class="container-custom">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-base-content mb-4">What Our Patients Say</h2>
+        <h2 class="text-4xl font-bold text-base-content mb-4">In Our Clients' Own Words</h2>
         <p class="text-xl text-base-content/70 max-w-2xl mx-auto">
-          Don't just take our word for it. Here's what our valued patients have to say about their dental care experience.
+          Real testimonials from our valued patients who have experienced exceptional dental care at Klinik Pergigian Alam Megah.
         </p>
       </div>
       
@@ -424,7 +545,8 @@ const testimonials = [
               </div>
               <div>
                 <h4 class="font-semibold text-base-content">Address</h4>
-                <p class="text-base-content/70">No. 123, Jalan Alam Megah 2<br>Taman Alam Megah, 40470 Shah Alam, Selangor</p>
+                <p class="text-base-content/70">NO. 6, Jalan Labu 28/23, Taman Alam Megah<br>Shah Alam, Malaysia 40400</p>
+                <a href="https://g.co/kgs/4YfpEsw" class="text-primary hover:underline text-sm mt-1 inline-block" target="_blank">View on Google Maps</a>
               </div>
             </div>
             
