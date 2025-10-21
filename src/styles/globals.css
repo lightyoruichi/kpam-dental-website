@@ -33,7 +33,7 @@
   }
   
   .container-custom {
-    @apply w-[90%] mx-auto;
+    @apply w-[90%] mx-auto max-w-7xl;
   }
   
   .text-gradient {
@@ -110,7 +110,7 @@
   }
   
   .container-custom {
-    @apply w-[90%] mx-auto px-4 sm:px-6 lg:px-8;
+    @apply w-[90%] mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
   }
   
   .section-padding {
@@ -169,5 +169,16 @@
   
   .scale-on-hover:hover {
     transform: scale(1.02);
+  }
+  
+  /* Header and Footer Uniformity */
+  header .container-custom,
+  footer .container-custom {
+    @apply w-[90%] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Ensure consistent alignment across all sections */
+  .section-padding .container-custom {
+    @apply w-[90%] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 }
