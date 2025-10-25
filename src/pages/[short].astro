@@ -2,19 +2,15 @@
 import { getShortLink } from '../config/analytics.ts';
 
 export async function getStaticPaths() {
-  // This would typically be dynamic in production
-  const shortLinks = [
-    { params: { short: 'wa' } },
-    { params: { short: 'call' } },
-    { params: { short: 'map' } },
-    { params: { short: 'ig' } },
-    { params: { short: 'tiktok' } },
-    { params: { short: 'emergency' } },
-    { params: { short: 'grab' } },
-    { params: { short: 'waze' } }
-  ];
+  // Import short links from config to make this dynamic
+  const { shortLinks } = await import('../config/analytics.ts');
   
-  return shortLinks;
+  // Generate paths for all active short links
+  return shortLinks
+    .filter(link => link.isActive)
+    .map(link => ({
+      params: { short: link.short }
+    }));
 }
 
 const { short } = Astro.params;

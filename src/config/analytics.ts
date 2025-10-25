@@ -1,9 +1,9 @@
-// Analytics configuration for KPAM Dental Website
+// Analytics configuration for short URLs and tracking
 export interface ShortLink {
   id: string;
   short: string;
   destination: string;
-  category: 'whatsapp' | 'phone' | 'maps' | 'social' | 'service' | 'emergency' | 'transport';
+  category: 'whatsapp' | 'phone' | 'maps' | 'social' | 'service' | 'emergency' | 'transport' | 'booking';
   label: string;
   description: string;
   isActive: boolean;
@@ -13,34 +13,34 @@ export const shortLinks: ShortLink[] = [
   {
     id: 'whatsapp-main',
     short: 'wa',
-    destination: 'https://wa.me/601137118155',
+    destination: 'https://wa.me/1239230821',
     category: 'whatsapp',
     label: 'WhatsApp Booking',
-    description: 'Main WhatsApp booking link',
+    description: 'Book appointment via WhatsApp',
     isActive: true
   },
   {
     id: 'phone-main',
     short: 'call',
-    destination: 'tel:+601137118155',
+    destination: 'tel:+1239230821',
     category: 'phone',
     label: 'Phone Call',
-    description: 'Direct phone call to clinic',
+    description: 'Call our clinic',
     isActive: true
   },
   {
     id: 'maps-location',
     short: 'map',
-    destination: 'https://g.co/kgs/4YfpEsw',
+    destination: 'https://maps.google.com/?q=123+Dental+Plaza+City+State+12345',
     category: 'maps',
     label: 'Google Maps',
-    description: 'Clinic location on Google Maps',
+    description: 'Find us on Google Maps',
     isActive: true
   },
   {
     id: 'instagram-social',
     short: 'ig',
-    destination: 'https://instagram.com/klinikpergigian_alammegah',
+    destination: 'https://instagram.com/dentixa',
     category: 'social',
     label: 'Instagram',
     description: 'Follow us on Instagram',
@@ -49,37 +49,37 @@ export const shortLinks: ShortLink[] = [
   {
     id: 'tiktok-social',
     short: 'tiktok',
-    destination: 'https://tiktok.com/@kpam06',
+    destination: 'https://tiktok.com/@dentixa',
     category: 'social',
     label: 'TikTok',
     description: 'Follow us on TikTok',
     isActive: true
   },
   {
+    id: 'facebook-social',
+    short: 'fb',
+    destination: 'https://facebook.com/dentixa',
+    category: 'social',
+    label: 'Facebook',
+    description: 'Like us on Facebook',
+    isActive: true
+  },
+  {
     id: 'emergency-contact',
     short: 'emergency',
-    destination: 'https://wa.me/601137118155?text=Emergency%20Dental%20Care',
+    destination: 'https://wa.me/1239230821?text=Emergency%20Dental%20Care',
     category: 'emergency',
     label: 'Emergency Contact',
-    description: 'Emergency dental care contact',
+    description: 'Emergency dental care',
     isActive: true
   },
   {
-    id: 'grab-transport',
+    id: 'grab-bangsar',
     short: 'grab',
-    destination: 'https://grab.onelink.me/2695613898?af_dp=grab%3A%2F%2Fopen%3FdropOffAddress%3DNO.%2B6%2BJalan%2BLabu%2B28%252F23%2BTaman%2BAlam%2BMegah%2BShah%2BAlam%2BMalaysia%2B40400%26dropOffLatitude%3D3.0044673%26dropOffLongitude%3D101.561353%26pickUpAddress%3DCurrent%2BLocation%26pickUpLatitude%3D1.234567%26pickUpLongitude%3D3.456789%26screenType%3DBOOKING%26sourceID%3D%26taxiTypeId%3D227&c=&pid=',
+    destination: 'https://grab.onelink.me/2695613898?af_dp=grab%3A%2F%2Fopen%3FdropOffLatitude%3D3.1569%26dropOffLongitude%3D101.6598%26screenType%3DBOOKING%26taxiTypeId%3D302&c=&pid=',
     category: 'transport',
-    label: 'Grab Transport',
-    description: 'Book Grab ride to clinic',
-    isActive: true
-  },
-  {
-    id: 'waze-navigation',
-    short: 'waze',
-    destination: 'https://waze.com/ul?q=NO.%206,%20Jalan%20Labu%2028/23,%20Taman%20Alam%20Megah,%20Shah%20Alam,%20Malaysia%2040400',
-    category: 'transport',
-    label: 'Waze Navigation',
-    description: 'Navigate to clinic with Waze',
+    label: 'Book Grab to Bangsar',
+    description: 'Book a Grab ride to Bangsar, Kuala Lumpur',
     isActive: true
   }
 ];

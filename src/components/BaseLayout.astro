@@ -1,6 +1,7 @@
 ---
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import { siteConfig } from '../config/site';
 
 export interface Props {
   title: string;
@@ -13,7 +14,7 @@ export interface Props {
 const { 
   title, 
   description, 
-  image = "https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop",
+  image = siteConfig.seo.siteUrl + "/og-image.jpg",
   currentPage,
   showTally = false
 } = Astro.props;
@@ -22,7 +23,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="dental">
+<html lang="en" data-theme="alien">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -35,7 +36,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="keywords" content="dental clinic, dentist, dental care, teeth cleaning, dental treatment, Shah Alam, Selangor, Malaysia, dental services, oral health, dental checkup, teeth whitening, dental implants, root canal" />
-    <meta name="author" content="Klinik Pergigian Alam Megah" />
+    <meta name="author" content="Dental Care Clinic" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="en-US" />
     <meta name="revisit-after" content="7 days" />
@@ -48,7 +49,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:image" content={image} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="Klinik Pergigian Alam Megah" />
+    <meta property="og:site_name" content="Dental Care Clinic" />
     <meta property="og:locale" content="en_US" />
     
     <!-- Twitter -->
@@ -57,122 +58,46 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={image} />
-    <meta property="twitter:site" content="@klinikpergigian_alammegah" />
-    <meta property="twitter:creator" content="@klinikpergigian_alammegah" />
+    <meta property="twitter:site" content="@dentalcareclinic" />
+    <meta property="twitter:creator" content="@dentalcareclinic" />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Enhanced Structured Data for SEO -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "name": "Restaurant Name",
-        "alternateName": "Fine Dining Restaurant",
-        "description": "Experience exceptional cuisine in an elegant atmosphere. Fine dining restaurant offering fresh, locally-sourced ingredients and impeccable service with multiple locations.",
-        "url": "https://yourrestaurant.com",
-        "logo": "https://yourrestaurant.com/logo.png",
-        "image": "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1200&h=630&fit=crop",
-        "telephone": "+1-555-123-4567",
-        "email": "info@yourrestaurant.com",
-        "address": [
-          {
-            "@type": "PostalAddress",
-            "streetAddress": "123 Main Street",
-            "addressLocality": "Your City",
-            "addressRegion": "Your State",
-            "postalCode": "12345",
-            "addressCountry": "US"
-          },
-          {
-            "@type": "PostalAddress",
-            "streetAddress": "456 Oak Avenue",
-            "addressLocality": "Your City",
-            "addressRegion": "Your State",
-            "postalCode": "12345",
-            "addressCountry": "US"
-          },
-          {
-            "@type": "PostalAddress",
-            "streetAddress": "789 Harbor View",
-            "addressLocality": "Your City",
-            "addressRegion": "Your State",
-            "postalCode": "12345",
-            "addressCountry": "US"
-          }
-        ],
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": "40.7128",
-          "longitude": "-74.0060"
-        },
-        "medicalSpecialty": "Dentistry",
-        "priceRange": "$$",
-        "openingHours": "Mo-Su 17:00-22:00",
-        "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
-        "currenciesAccepted": "USD",
-        "hasMenu": "https://yourrestaurant.com/menu",
-        "acceptsReservations": true,
-        "smokingAllowed": false,
-        "wheelchairAccessible": true,
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "500",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "review": [
-          {
-            "@type": "Review",
-            "author": {
-              "@type": "Person",
-              "name": "Sarah Johnson"
-            },
-            "reviewRating": {
-              "@type": "Rating",
-              "ratingValue": "5",
-              "bestRating": "5"
-            },
-            "reviewBody": "Exceptional dining experience with innovative cuisine and impeccable service. The wagyu tenderloin was absolutely divine."
-          }
-        ],
-        "sameAs": [
-          "https://www.facebook.com/yourrestaurant",
-          "https://www.instagram.com/yourrestaurant",
-          "https://www.twitter.com/yourrestaurant"
-        ],
-        "foundingDate": "2010",
-        "founder": {
-          "@type": "Person",
-          "name": "Chef Name"
-        }
-      }
-    </script>
-    
-    <!-- Additional Schema for Local Business -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "MedicalBusiness",
-        "name": "Klinik Pergigian Alam Megah",
-        "description": "Professional dental clinic providing comprehensive dental care services in Shah Alam",
-        "url": "https://kpam.my",
-        "telephone": "+6-011-3711-8155",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "123, Jalan Alam Megah 1/1, Taman Alam Megah",
-          "addressLocality": "Shah Alam",
-          "addressRegion": "Selangor",
-          "postalCode": "40000",
-          "addressCountry": "MY"
-        },
-        "openingHours": "Mo-Fr 09:00-18:00, Sa 09:00-16:00",
-        "priceRange": "$$"
-      }
-    </script>
+    <!-- Structured Data for Local Business -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": siteConfig.business.name,
+      "description": siteConfig.business.description,
+      "url": siteConfig.seo.siteUrl,
+      "telephone": siteConfig.business.phone,
+      "email": siteConfig.business.email,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": siteConfig.business.address.street,
+        "addressLocality": siteConfig.business.address.city,
+        "addressRegion": siteConfig.business.address.state,
+        "postalCode": siteConfig.business.address.zip,
+        "addressCountry": siteConfig.business.address.country
+      },
+      "openingHours": [
+        "Mo-Su 09:00-20:00"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "827",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "sameAs": [
+        siteConfig.business.social.facebook ? `https://www.facebook.com/${siteConfig.business.social.facebook}` : null,
+        siteConfig.business.social.instagram ? `https://www.instagram.com/${siteConfig.business.social.instagram.replace('@', '')}` : null,
+        siteConfig.business.social.twitter ? `https://www.twitter.com/${siteConfig.business.social.twitter.replace('@', '')}` : null
+      ].filter(Boolean)
+    })}></script>
   </head>
   <body class="bg-base-100 text-base-content">
     <Header currentPage={currentPage} />

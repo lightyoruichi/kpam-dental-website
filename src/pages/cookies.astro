@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+
+const pageTitle = `Cookie Policy - ${siteConfig.business.name}`;
+const pageDescription = `Cookie Policy for ${siteConfig.business.name}. Learn about how we use cookies on our website.`;
+---
+
+<BaseLayout 
+  title={pageTitle}
+  description={pageDescription}
+  currentPage="cookies"
+>
+  <div class="min-h-screen bg-white py-16">
+    <div class="container mx-auto px-4 lg:px-8 max-w-4xl">
+      <div class="prose prose-lg max-w-none">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Cookie Policy</h1>
+        <p class="text-gray-600 mb-8">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">1. What Are Cookies</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work efficiently and provide information to the website owners.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">2. How We Use Cookies</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">We use cookies to:</p>
+          <ul class="list-disc pl-6 text-gray-700 space-y-2">
+            <li>Improve website functionality and user experience</li>
+            <li>Analyze website traffic and usage patterns</li>
+            <li>Remember your preferences and settings</li>
+            <li>Provide personalized content</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">3. Types of Cookies We Use</h2>
+          
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Essential Cookies</h3>
+            <p class="text-gray-700 leading-relaxed mb-2">
+              These cookies are necessary for the website to function properly. They cannot be switched off in our systems.
+            </p>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Analytics Cookies</h3>
+            <p class="text-gray-700 leading-relaxed mb-2">
+              These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.
+            </p>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Preference Cookies</h3>
+            <p class="text-gray-700 leading-relaxed mb-2">
+              These cookies enable the website to remember information that changes the way the website behaves or looks, such as your preferred language or region.
+            </p>
+          </div>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">4. Third-Party Cookies</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            In addition to our own cookies, we may also use various third-party cookies to report usage statistics and deliver content. These include:
+          </p>
+          <ul class="list-disc pl-6 text-gray-700 space-y-2">
+            <li>Google Analytics (for website analytics)</li>
+            <li>Social media platforms (for social sharing features)</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">5. Managing Cookies</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            You can control and manage cookies in various ways. Please keep in mind that removing or blocking cookies can impact your user experience.
+          </p>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Most web browsers allow you to control cookies through their settings preferences. You can also visit www.allaboutcookies.org to learn more about cookies and how to manage them.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">6. Changes to This Policy</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            We may update this Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">7. Contact Us</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            If you have any questions about our use of cookies, please contact us:
+          </p>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <p class="text-gray-700"><strong>Email:</strong> {siteConfig.business.email}</p>
+            <p class="text-gray-700"><strong>Phone:</strong> {siteConfig.business.phone}</p>
+            <p class="text-gray-700"><strong>Address:</strong> {siteConfig.business.address.street}, {siteConfig.business.address.city}, {siteConfig.business.address.state} {siteConfig.business.address.zip}</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+

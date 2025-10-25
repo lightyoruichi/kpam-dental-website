@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import { locations } from '../config/locations';
+
+const pageTitle = "Our Locations - Multiple Locations Available";
+const pageDescription = "Visit us at any of our convenient locations. We have multiple offices to serve you better.";
+---
+
+<BaseLayout 
+  title={pageTitle}
+  description={pageDescription}
+  currentPage="locations"
+>
+  <!-- Hero Section -->
+  <section class="relative py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-tr from-emerald-200/20 to-teal-200/20 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="container-custom relative z-10 max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-100 to-blue-100 px-4 py-2 rounded-full mb-6">
+          <div class="w-2 h-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
+          <span class="text-sm font-semibold text-slate-700">Our Locations</span>
+        </div>
+        
+        <h1 class="text-5xl font-bold text-slate-800 mb-6 leading-tight">
+          Find Us Near You
+        </h1>
+        
+        <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          We have multiple convenient locations to serve you better. 
+          Visit any of our offices or contact us to find the best location for your needs.
+        </p>
+      </div>
+      
+      <!-- Locations Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {locations.map((location) => (
+          <a 
+            href={`/locations/${location.id}`}
+            class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/20 hover:scale-105"
+          >
+            <!-- Location Video/Image -->
+            <div class="w-full h-48 rounded-2xl mb-6 bg-gradient-to-br from-cyan-100 to-blue-100 overflow-hidden">
+              <!-- Video Background with Image Fallback -->
+              <video 
+                autoplay 
+                loop 
+                muted 
+                playsinline
+                poster={location.image}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+              >
+                <source src="/videos/4487124-uhd_3840_2160_25fps.mp4" type="video/mp4" media="(min-width: 768px)">
+                <source src="/videos/3024319-hd_1920_1080_30fps.mp4" type="video/mp4">
+              </video>
+              <!-- Image Fallback -->
+              <img 
+                src={location.image} 
+                alt={location.name}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 hidden"
+                loading="lazy"
+              />
+            </div>
+            
+            <!-- Location Info -->
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold text-slate-800 group-hover:text-cyan-600 transition-colors">
+                  {location.name}
+                </h3>
+                {location.isMain && (
+                  <span class="px-3 py-1 bg-gradient-to-r from-cyan-100 to-blue-100 text-cyan-700 rounded-full text-sm font-medium">
+                    Main Office
+                  </span>
+                )}
+              </div>
+              
+              <div class="space-y-2">
+                <div class="flex items-start space-x-2">
+                  <svg class="w-5 h-5 text-cyan-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  <p class="text-slate-600 text-sm">{location.address.street}, {location.address.city}, {location.address.state} {location.address.zip}</p>
+                </div>
+                
+                <div class="flex items-center space-x-2">
+                  <svg class="w-5 h-5 text-cyan-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                  <p class="text-slate-600 text-sm">{location.phone}</p>
+                </div>
+              </div>
+              
+              <!-- Key Features -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                {location.features.slice(0, 2).map((feature) => (
+                  <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded-full">
+                    {feature}
+                  </span>
+                ))}
+              </div>
+              
+              <!-- View Details Link -->
+              <div class="pt-4 border-t border-slate-200">
+                <span class="inline-flex items-center text-cyan-600 font-semibold group-hover:translate-x-1 transition-transform">
+                  View Details
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Optimize video loading for mobile and low bandwidth
+  document.addEventListener('DOMContentLoaded', function() {
+    const videos = document.querySelectorAll('video');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = window.innerWidth < 768;
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    
+    const isSlowConnection = connection && (
+      connection.effectiveType === 'slow-2g' || 
+      connection.effectiveType === '2g' ||
+      connection.downlink < 1.5
+    );
+    
+    videos.forEach(video => {
+      if (isMobile || isSlowConnection || prefersReducedMotion) {
+        video.style.display = 'none';
+        const fallbackImg = video.nextElementSibling;
+        if (fallbackImg && fallbackImg.tagName === 'IMG') {
+          fallbackImg.style.display = 'block';
+        }
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const vid = entry.target;
+              vid.play().catch(() => {
+                vid.style.display = 'none';
+                const fallbackImg = vid.nextElementSibling;
+                if (fallbackImg && fallbackImg.tagName === 'IMG') {
+                  fallbackImg.style.display = 'block';
+                }
+              });
+              observer.unobserve(vid);
+            }
+          });
+        }, { rootMargin: '50px' });
+        
+        observer.observe(video);
+      }
+    });
+  });
+</script>
+

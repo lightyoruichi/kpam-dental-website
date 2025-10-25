@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../components/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+
+const pageTitle = `Privacy Policy - ${siteConfig.business.name}`;
+const pageDescription = `Privacy Policy for ${siteConfig.business.name}. Learn how we collect, use, and protect your personal information.`;
+---
+
+<BaseLayout 
+  title={pageTitle}
+  description={pageDescription}
+  currentPage="privacy"
+>
+  <div class="min-h-screen bg-white py-16">
+    <div class="container mx-auto px-4 lg:px-8 max-w-4xl">
+      <div class="prose prose-lg max-w-none">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
+        <p class="text-gray-600 mb-8">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">1. Introduction</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            {siteConfig.business.name} ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">2. Information We Collect</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">We may collect information about you in a variety of ways:</p>
+          <ul class="list-disc pl-6 text-gray-700 space-y-2">
+            <li><strong>Personal Data:</strong> Name, email address, phone number, and other contact information you voluntarily provide</li>
+            <li><strong>Usage Data:</strong> Information about how you access and use our website</li>
+            <li><strong>Device Data:</strong> Information about your device, such as IP address, browser type, and operating system</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">3. How We Use Your Information</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">We use the information we collect to:</p>
+          <ul class="list-disc pl-6 text-gray-700 space-y-2">
+            <li>Respond to your inquiries and provide customer service</li>
+            <li>Send you marketing communications (with your consent)</li>
+            <li>Improve our website and services</li>
+            <li>Comply with legal obligations</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">4. Data Sharing</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            We do not sell your personal information. We may share your information with:
+          </p>
+          <ul class="list-disc pl-6 text-gray-700 space-y-2">
+            <li>Service providers who assist us in operating our website</li>
+            <li>Legal authorities when required by law</li>
+            <li>Business partners with your explicit consent</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">5. Data Security</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            We implement appropriate technical and organizational measures to protect your personal information. However, no method of transmission over the Internet is 100% secure.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">6. Your Rights</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">You have the right to:</p>
+          <ul class="list-disc pl-6 text-gray-700 space-y-2">
+            <li>Access your personal information</li>
+            <li>Request correction of inaccurate data</li>
+            <li>Request deletion of your data</li>
+            <li>Opt-out of marketing communications</li>
+            <li>Object to processing of your personal information</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">7. Cookies</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            We use cookies to enhance your experience on our website. For more information, please see our <a href="/cookies" class="text-blue-600 hover:underline">Cookie Policy</a>.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">8. Children's Privacy</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            Our website is not intended for children under 13 years of age. We do not knowingly collect personal information from children.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">9. Changes to This Policy</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">10. Contact Us</h2>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            If you have questions about this Privacy Policy, please contact us:
+          </p>
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <p class="text-gray-700"><strong>Email:</strong> {siteConfig.business.email}</p>
+            <p class="text-gray-700"><strong>Phone:</strong> {siteConfig.business.phone}</p>
+            <p class="text-gray-700"><strong>Address:</strong> {siteConfig.business.address.street}, {siteConfig.business.address.city}, {siteConfig.business.address.state} {siteConfig.business.address.zip}</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+

@@ -2,160 +2,115 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import { shortLinks } from '../../config/analytics.ts';
 
-// This would typically be protected by authentication in production
+const adminPassword = import.meta.env.ADMIN_PASSWORD || 'demo123';
+const isAuthenticated = Astro.url.searchParams.get('auth') === adminPassword;
 ---
 
-<BaseLayout 
-  title="Short Links Management - KPAM Dental"
-  description="Manage short URLs and redirects for KPAM dental clinic"
-  currentPage="admin"
->
-  <div class="min-h-screen bg-base-200 py-12">
-    <div class="container-custom">
-      <div class="max-w-6xl mx-auto">
-        <!-- Header -->
-        <div class="mb-8">
-          <h1 class="text-4xl font-bold text-base-content mb-4">Short Links Management</h1>
-          <p class="text-lg text-base-content/70">
-            Manage short URLs, redirects, and track analytics for KPAM dental clinic marketing campaigns.
-          </p>
+{isAuthenticated ? (
+  <BaseLayout 
+    title="Short Links Management"
+    description="Manage short URLs and redirects"
+    currentPage="admin"
+  >
+    <div class="min-h-screen bg-gray-50">
+      <!-- Admin Header -->
+      <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <a href={`/admin?auth=${adminPassword}`} class="text-sm text-gray-600 hover:text-gray-900 mb-2 inline-block">
+                ← Back to Dashboard
+              </a>
+              <h1 class="text-2xl font-bold text-gray-900">Short Links Management</h1>
+              <p class="text-sm text-gray-600">Create and manage short URLs for your marketing campaigns</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Info Notice -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+          <div class="flex items-start gap-3">
+            <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <div>
+              <h3 class="font-semibold text-blue-900 mb-1">View Only</h3>
+              <p class="text-sm text-blue-800">
+                This page displays your current short links configuration. To make changes, edit 
+                <code class="bg-blue-100 px-2 py-1 rounded text-xs">src/config/analytics.ts</code> 
+                and rebuild your site.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <!-- Add New Link Form -->
-        <div class="bg-base-100 rounded-2xl p-6 mb-8 shadow-lg">
-          <h2 class="text-2xl font-semibold text-base-content mb-4">Add New Short Link</h2>
-          <form id="add-link-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="label">
-                <span class="label-text">Short URL</span>
-              </label>
-              <input 
-                type="text" 
-                name="short" 
-                placeholder="e.g., 'promo'" 
-                class="input input-bordered w-full"
-                required
-              />
-            </div>
-            <div>
-              <label class="label">
-                <span class="label-text">Destination URL</span>
-              </label>
-              <input 
-                type="url" 
-                name="destination" 
-                placeholder="https://example.com" 
-                class="input input-bordered w-full"
-                required
-              />
-            </div>
-            <div>
-              <label class="label">
-                <span class="label-text">Category</span>
-              </label>
-              <select name="category" class="select select-bordered w-full" required>
-                <option value="whatsapp">WhatsApp</option>
-                <option value="phone">Phone</option>
-                <option value="maps">Maps</option>
-                <option value="social">Social Media</option>
-                <option value="service">Service</option>
-                <option value="emergency">Emergency</option>
-              </select>
-            </div>
-            <div>
-              <label class="label">
-                <span class="label-text">Label</span>
-              </label>
-              <input 
-                type="text" 
-                name="label" 
-                placeholder="e.g., 'WhatsApp Booking'" 
-                class="input input-bordered w-full"
-                required
-              />
-            </div>
-            <div class="md:col-span-2">
-              <label class="label">
-                <span class="label-text">Description</span>
-              </label>
-              <textarea 
-                name="description" 
-                placeholder="Brief description of this link's purpose" 
-                class="textarea textarea-bordered w-full"
-                rows="2"
-              ></textarea>
-            </div>
-            <div class="md:col-span-2">
-              <button type="submit" class="btn btn-primary">
-                Add Short Link
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <!-- Existing Links Table -->
-        <div class="bg-base-100 rounded-2xl p-6 shadow-lg">
-          <h2 class="text-2xl font-semibold text-base-content mb-6">Existing Short Links</h2>
+        <!-- Short Links Table -->
+        <div class="bg-white rounded-lg shadow">
+          <div class="p-6 border-b border-gray-200">
+            <h2 class="text-lg font-semibold text-gray-900">Existing Short Links</h2>
+            <p class="text-sm text-gray-600 mt-1">{shortLinks.length} links configured</p>
+          </div>
           
           <div class="overflow-x-auto">
-            <table class="table table-zebra w-full">
-              <thead>
+            <table class="w-full">
+              <thead class="bg-gray-50">
                 <tr>
-                  <th>Short URL</th>
-                  <th>Destination</th>
-                  <th>Category</th>
-                  <th>Label</th>
-                  <th>Status</th>
-                  <th>Actions</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Short URL</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destination</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Label</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="bg-white divide-y divide-gray-200">
                 {shortLinks.map((link) => (
-                  <tr>
-                    <td>
-                      <div class="flex items-center space-x-2">
-                        <code class="bg-base-200 px-2 py-1 rounded text-sm">
-                          kpam.my/{link.short}
+                  <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center gap-2">
+                        <code class="bg-gray-100 px-2 py-1 rounded text-sm text-gray-800">
+                          yoursite.com/{link.short}
                         </code>
                         <button 
-                          class="btn btn-ghost btn-xs"
-                          onclick={`navigator.clipboard.writeText('https://kpam.my/${link.short}')`}
+                          class="text-blue-600 hover:text-blue-700 text-sm"
+                          onclick={`navigator.clipboard.writeText(window.location.origin + '/${link.short}')`}
                         >
                           Copy
                         </button>
                       </div>
                     </td>
-                    <td>
-                      <div class="max-w-xs truncate" title={link.destination}>
+                    <td class="px-6 py-4">
+                      <div class="max-w-xs truncate text-sm text-gray-700" title={link.destination}>
                         {link.destination}
                       </div>
                     </td>
-                    <td>
-                      <span class={`badge badge-outline ${
-                        link.category === 'whatsapp' ? 'badge-success' :
-                        link.category === 'phone' ? 'badge-info' :
-                        link.category === 'maps' ? 'badge-warning' :
-                        link.category === 'social' ? 'badge-secondary' :
-                        link.category === 'emergency' ? 'badge-error' :
-                        'badge-neutral'
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        link.category === 'whatsapp' ? 'bg-green-100 text-green-800' :
+                        link.category === 'phone' ? 'bg-blue-100 text-blue-800' :
+                        link.category === 'maps' ? 'bg-yellow-100 text-yellow-800' :
+                        link.category === 'social' ? 'bg-purple-100 text-purple-800' :
+                        link.category === 'emergency' ? 'bg-red-100 text-red-800' :
+                        link.category === 'transport' ? 'bg-indigo-100 text-indigo-800' :
+                        link.category === 'booking' ? 'bg-pink-100 text-pink-800' :
+                        'bg-gray-100 text-gray-800'
                       }`}>
                         {link.category}
                       </span>
                     </td>
-                    <td>{link.label}</td>
-                    <td>
-                      <span class={`badge ${link.isActive ? 'badge-success' : 'badge-error'}`}>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{link.label}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        link.isActive ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                      }`}>
                         {link.isActive ? 'Active' : 'Inactive'}
                       </span>
                     </td>
-                    <td>
-                      <div class="flex space-x-2">
-                        <button class="btn btn-ghost btn-xs">Edit</button>
-                        <button class="btn btn-ghost btn-xs">
-                          {link.isActive ? 'Disable' : 'Enable'}
-                        </button>
-                        <button class="btn btn-ghost btn-xs text-error">Delete</button>
-                      </div>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      View Only
                     </td>
                   </tr>
                 ))}
@@ -163,58 +118,49 @@ import { shortLinks } from '../../config/analytics.ts';
             </table>
           </div>
         </div>
-
-        <!-- Analytics Summary -->
-        <div class="bg-base-100 rounded-2xl p-6 mt-8 shadow-lg">
-          <h2 class="text-2xl font-semibold text-base-content mb-4">Analytics Summary</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="stat">
-              <div class="stat-title">Total Clicks</div>
-              <div class="stat-value text-primary">1,247</div>
-              <div class="stat-desc">Last 30 days</div>
-            </div>
-            <div class="stat">
-              <div class="stat-title">Most Popular</div>
-              <div class="stat-value text-secondary">WhatsApp</div>
-              <div class="stat-desc">wa - 456 clicks</div>
-            </div>
-            <div class="stat">
-              <div class="stat-title">Conversion Rate</div>
-              <div class="stat-value text-accent">23.4%</div>
-              <div class="stat-desc">Clicks to appointments</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-  </div>
 
-  <!-- JavaScript for form handling -->
-  <script>
-    document.getElementById('add-link-form')?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const newLink = {
-        short: formData.get('short'),
-        destination: formData.get('destination'),
-        category: formData.get('category'),
-        label: formData.get('label'),
-        description: formData.get('description')
-      };
-      
-      // Here you would typically send this to your backend API
-      console.log('New link to add:', newLink);
-      alert('Short link would be added: kpam.my/' + newLink.short);
-      
-      // Reset form
-      e.target.reset();
-    });
-
-    // Copy to clipboard functionality
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('Copied to clipboard!');
-      });
-    }
-  </script>
-</BaseLayout>
+  </BaseLayout>
+) : (
+  <BaseLayout 
+    title="Admin Login"
+    description="Admin login"
+    currentPage="admin"
+  >
+    <div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+          </div>
+          <h1 class="text-2xl font-bold text-gray-900">Admin Login</h1>
+          <p class="text-gray-600 mt-2">Enter your password to access the admin panel</p>
+        </div>
+        
+        <form method="GET" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+            <input 
+              type="password" 
+              name="auth" 
+              placeholder="Enter password" 
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              required
+            />
+          </div>
+          <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            Sign In
+          </button>
+        </form>
+        
+        <p class="text-xs text-gray-500 mt-6 text-center">
+          Demo password: <code class="bg-gray-100 px-2 py-1 rounded">demo123</code>
+        </p>
+      </div>
+    </div>
+  </BaseLayout>
+)}
+---

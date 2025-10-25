@@ -19,47 +19,82 @@ module.exports = {
   plugins: [require('daisyui')],
 	daisyui: {
 		themes: [
+			// TEMPLATE 1: Alien (Fresh Green)
 			{
-				dental: {
-					// Primary: Medical Blue - trust, professionalism, medical care
-					primary: '#2563EB', // Medical Blue
-					'primary-focus': '#1D4ED8', // Darker Blue
+				alien: {
+					primary: '#32ac64', // Alien Green
+					'primary-focus': '#2a9654',
 					'primary-content': '#FFFFFF',
-					
-					// Secondary: Dental Teal - health, cleanliness, tranquility
-					secondary: '#0D9488', // Dental Teal
-					'secondary-focus': '#0F766E', // Darker Teal
+					secondary: '#54ca84', // Lighter Green
+					'secondary-focus': '#3fb36d',
 					'secondary-content': '#FFFFFF',
-					
-					// Accent: Health Green - growth, healing, vitality
-					accent: '#10B981', // Health Green
-					'accent-focus': '#059669', // Darker Green
-					'accent-content': '#FFFFFF',
-					
-					// Neutral: Professional Gray - reliability, professionalism, balance
-					neutral: '#6B7280', // Professional Gray
-					'neutral-focus': '#4B5563', // Darker Gray
+					accent: '#ddf4e6', // Light Green
+					'accent-focus': '#c5eed9',
+					'accent-content': '#1a6535',
+					neutral: '#747474', // Greyscale
+					'neutral-focus': '#393939',
 					'neutral-content': '#FFFFFF',
-					
-					// Base: Clean whites and light grays - cleanliness, sterility, medical safety
-					'base-100': '#FFFFFF', // Pure white
-					'base-200': '#F9FAFB', // Light gray
-					'base-300': '#F3F4F6', // Medium light gray
-					'base-content': '#111827', // Dark gray for readability
-					
-					// Status colors with medical-friendly tones
-					info: '#3B82F6', // Medical blue
-					success: '#10B981', // Health green
-					warning: '#F59E0B', // Caution amber
-					error: '#EF4444', // Medical red
-					
-					// Additional medical psychology colors
-					'success-content': '#FFFFFF',
-					'warning-content': '#FFFFFF',
-					'error-content': '#FFFFFF',
-					'info-content': '#FFFFFF',
+					'base-100': '#FFFFFF',
+					'base-200': '#fafafa',
+					'base-300': '#f5f5f5',
+					'base-content': '#191919',
+					info: '#54ca84',
+					success: '#32ac64',
+					warning: '#fdca08',
+					error: '#db255f',
+				},
+			},
+			// TEMPLATE 2: Jellyfish (Cool Purple)
+			{
+				jellyfish: {
+					primary: '#7a7add', // Jellyfish Purple
+					'primary-focus': '#6868c7',
+					'primary-content': '#FFFFFF',
+					secondary: '#a2a2fc', // Light Purple
+					'secondary-focus': '#8a8ae0',
+					'secondary-content': '#FFFFFF',
+					accent: '#ececfe', // Very Light Purple
+					'accent-focus': '#dadafe',
+					'accent-content': '#4f4f9a',
+					neutral: '#747474', // Greyscale
+					'neutral-focus': '#393939',
+					'neutral-content': '#FFFFFF',
+					'base-100': '#FFFFFF',
+					'base-200': '#fafafa',
+					'base-300': '#f5f5f5',
+					'base-content': '#191919',
+					info: '#a2a2fc',
+					success: '#32ac64',
+					warning: '#fdca08',
+					error: '#db255f',
+				},
+			},
+			// TEMPLATE 3: Papaya (Warm Orange)
+			{
+				papaya: {
+					primary: '#de5c1c', // Papaya Orange
+					'primary-focus': '#c84a16',
+					'primary-content': '#FFFFFF',
+					secondary: '#ff7b3a', // Light Orange
+					'secondary-focus': '#ff6519',
+					'secondary-content': '#FFFFFF',
+					accent: '#ffe5d8', // Cream
+					'accent-focus': '#ffc4a7',
+					'accent-content': '#8a310a',
+					neutral: '#747474', // Greyscale
+					'neutral-focus': '#393939',
+					'neutral-content': '#FFFFFF',
+					'base-100': '#FFFFFF',
+					'base-200': '#fafafa',
+					'base-300': '#fff8dc',
+					'base-content': '#191919',
+					info: '#a2a2fc',
+					success: '#32ac64',
+					warning: '#fdca08',
+					error: '#db255f',
 				},
 			},
 		],
+		defaultTheme: 'alien',
 	},
 };

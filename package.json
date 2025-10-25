@@ -1,8 +1,8 @@
 {
-  "name": "kpam-dental-website",
+  "name": "service-business-template",
   "type": "module",
   "version": "1.0.0",
-  "description": "Klinik Pergigian Alam Megah - Professional dental clinic website",
+  "description": "Professional service business website template built with Astro",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
