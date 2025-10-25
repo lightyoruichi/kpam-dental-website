@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
-import { getServiceBySlug, services } from '../../../config/services';
+import { getServiceBySlug, services } from '../../config/services';
 
 export async function getStaticPaths() {
   return services.map((service) => ({

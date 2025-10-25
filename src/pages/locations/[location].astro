@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../components/BaseLayout.astro';
-import { getLocationById, locations } from '../../../config/locations';
+import { getLocationById, locations } from '../../config/locations';
 
 export async function getStaticPaths() {
   return locations.map((location) => ({
