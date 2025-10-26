@@ -11,6 +11,21 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', Georgia, serif;
   }
+  
+  /* Theme CSS Variables */
+  :root {
+    --theme-primary: #000000;
+    --theme-secondary: #191919;
+    --theme-accent: #393939;
+    --theme-light: #ffffff;
+    --theme-background: #ffffff;
+    --theme-background-alt: #fafafa;
+    --theme-surface: #f5f5f5;
+    --theme-border: #e5e5e5;
+    --theme-text: #000000;
+    --theme-text-secondary: #393939;
+    --theme-text-light: #747474;
+  }
 }
 
 @layer components {

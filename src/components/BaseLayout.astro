@@ -2,6 +2,7 @@
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import Analytics from './Analytics.astro';
+import ThemeSwitcher from './ThemeSwitcher.astro';
 import { siteConfig } from '../config/site';
 
 export interface Props {
@@ -106,6 +107,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer />
+    
+    <!-- Theme Switcher (visible on all pages) -->
+    <ThemeSwitcher />
     
     <!-- Tally.so Script -->
     {showTally && (

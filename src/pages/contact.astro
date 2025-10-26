@@ -35,7 +35,7 @@ const pageDescription = `Get in touch with ${siteConfig.business.name}. We're he
                 </div>
                 <div>
                   <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
-                  <a href={`tel:${siteConfig.business.phone}`} class="text-blue-600 hover:underline">
+                  <a href="/call" class="text-blue-600 hover:underline">
                     {siteConfig.business.phone}
                   </a>
                 </div>
@@ -49,7 +49,7 @@ const pageDescription = `Get in touch with ${siteConfig.business.name}. We're he
                 </div>
                 <div>
                   <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
-                  <a href={`mailto:${siteConfig.business.email}`} class="text-blue-600 hover:underline">
+                  <a href="/email" class="text-blue-600 hover:underline">
                     {siteConfig.business.email}
                   </a>
                 </div>
@@ -103,6 +103,20 @@ const pageDescription = `Get in touch with ${siteConfig.business.name}. We're he
         <div>
           <h2 class="text-2xl font-semibold text-gray-900 mb-6">Send us a Message</h2>
           
+          <!-- 
+            ⚠️ FORM HANDLING OPTIONS:
+            
+            Option 1 - Netlify Forms (if deployed on Netlify):
+            Keep the 'netlify' attribute on the form tag below.
+            Netlify will automatically handle form submissions.
+            
+            Option 2 - Formspree (works anywhere):
+            Replace form action with: action="https://formspree.io/f/YOUR_FORM_ID"
+            And remove the netlify attribute.
+            
+            Option 3 - Your own backend:
+            Change action to your API endpoint and add appropriate handlers.
+          -->
           <form name="contact" netlify class="space-y-6">
             <input type="hidden" name="form-name" value="contact" />
             

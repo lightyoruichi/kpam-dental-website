@@ -42,28 +42,23 @@ const pageDescription = "Visit us at any of our convenient locations. We have mu
             href={`/locations/${location.id}`}
             class="group bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-white/20 hover:scale-105"
           >
-            <!-- Location Video/Image -->
+            <!-- Location Map -->
             <div class="w-full h-48 rounded-2xl mb-6 bg-gradient-to-br from-cyan-100 to-blue-100 overflow-hidden">
-              <!-- Video Background with Image Fallback -->
-              <video 
-                autoplay 
-                loop 
-                muted 
-                playsinline
-                poster={location.image}
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-              >
-                <source src="/videos/4487124-uhd_3840_2160_25fps.mp4" type="video/mp4" media="(min-width: 768px)">
-                <source src="/videos/3024319-hd_1920_1080_30fps.mp4" type="video/mp4">
-              </video>
-              <!-- Image Fallback -->
-              <img 
-                src={location.image} 
-                alt={location.name}
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 hidden"
+              <!-- 
+                ⚠️ GOOGLE MAPS API KEY:
+                Replace 'AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8' with your own Google Maps API key.
+                Get your free API key at: https://console.cloud.google.com/google/maps-apis
+              -->
+              <iframe
+                src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${location.coordinates.lat},${location.coordinates.lng}`}
+                width="100%"
+                height="100%"
+                style="border:0;"
+                allowfullscreen=""
                 loading="lazy"
-              />
+                referrerpolicy="no-referrer-when-downgrade"
+                title={`Map showing ${location.name}`}
+              ></iframe>
             </div>
             
             <!-- Location Info -->

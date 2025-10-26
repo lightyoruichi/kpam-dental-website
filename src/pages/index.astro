@@ -12,61 +12,38 @@ const pageDescription = siteConfig.business.description;
   currentPage="home"
 >
   <!-- Hero Section -->
-  <section class="relative bg-white py-20 lg:py-32 overflow-hidden">
-    <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <!-- Left Content -->
-        <div class="space-y-8">
-          <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-            Get a <span class="text-blue-600">Beautiful</span> Straight <span class="text-blue-600">Smile</span> Quickly
+  <section class="relative w-full h-screen">
+    <video 
+      class="w-full h-full object-cover"
+      autoplay
+      loop
+      muted
+      playsinline
+    >
+      <source src="/videos/4489831-uhd_3840_2160_25fps.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Content Overlay -->
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="container mx-auto px-4 lg:px-8 max-w-5xl">
+        <div class="text-center space-y-8">
+          <span class="inline-block text-xs md:text-sm font-semibold tracking-wider text-black uppercase">Quality Dental Care</span>
+          <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-gray-900">
+            {siteConfig.business.name}<span class="text-black">.</span>
           </h1>
-          
-          <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
-            Transform your smile quickly and effortlessly with our exceptional services. We understand the importance of having a beautiful, straight smile, and that's why we offer efficient solutions tailored to your needs.
+          <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            Your trusted partner for comprehensive dental care. Expert treatments, modern facilities, and a commitment to your oral health.
           </p>
-          
-          <div class="flex items-center gap-4">
-            <a href="/wa" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-              Book Now
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+            <a href="/wa" class="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-lg font-semibold hover:bg-black transition-colors">
+              Book Appointment
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
             </a>
-          </div>
-          
-          <!-- Stats -->
-          <div class="flex items-center gap-8 pt-8">
-                <div>
-              <div class="text-4xl font-bold text-blue-600">827+</div>
-              <div class="text-sm text-gray-600">Happy Patients</div>
-            </div>
-            <div>
-              <div class="text-4xl font-bold text-blue-600">170</div>
-              <div class="text-sm text-gray-600">Surgeries</div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Right Video/Image -->
-        <div class="relative">
-          <div class="w-full h-[500px] bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl overflow-hidden">
-            <!-- Video Background with Image Fallback -->
-            <video 
-              autoplay 
-              loop 
-              muted 
-              playsinline
-              poster="/images/pexels-cedric-fauntleroy-4269694.jpg"
-              class="w-full h-full object-cover"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-            >
-              <source src="/videos/6763401-hd_1080_1920_25fps.mp4" type="video/mp4" media="(min-width: 768px)">
-              <source src="/videos/3024319-hd_1920_1080_30fps.mp4" type="video/mp4">
-            </video>
-            <!-- Image Fallback -->
-            <img 
-              src="/images/pexels-cedric-fauntleroy-4269694.jpg" 
-              alt="Professional service"
-              class="w-full h-full object-cover hidden"
-              loading="eager"
-            />
+            <a href="/services" class="inline-flex items-center justify-center bg-white text-gray-900 border border-gray-300 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
+              Our Services
+            </a>
           </div>
         </div>
       </div>
@@ -78,20 +55,20 @@ const pageDescription = siteConfig.business.description;
     <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
         <div class="text-center">
-          <div class="text-5xl font-bold text-blue-600 mb-2">170</div>
-          <div class="text-gray-600">Performed surgeries</div>
+          <div class="text-5xl font-bold text-black mb-2">5000+</div>
+          <div class="text-gray-600">Happy Patients</div>
         </div>
           <div class="text-center">
-          <div class="text-5xl font-bold text-blue-600 mb-2">85</div>
-          <div class="text-gray-600">Satisfied Patients</div>
+          <div class="text-5xl font-bold text-black mb-2">15</div>
+          <div class="text-gray-600">Expert Dentists</div>
         </div>
           <div class="text-center">
-          <div class="text-5xl font-bold text-blue-600 mb-2">176</div>
-          <div class="text-gray-600">Staff Members</div>
+          <div class="text-5xl font-bold text-black mb-2">25</div>
+          <div class="text-gray-600">Years Experience</div>
         </div>
         <div class="text-center">
-          <div class="text-5xl font-bold text-blue-600 mb-2">98</div>
-          <div class="text-gray-600">Years Experience</div>
+          <div class="text-5xl font-bold text-black mb-2">4.9</div>
+          <div class="text-gray-600">Google Rating</div>
         </div>
       </div>
     </div>
@@ -103,12 +80,12 @@ const pageDescription = siteConfig.business.description;
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         <div>
           <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
-            We specialize in you, whatever your specialty
+            Quality dental care for the whole family
           </h2>
     </div>
         <div>
           <p class="text-lg text-gray-300 leading-relaxed">
-            At our company, we take pride in providing individually customized solutions that are specifically tailored to meet your unique expertise, requirements, and preferences.
+            We're committed to providing exceptional dental care using the latest technology and techniques. From routine cleanings to complex procedures, your smile is our priority.
           </p>
         </div>
       </div>
@@ -116,38 +93,38 @@ const pageDescription = siteConfig.business.description;
       <!-- Service Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="bg-white rounded-2xl p-8">
-          <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          <div class="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">Vibrant Checkups</h3>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Preventive Care</h3>
           <p class="text-gray-600 leading-relaxed">
-            At our dental practice we believe that regular dental exams are the cornerstone of a healthy and radiant smile.
+            Regular checkups and cleanings are essential for maintaining optimal oral health. Our preventive care helps catch issues early and keep your smile healthy.
           </p>
         </div>
         
         <div class="bg-white rounded-2xl p-8">
-          <div class="w-16 h-16 bg-cyan-100 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">Revitalized Cleaning</h3>
-          <p class="text-gray-600 leading-relaxed">
-            At our dental practice, we understand that maintaining optimal oral health is essential for a radiant smile and overall well-being.
-          </p>
-        </div>
-        
-        <div class="bg-white rounded-2xl p-8">
-          <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-gray-900 mb-4">Reinforced Fillings</h3>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Cosmetic Dentistry</h3>
           <p class="text-gray-600 leading-relaxed">
-            At our dental practice, we prioritize the longevity and functionality of your smile. Our reinforced fillings offer a robust solution...
+            Enhance your smile with our cosmetic dental services including teeth whitening, veneers, and smile makeovers tailored to your needs.
+          </p>
+        </div>
+        
+        <div class="bg-white rounded-2xl p-8">
+          <div class="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Restorative Treatments</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Restore your teeth's function and appearance with fillings, crowns, bridges, and dental implants using the latest materials and techniques.
           </p>
         </div>
       </div>
@@ -161,21 +138,21 @@ const pageDescription = siteConfig.business.description;
         <!-- Left Content -->
         <div class="space-y-8">
           <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-            Your Family's Dental Health Matters: Discover Our Budget-Friendly Discount Plan
+            Family Dental Health Discount Plans
           </h2>
           
           <p class="text-lg text-gray-600 leading-relaxed">
-            Unlock Optimal Dental Wellness for Your Loved Ones. Embrace Our Budget-Friendly Discount Plan for Comprehensive Care and Radiant Smiles.
+            Make dental care affordable for your entire family with our budget-friendly membership plans. Save on routine care and get discounts on treatments.
           </p>
           
           <div class="flex items-center gap-4">
             <div class="flex -space-x-2">
-              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white"></div>
-              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-cyan-600 border-2 border-white"></div>
-              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-green-600 border-2 border-white"></div>
-              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 border-2 border-white"></div>
+              <div class="w-12 h-12 rounded-full bg-gray-600 border-2 border-white"></div>
+              <div class="w-12 h-12 rounded-full bg-gray-700 border-2 border-white"></div>
+              <div class="w-12 h-12 rounded-full bg-gray-800 border-2 border-white"></div>
+              <div class="w-12 h-12 rounded-full bg-black border-2 border-white"></div>
             </div>
-            <a href="/wa" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            <a href="/wa" class="bg-black text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-900 transition-colors">
               Join Membership
             </a>
     </div>
@@ -183,23 +160,23 @@ const pageDescription = siteConfig.business.description;
         
         <!-- Right Discount Cards -->
         <div class="space-y-6">
-          <div class="bg-yellow-50 rounded-2xl p-8 border-2 border-yellow-200">
+          <div class="bg-gray-50 rounded-2xl p-8 border-2 border-gray-200">
             <div class="flex items-center gap-4 mb-4">
-              <div class="text-6xl font-bold text-blue-600">80%</div>
-              <div class="text-4xl">😊</div>
+              <div class="text-6xl font-bold text-black">30%</div>
+              <div class="text-4xl">👨‍👩‍👧‍👦</div>
             </div>
             <p class="text-gray-700 leading-relaxed">
-              Exclusive Member Savings: Save 30%-80% on Dental Procedures, including Oral Exams, Cleanings, and X-Rays.
+              Family Discount: Save 30% on preventive care including cleanings, exams, and X-rays for all family members.
         </p>
       </div>
       
-          <div class="bg-blue-50 rounded-2xl p-8 border-2 border-blue-200">
+          <div class="bg-gray-50 rounded-2xl p-8 border-2 border-gray-200">
             <div class="flex items-center gap-4 mb-4">
-              <div class="text-6xl font-bold text-blue-600">40%</div>
-              <div class="text-4xl">😊</div>
+              <div class="text-6xl font-bold text-black">20%</div>
+              <div class="text-4xl">💎</div>
             </div>
             <p class="text-gray-700 leading-relaxed">
-              Enhanced Member Benefits: Save 40% on All Other Dental Services Including Cosmetic, Restorative and Specialty Dental Procedures.
+              Member Benefits: Enjoy 20% off all cosmetic and restorative procedures including crowns, bridges, and whitening.
             </p>
           </div>
         </div>
@@ -210,20 +187,20 @@ const pageDescription = siteConfig.business.description;
   <!-- Team Section -->
   <section class="bg-white py-24">
     <div class="container mx-auto px-4 lg:px-8 max-w-7xl">
-      <h2 class="text-4xl font-bold text-gray-900 mb-12 text-center">Introducing Our Dedicated Dentists</h2>
+      <h2 class="text-4xl font-bold text-gray-900 mb-12 text-center">Meet Our Expert Dentists</h2>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="bg-white rounded-2xl p-6 border border-gray-200">
-          <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl mb-4 overflow-hidden">
-            <img src="/images/pexels-arvind-philomin-187831830-12148417.jpg" alt="Ricardo Dray" class="w-full h-full object-cover" />
+          <div class="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-4 overflow-hidden">
+            <img src="/images/pexels-arvind-philomin-187831830-12148417.jpg" alt="Dr. Smith" class="w-full h-full object-cover" />
             </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-1">Ricardo Dray</h3>
-          <p class="text-gray-600 mb-4">Practical Nurse</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">Dr. James Smith</h3>
+          <p class="text-gray-600 mb-4">Orthodontist</p>
           <div class="flex gap-2">
-            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
-            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
           </div>
@@ -231,15 +208,15 @@ const pageDescription = siteConfig.business.description;
           
         <div class="bg-white rounded-2xl p-6 border border-gray-200">
           <div class="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-4 overflow-hidden">
-            <img src="/images/pexels-karolina-grabowska-6627531.jpg" alt="Marcel Bryan" class="w-full h-full object-cover" />
+            <img src="/images/pexels-karolina-grabowska-6627531.jpg" alt="Dr. Johnson" class="w-full h-full object-cover" />
           </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-1">Marcel Bryan</h3>
-          <p class="text-gray-600 mb-4">Patient Services Manager</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">Dr. Sarah Johnson</h3>
+          <p class="text-gray-600 mb-4">Periodontist</p>
           <div class="flex gap-2">
-            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
-            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
         </div>
@@ -247,15 +224,15 @@ const pageDescription = siteConfig.business.description;
         
         <div class="bg-white rounded-2xl p-6 border border-gray-200">
           <div class="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-4 overflow-hidden">
-            <img src="/images/pexels-pavel-danilyuk-6812476.jpg" alt="Mariana Jola" class="w-full h-full object-cover" />
+            <img src="/images/pexels-pavel-danilyuk-6812476.jpg" alt="Dr. Chen" class="w-full h-full object-cover" />
         </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-1">Mariana Jola</h3>
-          <p class="text-gray-600 mb-4">Dental Hygienist</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">Dr. Michael Chen</h3>
+          <p class="text-gray-600 mb-4">Oral Surgeon</p>
           <div class="flex gap-2">
-            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
-            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
               </div>
@@ -263,15 +240,15 @@ const pageDescription = siteConfig.business.description;
             
         <div class="bg-white rounded-2xl p-6 border border-gray-200">
           <div class="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl mb-4 overflow-hidden">
-            <img src="/images/pexels-karolina-grabowska-7195433.jpg" alt="Serbian Yale" class="w-full h-full object-cover" />
+            <img src="/images/pexels-karolina-grabowska-7195433.jpg" alt="Dr. Brown" class="w-full h-full object-cover" />
                 </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-1">Serbian Yale</h3>
-          <p class="text-gray-600 mb-4">Dentist</p>
+          <h3 class="text-xl font-bold text-gray-900 mb-1">Dr. Emily Brown</h3>
+          <p class="text-gray-600 mb-4">General Dentist</p>
           <div class="flex gap-2">
-            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
-            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+            <a href="#" class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-black hover:text-white transition-colors">
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
           </div>
@@ -286,56 +263,56 @@ const pageDescription = siteConfig.business.description;
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         <div>
           <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            See What Our Clients Have to Say:
+            What Our Patients Say
           </h2>
     </div>
         <div>
           <p class="text-lg text-gray-600 leading-relaxed">
-            Embark on a Journey through Heartfelt Experiences - Unveil the Praises and Testimonials from Our Esteemed Clients. Unraveling the Unmatched Quality of Our Services.
+            Read testimonials from our satisfied patients. Discover why families trust us with their dental care and why we're Bangkok's top-rated dental clinic.
           </p>
         </div>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-green-50 rounded-2xl p-8 border-2 border-green-100">
-          <div class="text-6xl text-green-400 mb-4">"</div>
+        <div class="bg-gray-50 rounded-2xl p-8 border-2 border-gray-100">
+          <div class="text-6xl text-black mb-4">"</div>
           <p class="text-gray-700 leading-relaxed mb-6">
-            The clinic's immaculate cleanliness and hygiene standards gave me complete confidence in their dental care.
+            The clinic's cleanliness and modern equipment impressed me. Dr. Smith made my root canal completely painless and the staff was so friendly throughout the entire process.
           </p>
           <div class="flex items-center justify-between">
               <div>
-              <h4 class="font-bold text-gray-900">Crysty Harly</h4>
-              <p class="text-gray-600 text-sm">Product Manager</p>
+              <h4 class="font-bold text-gray-900">Robert Chen</h4>
+              <p class="text-gray-600 text-sm">Patient</p>
             </div>
-            <a href="#" class="text-blue-600 font-semibold hover:underline">Read More</a>
+            <a href="#" class="text-black font-semibold hover:underline">Read More</a>
           </div>
     </div>
     
-        <div class="bg-green-50 rounded-2xl p-8 border-2 border-green-100">
-          <div class="text-6xl text-green-400 mb-4">"</div>
+        <div class="bg-gray-50 rounded-2xl p-8 border-2 border-gray-100">
+          <div class="text-6xl text-black mb-4">"</div>
           <p class="text-gray-700 leading-relaxed mb-6">
-            The clinic's immaculate cleanliness and hygiene standards gave me complete confidence in their dental care.
+            I've been bringing my whole family here for years. The dentists are excellent with children and explain everything clearly. The membership plan saves us so much money too!
           </p>
           <div class="flex items-center justify-between">
             <div>
-              <h4 class="font-bold text-gray-900">Selina Martin</h4>
-              <p class="text-gray-600 text-sm">Product Manager</p>
+              <h4 class="font-bold text-gray-900">Maria Garcia</h4>
+              <p class="text-gray-600 text-sm">Family Patient</p>
             </div>
-            <a href="#" class="text-blue-600 font-semibold hover:underline">Read More</a>
+            <a href="#" class="text-black font-semibold hover:underline">Read More</a>
           </div>
         </div>
         
-        <div class="bg-green-50 rounded-2xl p-8 border-2 border-green-100">
-          <div class="text-6xl text-green-400 mb-4">"</div>
+        <div class="bg-gray-50 rounded-2xl p-8 border-2 border-gray-100">
+          <div class="text-6xl text-black mb-4">"</div>
           <p class="text-gray-700 leading-relaxed mb-6">
-            The clinic's immaculate cleanliness and hygiene standards gave me complete confidence in their dental care.
+            Best dental experience I've ever had! Got my teeth whitened and the results are amazing. The clinic is beautiful and the staff made me feel completely comfortable.
           </p>
           <div class="flex items-center justify-between">
             <div>
-              <h4 class="font-bold text-gray-900">Emily Rodriguez</h4>
-              <p class="text-gray-600 text-sm">Client</p>
+              <h4 class="font-bold text-gray-900">Jennifer Lee</h4>
+              <p class="text-gray-600 text-sm">Patient</p>
                 </div>
-            <a href="#" class="text-blue-600 font-semibold hover:underline">Read More</a>
+            <a href="#" class="text-black font-semibold hover:underline">Read More</a>
           </div>
         </div>
       </div>
@@ -343,7 +320,7 @@ const pageDescription = siteConfig.business.description;
   </section>
 
   <!-- CTA Banner Section -->
-  <section class="bg-gradient-to-r from-blue-600 to-cyan-600 py-24 relative overflow-hidden">
+  <section class="bg-gradient-to-r from-gray-900 to-black py-24 relative overflow-hidden">
     <div class="absolute inset-0">
       <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
       <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
@@ -353,19 +330,19 @@ const pageDescription = siteConfig.business.description;
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div class="space-y-8">
           <h2 class="text-4xl lg:text-5xl font-bold text-white leading-tight">
-            Seize the opportunity for a brighter smile starting now!
+            Ready for a healthier smile?
           </h2>
           
           <p class="text-lg text-white/90 leading-relaxed">
-            Embracing the Now or Never Moment. Unlocking the Gateway to a Brighter, More Captivating Smile Beyond Your Wildest Dreams.
+            Schedule your appointment today and experience quality dental care. Our expert team is here to help you achieve optimal oral health. Same-day appointments available!
           </p>
           
           <div class="flex gap-4">
-            <a href="/wa" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              Schedule
+            <a href="/wa" class="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+              Book Appointment
             </a>
-            <a href="/wa" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2">
-              Book Now
+            <a href="/services" class="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2">
+              Our Services
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                   </svg>
@@ -401,51 +378,3 @@ const pageDescription = siteConfig.business.description;
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  // Optimize video loading for mobile and low bandwidth
-  document.addEventListener('DOMContentLoaded', function() {
-    const videos = document.querySelectorAll('video');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobile = window.innerWidth < 768;
-    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    
-    // Check for slow connection
-    const isSlowConnection = connection && (
-      connection.effectiveType === 'slow-2g' || 
-      connection.effectiveType === '2g' ||
-      connection.downlink < 1.5
-    );
-    
-    videos.forEach(video => {
-      // Disable video on mobile, slow connection, or reduced motion preference
-      if (isMobile || isSlowConnection || prefersReducedMotion) {
-        video.style.display = 'none';
-        const fallbackImg = video.nextElementSibling;
-        if (fallbackImg && fallbackImg.tagName === 'IMG') {
-          fallbackImg.style.display = 'block';
-        }
-      } else {
-        // Lazy load videos (only load when in viewport)
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const vid = entry.target;
-              vid.play().catch(() => {
-                // If autoplay fails, show fallback image
-                vid.style.display = 'none';
-                const fallbackImg = vid.nextElementSibling;
-                if (fallbackImg && fallbackImg.tagName === 'IMG') {
-                  fallbackImg.style.display = 'block';
-                }
-              });
-              observer.unobserve(vid);
-            }
-          });
-        }, { rootMargin: '50px' });
-        
-        observer.observe(video);
-      }
-    });
-  });
-</script>

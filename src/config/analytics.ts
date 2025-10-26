@@ -164,6 +164,15 @@ export const shortLinks: ShortLink[] = [
     isActive: true
   },
   {
+    id: 'email-contact',
+    short: 'email',
+    destination: 'mailto:info@example.com', // ⚠️ UPDATE: Replace with your email address
+    category: 'service',
+    label: 'Email Contact',
+    description: 'Send us an email',
+    isActive: true
+  },
+  {
     id: 'emergency-contact',
     short: 'emergency',
     destination: 'https://wa.me/1234567890?text=Emergency%20Contact', // ⚠️ UPDATE: Replace with your emergency contact number

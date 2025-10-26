@@ -19,7 +19,8 @@ npm run dev
 
 ## ✨ Key Features
 
-- **🎨 3 Beautiful Themes** - Alien (Green), Jellyfish (Purple), Papaya (Orange)
+- **🎨 4 Beautiful Themes** - Monochrome (B&W), Alien (Green), Jellyfish (Purple), Papaya (Orange)
+- **🔄 Interactive Theme Switcher** - Switch themes instantly with persistent preferences
 - **📱 Fully Responsive** - Mobile-first design that works on all devices
 - **🚀 Interactive Setup Wizard** - Automated configuration with `npm run setup`
 - **📍 Multi-Location Support** - Manage multiple locations with dedicated pages
@@ -112,13 +113,14 @@ See [GUIDE.md](./GUIDE.md) for detailed deployment instructions and troubleshoot
 
 ## 🎨 Themes
 
-Choose from 3 pre-built themes:
+Choose from 4 pre-built themes:
 
-1. **Alien** (Fresh Green) - Health, wellness, nature businesses
-2. **Jellyfish** (Cool Purple) - Creative, professional, tech businesses
-3. **Papaya** (Warm Orange) - Food, hospitality, energetic businesses
+1. **Monochrome** (Black & White) - Classic, professional, minimalist businesses
+2. **Alien** (Fresh Green) - Health, wellness, nature businesses
+3. **Jellyfish** (Cool Purple) - Creative, professional, tech businesses
+4. **Papaya** (Warm Orange) - Food, hospitality, energetic businesses
 
-Switch themes anytime via the setup wizard or by editing `tailwind.config.cjs`.
+Switch themes instantly using the theme switcher (bottom-right corner) or via the setup wizard. Your theme preference is saved automatically!
 
 ## ⚡ Performance
 

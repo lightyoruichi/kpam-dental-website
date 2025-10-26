@@ -13,13 +13,20 @@ Complete feature list and development roadmap for the Service Business Website T
 - Optimized images and assets
 
 #### 🎨 Design System
-- **3 Pre-built Themes**
+- **4 Pre-built Themes**
+  - Monochrome (Black & White) - Classic, professional, minimalist businesses
   - Alien (Fresh Green) - Health, wellness, nature businesses
   - Jellyfish (Cool Purple) - Creative, professional, tech businesses
   - Papaya (Warm Orange) - Food, hospitality, energetic businesses
+- **Interactive Theme Switcher**
+  - Switch themes instantly from any page
+  - Fixed position in bottom-right corner
+  - Theme preference saved with localStorage
+  - Smooth 0.3s transitions between themes
+  - Works across all pages via BaseLayout
 - DaisyUI integration
 - TailwindCSS utilities
-- Theme switcher in header
+- CSS custom properties for dynamic theming
 - Typography: Playfair Display (headers), Inter (body)
 
 #### 📍 Multi-Location Support
@@ -188,22 +195,32 @@ Complete feature list and development roadmap for the Service Business Website T
 
 ### Color Themes
 
+#### Monochrome
+- Primary: Black (#000000)
+- Secondary: Dark Gray (#191919)
+- Accent: Medium Gray (#393939)
+- Background Alt: Light Gray (#fafafa)
+- Best for: Classic, professional, minimalist businesses
+
 #### Alien (Default)
 - Primary: Fresh Green (#32ac64)
 - Secondary: Light Green (#54ca84)
 - Accent: Pale Green (#ddf4e6)
+- Background Alt: Very Light Green (#ddf4e6)
 - Best for: Health, wellness, nature businesses
 
 #### Jellyfish
 - Primary: Cool Purple (#7a7add)
 - Secondary: Light Purple (#a2a2fc)
-- Accent: Very Light Purple (#ececfe)
+- Accent: Very Light Purple (#dadafe)
+- Background Alt: Lavender (#ececfe)
 - Best for: Creative, professional, tech businesses
 
 #### Papaya
 - Primary: Warm Orange (#de5c1c)
 - Secondary: Light Orange (#ff7b3a)
-- Accent: Cream (#ffe5d8)
+- Accent: Peach (#ffc4a7)
+- Background Alt: Cream (#ffe5d8)
 - Best for: Food, hospitality, energetic businesses
 
 ### Typography

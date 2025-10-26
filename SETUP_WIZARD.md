@@ -67,19 +67,25 @@ Answer `y` to confirm and the wizard will automatically update:
 
 ## Available Themes
 
-The wizard lets you choose from 3 pre-built themes:
+The wizard lets you choose from 4 pre-built themes:
 
-1. **Alien** (Fresh Green)
+1. **Monochrome** (Black & White)
+   - Best for: Classic, professional, minimalist businesses
+   - Primary color: #000000
+
+2. **Alien** (Fresh Green)
    - Best for: Health, wellness, nature businesses
    - Primary color: #32ac64
 
-2. **Jellyfish** (Cool Purple)
+3. **Jellyfish** (Cool Purple)
    - Best for: Creative, professional, tech businesses
    - Primary color: #7a7add
 
-3. **Papaya** (Warm Orange)
+4. **Papaya** (Warm Orange)
    - Best for: Food, hospitality, energetic businesses
    - Primary color: #de5c1c
+
+**Note:** You can also switch themes anytime using the theme switcher (bottom-right corner) on any page. Your preference is saved automatically!
 
 ## Skipping Questions
 

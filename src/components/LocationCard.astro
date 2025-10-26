@@ -37,11 +37,11 @@ const { name, address, phone, hours, image = "https://images.pexels.com/photos/1
   </div>
   <div class="mt-4 space-y-2">
     {mapLink && (
-      <a href={mapLink} class="btn-secondary w-full text-center" target="_blank">
+      <a href="/map" class="btn-secondary w-full text-center" target="_blank">
         View on Map
       </a>
     )}
-    <a href={`tel:${phone}`} class="btn-primary w-full text-center">
+    <a href="/call" class="btn-primary w-full text-center">
       Call Now
     </a>
   </div>

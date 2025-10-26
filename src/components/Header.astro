@@ -9,88 +9,89 @@ const { currentPage } = Astro.props;
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'Services', href: '/services' },
-  { name: 'Locations', href: '/locations' },
+  { 
+    name: 'Services', 
+    href: '/services',
+    children: [
+      { name: 'All Services', href: '/services' },
+      { name: 'General Dentistry', href: '/services#general' },
+      { name: 'Cosmetic Procedures', href: '/services#cosmetic' },
+      { name: 'Emergency Care', href: '/services#emergency' }
+    ]
+  },
+  { 
+    name: 'Locations', 
+    href: '/locations',
+    children: [
+      { name: 'All Locations', href: '/locations' },
+      { name: 'Downtown Clinic', href: '/locations#downtown' },
+      { name: 'City Center', href: '/locations#city-center' }
+    ]
+  },
   { name: 'About', href: '/#about' },
-  { name: 'Contact', href: '/#contact' }
+  { name: 'Contact', href: '/contact' }
 ];
 ---
 
-<header class="sticky top-0 z-50 bg-base-100 border-b border-base-300/50 backdrop-blur-md" id="header">
+<header class="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200" id="header">
   <nav class="container mx-auto px-4 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
       <a href="/" class="flex items-center space-x-3 group">
-        <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-          <span class="text-primary-content font-bold text-lg">{siteConfig.business.shortName.charAt(0)}</span>
+        <div class="w-10 h-10 bg-black rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
+          <span class="text-white font-bold text-lg">{siteConfig.business.shortName.charAt(0)}</span>
         </div>
         <div>
-          <h1 class="text-xl font-bold text-base-content">{siteConfig.business.shortName}</h1>
+          <h1 class="text-xl font-bold text-gray-900">{siteConfig.business.shortName}</h1>
         </div>
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center space-x-1">
+      <div class="hidden lg:flex items-center space-x-2">
         {navigation.map((item) => (
-          <a
-            href={item.href}
-            class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              currentPage === item.name.toLowerCase() || 
-              (currentPage === 'home' && item.name === 'Home')
-                ? 'text-primary bg-primary/10'
-                : 'text-base-content/70 hover:text-primary hover:bg-base-200'
-            }`}
-          >
-            {item.name}
-          </a>
+          item.children ? (
+            <!-- Dropdown Menu -->
+            <div class="relative group" data-dropdown>
+              <button class="px-4 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-black hover:bg-gray-100 transition-colors flex items-center gap-1">
+                {item.name}
+                <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="absolute top-full left-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[200px]">
+                <div class="bg-white border border-gray-200 rounded-lg shadow-xl p-2">
+                  {item.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:text-black hover:bg-gray-50 transition-colors"
+                    >
+                      {child.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                currentPage === item.name.toLowerCase() || 
+                (currentPage === 'home' && item.name === 'Home')
+                  ? 'text-black bg-gray-100'
+                  : 'text-gray-700 hover:text-black hover:bg-gray-100'
+              }`}
+            >
+              {item.name}
+            </a>
+          )
         ))}
       </div>
 
-      <!-- Theme Switcher & CTA -->
+      <!-- Desktop CTA Button -->
       <div class="hidden lg:flex items-center space-x-3">
-        <!-- Theme Switcher -->
-        <div class="relative group">
-          <button 
-            class="p-2 rounded-lg text-base-content/70 hover:text-primary hover:bg-base-200 transition-colors"
-            aria-label="Change theme"
-          >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-            </svg>
-          </button>
-          
-          <!-- Theme Options Dropdown -->
-          <div class="absolute right-0 top-full mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-            <div class="bg-base-100 border border-base-300 rounded-lg shadow-lg p-2 min-w-[160px]">
-              <button 
-                onclick="changeTheme('alien')"
-                class="w-full text-left px-3 py-2 rounded-lg hover:bg-base-200 transition-colors text-sm font-medium text-base-content flex items-center space-x-2"
-              >
-                <div class="w-4 h-4 rounded" style="background: #32ac64"></div>
-                <span>Alien</span>
-              </button>
-              <button 
-                onclick="changeTheme('jellyfish')"
-                class="w-full text-left px-3 py-2 rounded-lg hover:bg-base-200 transition-colors text-sm font-medium text-base-content flex items-center space-x-2"
-              >
-                <div class="w-4 h-4 rounded" style="background: #7a7add"></div>
-                <span>Jellyfish</span>
-              </button>
-              <button 
-                onclick="changeTheme('papaya')"
-                class="w-full text-left px-3 py-2 rounded-lg hover:bg-base-200 transition-colors text-sm font-medium text-base-content flex items-center space-x-2"
-              >
-                <div class="w-4 h-4 rounded" style="background: #de5c1c"></div>
-                <span>Papaya</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- CTA Button -->
         <a 
           href="/wa?source=header&campaign=main&text=Hi%20I%20would%20like%20to%20book%20a%20consultation" 
-          class="inline-flex items-center space-x-2 bg-primary text-primary-content px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-primary-focus transition-colors"
+          class="inline-flex items-center space-x-2 bg-black text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-900 transition-colors"
         >
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
@@ -102,74 +103,195 @@ const navigation = [
       <!-- Mobile menu button -->
       <button
         id="mobile-menu-button"
-        class="lg:hidden p-2 text-base-content/70 hover:text-primary transition-colors"
+        class="lg:hidden p-2 text-gray-700 hover:text-black transition-colors relative z-50"
         aria-label="Toggle mobile menu"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
+        <span class="sr-only">Menu</span>
+        <!-- Hamburger Icon -->
+        <div class="w-6 h-6 flex flex-col justify-center items-center space-y-1.5">
+          <span class="block w-6 h-0.5 bg-current transition-all duration-300 menu-line-1"></span>
+          <span class="block w-6 h-0.5 bg-current transition-all duration-300 menu-line-2"></span>
+          <span class="block w-6 h-0.5 bg-current transition-all duration-300 menu-line-3"></span>
+        </div>
       </button>
-    </div>
-
-    <!-- Mobile Navigation -->
-    <div id="mobile-menu" class="lg:hidden hidden border-t border-base-300">
-      <div class="px-2 py-4 space-y-1">
-        {navigation.map((item) => (
-          <a
-            href={item.href}
-            class={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-              currentPage === item.name.toLowerCase() || 
-              (currentPage === 'home' && item.name === 'Home')
-                ? 'text-primary bg-primary/10'
-                : 'text-base-content/70 hover:text-primary hover:bg-base-200'
-            }`}
-          >
-            {item.name}
-          </a>
-        ))}
-        <a 
-          href="/wa?source=header&campaign=main&text=Hi%20I%20would%20like%20to%20book%20a%20consultation" 
-          class="block text-center bg-primary text-primary-content px-4 py-2.5 rounded-lg text-sm font-semibold mt-4"
-        >
-          Book Appointment
-        </a>
-      </div>
     </div>
   </nav>
 </header>
 
-<script>
-  // Theme switching function
-  function changeTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+<!-- Mobile Full-Screen Overlay Menu -->
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black z-40 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+  <div class="flex flex-col h-full">
+    <!-- Close button -->
+    <div class="flex justify-end p-6">
+      <button id="mobile-menu-close" class="p-2 text-white hover:text-gray-300 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="flex-1 flex flex-col justify-center px-8 space-y-6">
+      {navigation.map((item) => (
+        <div>
+          {item.children ? (
+            <!-- Mobile Dropdown -->
+            <div class="mobile-dropdown">
+              <button class="mobile-dropdown-toggle w-full text-left text-white text-3xl font-bold hover:text-gray-300 transition-colors flex items-center justify-between">
+                {item.name}
+                <svg class="w-6 h-6 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              <div class="mobile-dropdown-content space-y-3">
+                {item.children.map((child) => (
+                  <a
+                    href={child.href}
+                    class="block text-xl text-gray-300 hover:text-white transition-colors pl-4"
+                  >
+                    {child.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="block text-white text-3xl font-bold hover:text-gray-300 transition-colors"
+            >
+              {item.name}
+            </a>
+          )}
+        </div>
+      ))}
+      
+      <!-- Mobile CTA -->
+      <div class="pt-8">
+        <a 
+          href="/wa?source=header&campaign=main&text=Hi%20I%20would%20like%20to%20book%20a%20consultation" 
+          class="inline-flex items-center justify-center space-x-2 bg-white text-black px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors w-full"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+          </svg>
+          <span>Book Appointment</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<style>
+  /* Hamburger to X animation */
+  #mobile-menu-button.menu-open .menu-line-1 {
+    transform: rotate(45deg) translate(7px, 7px);
+  }
+  
+  #mobile-menu-button.menu-open .menu-line-2 {
+    opacity: 0;
+  }
+  
+  #mobile-menu-button.menu-open .menu-line-3 {
+    transform: rotate(-45deg) translate(7px, -7px);
   }
 
-  // Load saved theme preference
-  document.addEventListener('DOMContentLoaded', function() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
-  });
+  /* Mobile menu overlay slide animation */
+  #mobile-menu-overlay.menu-open {
+    transform: translateX(0);
+  }
 
-  // Enhanced mobile menu and header interactions
+  /* Mobile dropdown animation */
+  .mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    transition: max-height 0.3s ease-out, opacity 0.2s ease-out, padding 0.3s ease-out, margin 0.3s ease-out;
+  }
+
+  .mobile-dropdown.active .mobile-dropdown-content {
+    max-height: 500px;
+    opacity: 1;
+    padding-top: 1rem;
+    padding-bottom: 0;
+    margin-top: 1rem;
+  }
+
+  .mobile-dropdown.active .mobile-dropdown-toggle svg {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
   document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
     const header = document.getElementById('header');
     
-    // Mobile menu toggle
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-        // Update button icon
-        const icon = mobileMenuButton.querySelector('svg');
-        if (icon) {
-          icon.classList.toggle('rotate-90');
-        }
-      });
+    if (!mobileMenuButton || !mobileMenuOverlay || !header) return;
+    
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+      if (!mobileMenuOverlay || !mobileMenuButton) return;
+      
+      const isOpen = mobileMenuOverlay.classList.contains('menu-open');
+      
+      if (isOpen) {
+        mobileMenuOverlay.classList.remove('menu-open');
+        mobileMenuButton.classList.remove('menu-open');
+        document.body.style.overflow = '';
+      } else {
+        mobileMenuOverlay.classList.add('menu-open');
+        mobileMenuButton.classList.add('menu-open');
+        document.body.style.overflow = 'hidden';
+      }
     }
+
+    mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Close menu when clicking outside
+    mobileMenuOverlay.addEventListener('click', function(e) {
+      if (e.target === mobileMenuOverlay) {
+        toggleMobileMenu();
+      }
+    });
+
+    // Mobile dropdown functionality
+    const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+    mobileDropdowns.forEach(dropdown => {
+      const toggle = dropdown.querySelector('.mobile-dropdown-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          const isActive = dropdown.classList.contains('active');
+          
+          // Close all other dropdowns
+          mobileDropdowns.forEach(d => {
+            if (d !== dropdown) {
+              d.classList.remove('active');
+            }
+          });
+          
+          // Toggle current dropdown
+          dropdown.classList.toggle('active');
+        });
+      }
+    });
+
+    // Close mobile menu when clicking nav links
+    const mobileNavLinks = mobileMenuOverlay.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        toggleMobileMenu();
+      });
+    });
     
     // Header scroll effect
     let lastScrollY = window.scrollY;
@@ -177,9 +299,9 @@ const navigation = [
       const currentScrollY = window.scrollY;
       
       if (currentScrollY > 100) {
-        header.classList.add('shadow-xl');
+        header.classList.add('shadow-lg');
       } else {
-        header.classList.remove('shadow-xl');
+        header.classList.remove('shadow-lg');
       }
       
       lastScrollY = currentScrollY;
@@ -188,16 +310,19 @@ const navigation = [
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          // Close mobile menu if open
-          if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('hidden');
+        const href = (anchor as HTMLAnchorElement).getAttribute('href');
+        if (href && href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            // Close mobile menu if open
+            if (mobileMenuOverlay.classList.contains('menu-open')) {
+              toggleMobileMenu();
+            }
           }
         }
       });

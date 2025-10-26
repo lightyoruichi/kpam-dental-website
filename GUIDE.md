@@ -263,18 +263,30 @@ export const shortLinks: ShortLink[] = [
 
 ### Themes (`tailwind.config.cjs`)
 
-Switch between 3 pre-built themes:
+Switch between 4 pre-built themes:
 
 ```javascript
 daisyui: {
-  themes: ['alien', 'jellyfish', 'papaya'],
-  defaultTheme: 'alien', // Change this
+  themes: ['monochrome', 'alien', 'jellyfish', 'papaya'],
+  defaultTheme: 'monochrome', // Change this
 }
 ```
 
-- **Alien** - Fresh Green
-- **Jellyfish** - Cool Purple
-- **Papaya** - Warm Orange
+- **Monochrome** - Black & White (Classic, professional)
+- **Alien** - Fresh Green (Health, wellness)
+- **Jellyfish** - Cool Purple (Creative, tech)
+- **Papaya** - Warm Orange (Food, hospitality)
+
+**Theme Switcher:** Users can switch themes anytime using the theme switcher in the bottom-right corner of any page. Theme preferences are saved automatically in the browser's localStorage.
+
+#### Customizing the Theme Switcher
+
+The theme switcher is implemented in `src/components/ThemeSwitcher.astro`. You can customize:
+
+- **Position**: Change `fixed bottom-8 right-8` to reposition
+- **Visibility**: Remove `<ThemeSwitcher />` from `BaseLayout.astro` to hide it
+- **Default Theme**: Change `localStorage.getItem('theme') || 'monochrome'` to set default
+- **Colors**: Edit the `themes` object to modify color values
 
 ### Images
 

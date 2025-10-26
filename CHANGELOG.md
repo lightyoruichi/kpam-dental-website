@@ -11,7 +11,10 @@ All notable changes to this project will be documented in this file.
 - Short URL system with tracking (`/wa`, `/call`, `/map`)
 - Multi-location support
 - Services management system
-- 3 pre-built themes (Alien, Jellyfish, Papaya)
+- **4 pre-built themes (Monochrome, Alien, Jellyfish, Papaya)**
+- **Interactive theme switcher** - Switch themes instantly across all pages
+- **Theme persistence** - User preferences saved with localStorage
+- **Smooth theme transitions** - Animated color changes
 - Comprehensive documentation (GUIDE.md, FEATURES.md, ANALYTICS_SETUP.md)
 - WhatsApp integration
 - SEO optimization with schema markup
