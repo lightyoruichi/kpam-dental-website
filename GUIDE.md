@@ -385,15 +385,43 @@ npm run build
 
 ### Short URLs Not Working
 
-- Check `src/config/analytics.ts`
-- Verify destination URLs
-- Test locally before deploying
+**Symptoms:**
+- Short links return 404 or don't redirect
+- URLs show `%7BfinalDestination%7D` instead of actual destination
+
+**Solutions:**
+- Check `src/config/analytics.ts` for correct destination URLs
+- Verify the short link exists and is active (`isActive: true`)
+- **For Vercel SSR:** Ensure you're not using `getStaticPaths()` with `output: 'server'`
+- Test locally with `npm run dev` before deploying
+- Check browser console for JavaScript errors
+
+**Common Issue:** If short links work locally but not on Vercel:
+- Remove any `getStaticPaths()` functions from dynamic routes
+- Ensure scripts use `set:html` instead of `is:inline` for variable interpolation
+- Check that Analytics component doesn't have `client:load` directive
 
 ### Analytics Not Loading
 
 - Verify environment variables are set
 - Check IDs are correct format
 - Test in production (some platforms won't work in dev)
+- **Fix:** Remove `client:load` from `<Analytics />` component (Astro components don't support hydration)
+
+### Vercel Deployment Issues
+
+**Password Protection Error:**
+- If you see authentication errors, disable password protection in Vercel Settings → Deployments
+
+**Short Links Getting 401 Error:**
+- Check Vercel project settings for deployment protection
+- Disable password protection if not needed
+- Use bypass token for testing if protection is required
+
+**Dynamic Routes Not Working:**
+- Remove `getStaticPaths()` from dynamic route files
+- Use `output: 'server'` mode (already configured)
+- Handle routes dynamically in SSR mode
 
 ---
 

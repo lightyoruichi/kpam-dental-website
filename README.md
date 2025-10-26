@@ -96,12 +96,19 @@ See [ANALYTICS_SETUP.md](./ANALYTICS_SETUP.md) for complete setup guide.
 ## 📦 Deployment
 
 Ready to deploy on:
-- **Vercel** (recommended) - Automatic deployments from GitHub
+- **Vercel** (recommended) - Automatic deployments from GitHub, SSR support
 - **Netlify** - Easy hosting with form handling
 - **Cloudflare Pages** - Fast edge deployment
 - Any static hosting platform
 
-See [GUIDE.md](./GUIDE.md) for deployment instructions.
+**Quick Deploy:**
+```bash
+git push origin main
+```
+
+Then connect your GitHub repo to Vercel - automatic deployments enabled!
+
+See [GUIDE.md](./GUIDE.md) for detailed deployment instructions and troubleshooting.
 
 ## 🎨 Themes
 
@@ -142,6 +149,8 @@ Contributions welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 - **Quick Setup:** Run `npm run setup`
 - **Documentation:** See [GUIDE.md](./GUIDE.md)
 - **Analytics Help:** See [ANALYTICS_SETUP.md](./ANALYTICS_SETUP.md)
+- **Troubleshooting:** See [GUIDE.md#troubleshooting](./GUIDE.md#troubleshooting)
+- **Recent Changes:** See [CHANGELOG.md](./CHANGELOG.md)
 - **Issues:** Open an issue on GitHub
 
 ---
