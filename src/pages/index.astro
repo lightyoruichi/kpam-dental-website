@@ -2,8 +2,8 @@
 import BaseLayout from '../components/BaseLayout.astro';
 import { siteConfig } from '../config/site';
 
-const pageTitle = "Dentixa - Get a Beautiful Straight Smile Quickly";
-const pageDescription = "Transform your smile quickly and effortlessly with our exceptional dental services.";
+const pageTitle = `${siteConfig.business.name} - ${siteConfig.business.tagline}`;
+const pageDescription = siteConfig.business.description;
 ---
 
 <BaseLayout 
@@ -63,7 +63,7 @@ const pageDescription = "Transform your smile quickly and effortlessly with our 
             <!-- Image Fallback -->
             <img 
               src="/images/pexels-cedric-fauntleroy-4269694.jpg" 
-              alt="Dental care"
+              alt="Professional service"
               class="w-full h-full object-cover hidden"
               loading="eager"
             />

@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://yourrestaurant.com/sitemap.xml
+Sitemap: https://example.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

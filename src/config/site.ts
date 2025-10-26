@@ -2,20 +2,20 @@
 export const siteConfig = {
   // Business Information
   business: {
-    name: "Dentixa",
-    shortName: "Dentixa",
-    tagline: "Get a Beautiful Straight Smile Quickly",
-    description: "Transform your smile quickly and effortlessly with our exceptional dental services. We understand the importance of having a beautiful, straight smile.",
+    name: "Your Business Name",
+    shortName: "Your Business",
+    tagline: "Your Business Tagline Here",
+    description: "A brief description of your business and what you offer to your customers.",
     
     // Contact Information
-    phone: "+1 (23) 9230 821",
-    email: "dentixadentist@gmail.com",
+    phone: "+1 (23) 9230 821", // ⚠️ UPDATE: Replace with your phone number
+    email: "info@example.com", // ⚠️ UPDATE: Replace with your email
     address: {
-      street: "123 Dental Plaza",
-      city: "City",
-      state: "State",
-      zip: "12345",
-      country: "US"
+      street: "123 Main Street", // ⚠️ UPDATE: Replace with your street address
+      city: "City", // ⚠️ UPDATE: Replace with your city
+      state: "State", // ⚠️ UPDATE: Replace with your state/province
+      zip: "12345", // ⚠️ UPDATE: Replace with your postal code
+      country: "US" // ⚠️ UPDATE: Replace with your country code
     },
     
     // Business Hours
@@ -27,40 +27,26 @@ export const siteConfig = {
     
     // Social Media
     social: {
-      instagram: "@dentixa",
-      tiktok: "@dentixa",
-      facebook: "dentixa",
-      twitter: "@dentixa",
-      linkedin: "dentixa",
-      youtube: "dentixa"
+      instagram: "@examplebusiness", // ⚠️ UPDATE: Replace with your Instagram handle
+      tiktok: "@examplebusiness", // ⚠️ UPDATE: Replace with your TikTok handle
+      facebook: "examplebusiness", // ⚠️ UPDATE: Replace with your Facebook page
+      twitter: "@examplebusiness", // ⚠️ UPDATE: Replace with your Twitter/X handle
+      linkedin: "examplebusiness", // ⚠️ UPDATE: Replace with your LinkedIn company page
+      youtube: "examplebusiness" // ⚠️ UPDATE: Replace with your YouTube channel
     },
     
     // WhatsApp (if applicable)
     whatsapp: {
-      enabled: true,
-      number: "+1239230821",
-      message: "Hi, I'd like to book a dental appointment"
+      enabled: true, // ⚠️ UPDATE: Set to false if you don't use WhatsApp
+      number: "+1-555-EXAMPLE-123", // ⚠️ UPDATE: Replace with your WhatsApp number
+      message: "Hi, I'd like to learn more about your services" // ⚠️ UPDATE: Customize your default message
     }
   },
   
-  // Color Theme Configuration - Dentixa Blue Theme
-  theme: {
-    primary: {
-      light: "#3b82f6", // blue-500
-      DEFAULT: "#2563eb", // blue-600
-      dark: "#1d4ed8" // blue-700
-    },
-    secondary: {
-      light: "#60a5fa", // blue-400
-      DEFAULT: "#3b82f6", // blue-500
-      dark: "#2563eb" // blue-600
-    },
-    accent: {
-      light: "#06b6d4", // cyan-500
-      DEFAULT: "#0891b2", // cyan-600
-      dark: "#0e7490" // cyan-700
-    }
-  },
+  // Theme Configuration:
+  // To change themes, edit the 'defaultTheme' in tailwind.config.cjs
+  // Available themes: 'alien' (green), 'jellyfish' (purple), 'papaya' (orange)
+  // Users can also switch themes via the theme switcher in the header
   
   // Service Categories (customize these)
   serviceCategories: [
@@ -83,10 +69,10 @@ export const siteConfig = {
   
   // SEO Configuration
   seo: {
-    siteUrl: "https://dentixa.com",
-    defaultTitle: "Dentixa - Get a Beautiful Straight Smile Quickly",
-    defaultDescription: "Transform your smile quickly and effortlessly with our exceptional dental services. Professional dental care with modern technology.",
-    keywords: "dental clinic, dentist, dental care, teeth cleaning, braces, dental implants, cosmetic dentistry, smile transformation"
+    siteUrl: "https://example.com",
+    defaultTitle: "Your Business Name - Your Business Tagline",
+    defaultDescription: "Professional services with modern technology and excellent customer care.",
+    keywords: "your business, professional services, customer service, quality"
   }
 };
 

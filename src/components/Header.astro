@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from '../config/site';
+
 export interface Props {
   currentPage?: string;
 }
@@ -20,10 +22,10 @@ const navigation = [
       <!-- Logo -->
       <a href="/" class="flex items-center space-x-3 group">
         <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-          <span class="text-primary-content font-bold text-lg">D</span>
+          <span class="text-primary-content font-bold text-lg">{siteConfig.business.shortName.charAt(0)}</span>
         </div>
         <div>
-          <h1 class="text-xl font-bold text-base-content">Dentixa</h1>
+          <h1 class="text-xl font-bold text-base-content">{siteConfig.business.shortName}</h1>
         </div>
       </a>
 

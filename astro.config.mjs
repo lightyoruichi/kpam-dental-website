@@ -6,7 +6,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://yourrestaurant.com',
+	site: 'https://yourdomain.com', // ⚠️ UPDATE THIS: Replace with your actual domain
 	trailingSlash: 'never',
 	integrations: [
 		svelte(), 
