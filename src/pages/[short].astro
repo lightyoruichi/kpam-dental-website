@@ -31,67 +31,63 @@ if (queryString) {
     <meta http-equiv="refresh" content="0;url={finalDestination}">
     
     <!-- Analytics Scripts -->
-    <Analytics client:load />
+    <Analytics />
     
     <!-- Track Short Link Click - Universal Tracking -->
-    <script is:inline>
-      // Send to all enabled analytics platforms
-      (function() {
-        const eventData = {
-          event_category: '{link.category}',
-          event_label: '{link.label}',
-          link_id: '{link.id}',
-          destination: '{finalDestination}',
-          short_url: '{link.short}',
-          link_description: '{link.description}'
-        };
-        
-        // Google Analytics 4
-        if (window.gtag) {
-          window.gtag('event', 'short_link_click', eventData);
-        }
-        
-        // Google Tag Manager
-        if (window.dataLayer) {
-          window.dataLayer.push({
-            event: 'short_link_click',
-            ...eventData
-          });
-        }
-        
-        // Meta Pixel
-        if (window.fbq) {
-          window.fbq('track', 'short_link_click', eventData);
-        }
-        
-        // LinkedIn Insight Tag
-        if (window.lintrk) {
-          window.lintrk('track', { conversion_name: 'short_link_click' });
-        }
-        
-        // TikTok Pixel
-        if (window.ttq) {
-          window.ttq.track('short_link_click', eventData);
-        }
-        
-        // Pinterest Tag
-        if (window.pintrk) {
-          window.pintrk('track', 'short_link_click', eventData);
-        }
-        
-        // Reddit Pixel
-        if (window.rdt) {
-          window.rdt('track', 'short_link_click', eventData);
-        }
-      })();
-    </script>
+    <script set:html={`// Send to all enabled analytics platforms
+(function() {
+  const eventData = {
+    event_category: '${link.category}',
+    event_label: '${link.label}',
+    link_id: '${link.id}',
+    destination: '${finalDestination}',
+    short_url: '${link.short}',
+    link_description: '${link.description}'
+  };
+  
+  // Google Analytics 4
+  if (window.gtag) {
+    window.gtag('event', 'short_link_click', eventData);
+  }
+  
+  // Google Tag Manager
+  if (window.dataLayer) {
+    window.dataLayer.push({
+      event: 'short_link_click',
+      ...eventData
+    });
+  }
+  
+  // Meta Pixel
+  if (window.fbq) {
+    window.fbq('track', 'short_link_click', eventData);
+  }
+  
+  // LinkedIn Insight Tag
+  if (window.lintrk) {
+    window.lintrk('track', { conversion_name: 'short_link_click' });
+  }
+  
+  // TikTok Pixel
+  if (window.ttq) {
+    window.ttq.track('short_link_click', eventData);
+  }
+  
+  // Pinterest Tag
+  if (window.pintrk) {
+    window.pintrk('track', 'short_link_click', eventData);
+  }
+  
+  // Reddit Pixel
+  if (window.rdt) {
+    window.rdt('track', 'short_link_click', eventData);
+  }
+})();`} />
     
     <!-- Fallback redirect for browsers that don't support meta refresh -->
-    <script>
-      setTimeout(() => {
-        window.location.href = '{finalDestination}';
-      }, 100);
-    </script>
+    <script set:html={`setTimeout(() => {
+  window.location.href = '${finalDestination}';
+}, 100);`} />
   </head>
   <body>
     <div style="
