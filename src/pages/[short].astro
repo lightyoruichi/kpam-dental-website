@@ -2,18 +2,7 @@
 import { getShortLink, trackShortLinkClick } from '../config/analytics';
 import Analytics from '../components/Analytics.astro';
 
-export async function getStaticPaths() {
-  // Import short links from config to make this dynamic
-  const { shortLinks } = await import('../config/analytics.ts');
-  
-  // Generate paths for all active short links
-  return shortLinks
-    .filter(link => link.isActive)
-    .map(link => ({
-      params: { short: link.short }
-    }));
-}
-
+// For SSR mode, we handle the route dynamically
 const { short } = Astro.params;
 const link = getShortLink(short || '');
 

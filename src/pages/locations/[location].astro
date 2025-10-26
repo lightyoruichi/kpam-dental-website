@@ -2,12 +2,7 @@
 import BaseLayout from '../../components/BaseLayout.astro';
 import { getLocationById, locations } from '../../config/locations';
 
-export async function getStaticPaths() {
-  return locations.map((location) => ({
-    params: { location: location.id }
-  }));
-}
-
+// For SSR mode, we handle the route dynamically
 const { location: locationId } = Astro.params;
 const location = getLocationById(locationId!);
 
